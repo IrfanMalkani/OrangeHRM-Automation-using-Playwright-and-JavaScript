@@ -1,0 +1,76 @@
+Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
+TC_REC_01,Recruitment,Recruitment,Add candidate details,Positive,Add candidate details,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_REC_02,Recruitment,Recruitment,Search candidate records,Positive,Search candidate records,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_REC_03,Recruitment,Recruitment,Verify Recruitment page has Add button visible,Positive,Verify Recruitment page has Add button visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_REC_04,Recruitment,Recruitment,Verify Candidates tab is functional,Positive,Verify Candidates tab is functional,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_05,Recruitment,Recruitment,Verify top navigation contains Vacancies tab,Positive,Verify top navigation contains Vacancies tab,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_06,Recruitment,Recruitment,Verify job title dropdown filter is visible,Positive,Verify job title dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_07,Recruitment,Recruitment,Verify vacancy dropdown filter is visible,Positive,Verify vacancy dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_08,Recruitment,Recruitment,Verify hiring manager dropdown filter is visible,Positive,Verify hiring manager dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_09,Recruitment,Recruitment,Verify status dropdown filter is visible,Positive,Verify status dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_10,Recruitment,Recruitment,Verify method of application dropdown filter is visible,Positive,Verify method of application dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_11,Recruitment,Recruitment,Verify validation error on empty First Name input,Negative,Verify validation error on empty First Name input,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_12,Recruitment,Recruitment,Verify validation error on empty Last Name input,Negative,Verify validation error on empty Last Name input,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_13,Recruitment,Recruitment,Verify validation error on empty Email input,Negative,Verify validation error on empty Email input,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_14,Recruitment,Recruitment,Verify validation error on invalid Email format,Negative,Verify validation error on invalid Email format,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_15,Recruitment,Recruitment,Verify Cancel button on Add Candidate form returns to candidates page,Positive,Verify Cancel button on Add Candidate form returns to candidates page,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_16,Recruitment,Recruitment,Verify Reset button clears Candidate Name input,Positive,Verify Reset button clears Candidate Name input,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_17,Recruitment,Recruitment,Verify Recruitment header breadcrumb displays Recruitment / Candidates,Positive,Verify Recruitment header breadcrumb displays Recruitment / Candidates,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_18,Recruitment,Recruitment,Verify table checkboxes exist for recruitment rows,Positive,Verify table checkboxes exist for recruitment rows,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_19,Recruitment,Recruitment,Verify date of application filter inputs are visible,Positive,Verify date of application filter inputs are visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_20,Recruitment,Recruitment,Verify Keywords input is functional,Positive,Verify Keywords input is functional,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_21,Recruitment,Recruitment,Verify select all checkbox is in the header,Positive,Verify select all checkbox is in the header,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_22,Recruitment,Recruitment,Verify records text is visible above the table,Positive,Verify records text is visible above the table,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_23,Recruitment,Recruitment,Verify file upload field accepts doc/docx/pdf file types,Positive,Verify file upload field accepts doc/docx/pdf file types,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_24,Recruitment,Recruitment,Verify consent checkbox is visible in Add Candidate form,Positive,Verify consent checkbox is visible in Add Candidate form,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_REC_25,Recruitment,Recruitment,Verify Vacancy dropdown has option elements loaded,Positive,Verify Vacancy dropdown has option elements loaded,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED

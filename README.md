@@ -1,179 +1,129 @@
-# OrangeHRM Automation using Playwright and JavaScript
+# OrangeHRM E2E Automation Suite using Playwright & JavaScript
 
-## Project Overview
+[![Playwright Version](https://img.shields.io/badge/playwright-%5E1.49.0-blueviolet?style=flat-square&logo=playwright)](https://playwright.dev/)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-green?style=flat-square&logo=node.js)](https://nodejs.org/)
+[![Language](https://img.shields.io/badge/language-pure%20javascript-yellow?style=flat-square&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License](https://img.shields.io/badge/license-ISC-orange?style=flat-square)](https://opensource.org/licenses/ISC)
 
-This project automates the OrangeHRM web application using Playwright with JavaScript. The objective of this project is to validate critical functionalities of the Human Resource Management system through automated end-to-end testing.
+## 📊 Executive Overview
 
-The framework is developed using industry-standard practices such as Page Object Model (POM), reusable methods, assertions, reporting, and organized test structure for maintainability and scalability.
+This repository houses a production-ready, enterprise-grade E2E test automation framework for the **OrangeHRM Open Source** web application. Built using **Playwright JS**, the suite adheres strictly to the **Page Object Model (POM)** pattern, avoids hardcoded delays, utilizes robust element-action synchronization, and includes automated dynamic test case generation and packaging.
 
-This automation suite helps reduce manual effort, improve testing efficiency, and ensure application stability.
-
-Application URL:
-
-https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
-
----
-
-## Project Testing Scenarios
-
-### Authentication Module
-- Verify successful login with valid credentials
-- Verify login with invalid credentials
-- Verify required field validations
-- Verify logout functionality
-
-### Dashboard Module
-- Verify dashboard page loading
-- Verify dashboard widgets visibility
-
-### PIM Module
-- Add new employee
-- Search employee details
-- Update employee information
-- Delete employee records
-
-### Admin Module
-- Search user by username
-- Add new user
-- Update user details
-- Delete existing user
-
-### Leave Module
-- Apply leave request
-- Verify leave status
-- Validate leave details
-
-### Recruitment Module
-- Add candidate details
-- Search candidate records
-
-### My Info Module
-- Update personal details
-- Upload profile image
+* **Target Application**: [OrangeHRM Open Source Demo](https://opensource-demo.orangehrmlive.com)
+* **Design Pattern**: Page Object Model (POM) with Custom Fixtures
+* **Total Coverage**: **350 Test Cases** across **14 Modules** (exactly 25 tests per module)
 
 ---
 
-## Prerequisites
+## 🗂️ Unified Results Structure
 
-Before running the project, make sure the following software is installed:
-
-- Node.js
-- Visual Studio Code
-- Playwright
-- Git
-- JavaScript Basics
-- Internet Connection
-
----
-
-## Setup Instructions
-
-### Clone Repository
-
-```bash
-git clone <repository-url>
-```
-
-### Open Project Directory
-
-```bash
-cd OrangeHRM-Automation
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Install Playwright Browsers
-
-```bash
-npx playwright install
-```
-
-### Execute Test Cases
-
-```bash
-npx playwright test
-```
-
-### Generate HTML Report
-
-```bash
-npx playwright show-report
-```
-
----
-
-## Tools and Frameworks Used
-
-- Playwright
-- JavaScript
-- Node.js
-- Visual Studio Code
-- Git & GitHub
-- Page Object Model (POM)
-- Playwright HTML Reports
-- Assertions
-- Locator Strategies
-
----
-
-## Project Structure
+All test outputs, reports, and evidence are consolidated inside a single, centralized `Results/` folder to prevent clutter and cross-module contamination.
 
 ```text
-OrangeHRM-Automation
-│
-├── tests
-├── pages
-├── fixtures
-├── utils
-├── test-data
-├── screenshots
-├── reports
-├── TestCases
-│   ├── OrangeHRM_TestCases.xlsx
-│   └── OrangeHRM_TestCases.csv
-│
-├── HTMLReport
-│   └── Report.zip
-│
-├── playwright.config.js
-├── package.json
-└── README.md
+Results/
+├── Reports/
+│   ├── HTML/                 # Consolidated E2E Execution Dashboard & module HTMLs
+│   │   ├── Report.zip        # Consolidated zip containing all HTML/Excel/CSV results
+│   │   └── playwright-report # Playwright's native interactive execution report
+│   ├── JSON/                 # Playwright JSON results (results.json)
+│   └── JUnit/                # JUnit-compatible XML results (results.xml)
+├── TestCases/
+│   ├── CSV/                  # Module-specific and master CSV test logs
+│   └── XLSX/                 # Professional module-specific and master Excel spreadsheets
+└── Evidence/                 # Screenshots, videos, and trace files captured on failure
 ```
 
 ---
 
-## Project Artifacts Included
+## 🚀 Execution & Coverage
 
-This repository includes the following supporting documents and reports:
+### Prerequisites
+- Node.js (v20+ recommended)
+- Google Chrome / Mozilla Firefox / Apple Safari (Playwright manages these)
+- PowerShell (for post-test packaging on Windows)
 
-- Test Cases (.xlsx)
-- Test Cases (.csv)
-- HTML Test Execution Report
-- Report ZIP File
-- Screenshots
-- Automation Framework
-- Reusable Utilities
+### Installation
+1. Clone the repository and navigate to the project directory:
+   ```bash
+   npm install
+   ```
+2. Install Playwright browser binaries:
+   ```bash
+   npx playwright install
+   ```
+
+### Running Tests
+* Run the entire suite (all 350 tests) in headless parallel mode:
+  ```bash
+  npm run test
+  ```
+* Run a specific spec module (e.g., Login):
+  ```bash
+  npx playwright test tests/login.spec.js
+  ```
+* Run tests matching a specific tag or test ID (e.g., `TC_LOGIN_01`):
+  ```bash
+  npx playwright test -g "TC_LOGIN_01"
+  ```
+* Run in UI / Headed Mode:
+  ```bash
+  npm run test:headed
+  ```
+* Run in debug / trace mode:
+  ```bash
+  npm run test:debug
+  ```
+
+*Note: The test run automatically triggers the `posttest` hook to package and compile Excel, CSV, HTML, and ZIP reports inside `Results/`.*
 
 ---
 
-## Features
+## 🔬 Test Suite Coverage Details
 
-- Page Object Model (POM)
-- Reusable Methods
-- Assertions
-- Reporting
-- Organized Folder Structure
-- Easy Maintenance
-- Scalable Framework Design
+The framework includes **exactly 25 test cases** for each of the 14 functional modules, validating happy path E2E flows, boundaries, negative inputs, UI attributes, responsiveness, and security validation:
+
+| # | Spec Module Name | Spec File Path | Description / Scope | Test Count |
+|---|------------------|----------------|---------------------|:----------:|
+| 1 | **Login** | `tests/login.spec.js` | Form validations, credential mask checking, placeholder titles, layout checks. | 25 |
+| 2 | **Logout** | `tests/logout.spec.js` | Session cleanup, history navigation back-lock checks, direct URL routing guards. | 25 |
+| 3 | **Validations** | `tests/validations.spec.js` | Field requirements, boundary constraints, XSS injection prevention. | 25 |
+| 4 | **Forgot Password** | `tests/forgotPassword.spec.js` | Cancellation paths, username resets, UI links, header labels. | 25 |
+| 5 | **Change Password** | `tests/changePassword.spec.js` | Password complexity rules, alignment checks, short-length inputs, tabs. | 25 |
+| 6 | **Dashboard** | `tests/dashboard.spec.js` | Quick Launch widgets, employee charts, sidebar menu filters, responsive shifts. | 25 |
+| 7 | **PIM** | `tests/pim.spec.js` | CRUD employee records, ID searches, detail edits, profile uploads, filters. | 25 |
+| 8 | **Admin** | `tests/admin.spec.js` | System user creations, role dropdown filters, column layouts, username lookups. | 25 |
+| 9 | **Leave** | `tests/leave.spec.js` | Leave application form inputs, duration checks, calendar popups, pending status. | 25 |
+| 10 | **Recruitment** | `tests/recruitment.spec.js` | Candidate profiles, stage changes, resume formats, vacancy selector limits. | 25 |
+| 11 | **My Info** | `tests/myinfo.spec.js` | SSN/SIN verification, dropdown lists, attachment attachments, avatar changes. | 25 |
+| 12 | **Buzz** | `tests/buzz.spec.js` | Activity post shares, like limits, media uploads, post content length checks. | 25 |
+| 13 | **Time** | `tests/time.spec.js` | Timesheets editing, project details, hour formats, punch-in/out records. | 25 |
+| 14 | **Directory** | `tests/directory.spec.js` | Directory search cards, location and job title filters, autocomplete checks. | 25 |
+| | **Consolidated Total** | | | **350** |
 
 ---
 
-## Author
+## 🛠️ Framework Architecture & Features
 
-Irfan Malkani
+### 1. Custom Test Fixture (`fixtures/baseTest.js`)
+We extend Playwright's test runner to pre-instantiate all page objects before the execution of each test block. Tests simply destructure the needed page object directly, ensuring clean, modular page instantiation:
+```javascript
+test('TC_LOGIN_01: Verify successful login with valid credentials', async ({ loginPage, dashboardPage }) => {
+  await loginPage.login(username, password);
+  expect(await dashboardPage.isLoaded()).toBe(true);
+});
+```
 
-QA Engineer | Manual Testing | Playwright | JavaScript | Automation Testing
+### 2. Auto-Discovery & Dynamic Packaging (`utils/zipReports.js`)
+- **Zero-Maintenance Master List**: The script scans the `/tests/` directory at runtime using regular expressions to extract every test case title and ID dynamically.
+- **Reporting Metrics**: Computes pass rates and execution metrics based on the latest runs and writes individual + master CSV and Excel (XLSX) sheets styled with OrangeHRM's theme palette.
+- **Auto-Zipping**: Automatically triggers PowerShell to package HTML reports, Excel/CSV sheets, and Playwright reports into `Results/Reports/HTML/Report.zip`.
+
+### 3. Execution Evidence
+Failures automatically trigger screenshots, videos, and full tracing saved under `Results/Evidence/` for fast debug cycles.
+
+---
+
+## ✍️ Author & Maintainer
+
+* **Irfan Malkani** - QA Automation Architect
+* *Specialization: Playwright | JavaScript | E2E Framework Design | Quality Engineering*

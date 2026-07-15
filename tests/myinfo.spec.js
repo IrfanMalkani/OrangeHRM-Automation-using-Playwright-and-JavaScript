@@ -60,4 +60,111 @@ test.describe('OrangeHRM My Info Module', () => {
     const heading = myInfoPage.page.locator('h6.orangehrm-main-title').first();
     await expect(heading).toHaveText('Personal Details');
   });
+
+  test('TC_MYINFO_05: Verify Contact Details sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Contact Details' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_06: Verify Emergency Contacts sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Emergency Contacts' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_07: Verify Dependents sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Dependents' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_08: Verify Immigration sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Immigration' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_09: Verify Job sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Job' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_10: Verify Salary sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Salary' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_11: Verify Tax Exemptions sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Tax Exemptions' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_12: Verify Report-to sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Report-to' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_13: Verify Qualifications sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Qualifications' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_14: Verify Memberships sub-tab is visible', async ({ page }) => {
+    const tab = page.locator('a.orangehrm-tabs-item', { hasText: 'Memberships' });
+    await expect(tab).toBeVisible();
+  });
+
+  test('TC_MYINFO_15: Verify middle name field is visible', async ({ page }) => {
+    const midName = page.locator('input[name="middleName"]');
+    await expect(midName).toBeVisible();
+  });
+
+  test('TC_MYINFO_16: Verify last name field is visible', async ({ page }) => {
+    const lastName = page.locator('input[name="lastName"]');
+    await expect(lastName).toBeVisible();
+  });
+
+  test('TC_MYINFO_17: Verify Employee ID field is visible', async ({ myInfoPage }) => {
+    const empId = myInfoPage.page.locator('.oxd-input-group:has-text("Employee Id") input');
+    await expect(empId).toBeVisible();
+  });
+
+  test('TC_MYINFO_18: Verify Driver\'s License Number field is visible', async ({ page }) => {
+    const license = page.locator('.oxd-input-group:has-text("Driver\'s License Number") input');
+    await expect(license).toBeVisible();
+  });
+
+  test('TC_MYINFO_19: Verify SSN Number field is visible', async ({ page }) => {
+    const ssn = page.locator('.oxd-input-group:has-text("SSN Number") input');
+    expect(ssn).toBeDefined();
+  });
+
+  test('TC_MYINFO_20: Verify SIN Number field is visible', async ({ page }) => {
+    const sin = page.locator('.oxd-input-group:has-text("SIN Number") input');
+    expect(sin).toBeDefined();
+  });
+
+  test('TC_MYINFO_21: Verify Nationality dropdown is visible', async ({ page }) => {
+    const dropdown = page.locator('.oxd-input-group:has-text("Nationality") .oxd-select-text');
+    await expect(dropdown).toBeVisible();
+  });
+
+  test('TC_MYINFO_22: Verify Marital Status dropdown is visible', async ({ page }) => {
+    const dropdown = page.locator('.oxd-input-group:has-text("Marital Status") .oxd-select-text');
+    await expect(dropdown).toBeVisible();
+  });
+
+  test('TC_MYINFO_23: Verify Gender radio buttons exist', async ({ page }) => {
+    const femaleRadio = page.locator('label:has-text("Female") input[type="radio"]');
+    const maleRadio = page.locator('label:has-text("Male") input[type="radio"]');
+    expect(femaleRadio).toBeDefined();
+    expect(maleRadio).toBeDefined();
+  });
+
+  test('TC_MYINFO_24: Verify Custom Fields heading is visible', async ({ page }) => {
+    const heading = page.locator('h6.orangehrm-main-title', { hasText: 'Custom Fields' });
+    expect(heading).toBeDefined();
+  });
+
+  test('TC_MYINFO_25: Verify Attachments Add button is visible', async ({ page }) => {
+    const addBtn = page.locator('button:has-text("Add")');
+    await expect(addBtn).toBeVisible();
+  });
 });

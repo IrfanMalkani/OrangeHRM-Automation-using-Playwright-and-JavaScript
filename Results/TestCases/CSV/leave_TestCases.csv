@@ -1,0 +1,76 @@
+Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
+TC_LEAVE_01,Leave,Leave,Apply leave request flow,Positive,Apply leave request flow,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
+TC_LEAVE_02,Leave,Leave,Verify leave type of applied leave request,Positive,Verify leave type of applied leave request,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_LEAVE_03,Leave,Leave,Verify Top Navigation Tab Apply is visible,Positive,Verify Top Navigation Tab Apply is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_LEAVE_04,Leave,Leave,Verify Top Navigation Tab My Leave is visible,Positive,Verify Top Navigation Tab My Leave is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_05,Leave,Leave,Verify Top Navigation Tab Entitlements dropdown is visible,Positive,Verify Top Navigation Tab Entitlements dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_06,Leave,Leave,Verify Top Navigation Tab Reports dropdown is visible,Positive,Verify Top Navigation Tab Reports dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_07,Leave,Leave,Verify Top Navigation Tab Configure dropdown is visible,Positive,Verify Top Navigation Tab Configure dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_08,Leave,Leave,Verify Top Navigation Tab Leave List is visible,Positive,Verify Top Navigation Tab Leave List is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_09,Leave,Leave,Verify Top Navigation Tab Assign Leave is visible,Positive,Verify Top Navigation Tab Assign Leave is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_10,Leave,Leave,Verify validation error on empty Leave Type in Apply form,Negative,Verify validation error on empty Leave Type in Apply form,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_11,Leave,Leave,Verify From Date input field is visible,Positive,Verify From Date input field is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_12,Leave,Leave,Verify To Date input field is visible,Positive,Verify To Date input field is visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_13,Leave,Leave,Verify comments textarea has correct maximum character details,Positive,Verify comments textarea has correct maximum character details,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_14,Leave,Leave,Verify calendar icon buttons exist next to date input fields,Positive,Verify calendar icon buttons exist next to date input fields,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_15,Leave,Leave,Verify Show with Status checkboxes exist in My Leave list filters,Positive,Verify Show with Status checkboxes exist in My Leave list filters,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_16,Leave,Leave,Verify Leave Type dropdown filter is present in My Leave tab,Positive,Verify Leave Type dropdown filter is present in My Leave tab,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_17,Leave,Leave,Verify Reset button clears date inputs in My Leave filters,Positive,Verify Reset button clears date inputs in My Leave filters,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_18,Leave,Leave,Verify table headers in My Leave results page,Positive,Verify table headers in My Leave results page,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_19,Leave,Leave,Verify date validation error message if To Date is before From Date,Negative,Verify date validation error message if To Date is before From Date,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_20,Leave,Leave,Verify calendar widget opens when From Date input is clicked,Positive,Verify calendar widget opens when From Date input is clicked,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_21,Leave,Leave,Verify calendar widget opens when To Date input is clicked,Positive,Verify calendar widget opens when To Date input is clicked,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_22,Leave,Leave,Verify Leave page header title displays Leave,Positive,Verify Leave page header title displays Leave,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_23,Leave,Leave,Verify Leave Balance card is shown for specific leave types,Positive,Verify Leave Balance card is shown for specific leave types,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_24,Leave,Leave,Verify My Leave list table rows can be scrolled and are visible,Positive,Verify My Leave list table rows can be scrolled and are visible,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LEAVE_25,Leave,Leave,Verify search button on My Leave filters page has correct CSS layout,Positive,Verify search button on My Leave filters page has correct CSS layout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED

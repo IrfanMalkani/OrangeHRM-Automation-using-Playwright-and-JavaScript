@@ -3,12 +3,15 @@ const path = require('path');
 const { execSync } = require('child_process');
 const ExcelJS = require('exceljs');
 
-const reportsDir = path.resolve(__dirname, '../reports');
-const testResultsJson = path.join(reportsDir, 'test-results.json');
-const testCasesDir = path.resolve(__dirname, '../TestCases');
-const htmlReportDir = path.resolve(__dirname, '../HTMLReport');
-const zipOutputPath = path.join(htmlReportDir, 'Report.zip');
-const stagingDir = path.join(reportsDir, '_staging');
+const resultsDir = path.resolve(__dirname, '../Results');
+const reportsDir = path.join(resultsDir, 'Reports');
+const testResultsJson = path.join(reportsDir, 'JSON/results.json');
+const testCasesDir = path.join(resultsDir, 'TestCases');
+const csvDir = path.join(testCasesDir, 'CSV');
+const xlsxDir = path.join(testCasesDir, 'XLSX');
+const htmlReportDir = path.join(reportsDir, 'HTML');
+const zipOutputPath = path.join(reportsDir, 'HTML/Report.zip');
+const stagingDir = path.join(resultsDir, '_staging');
 
 function ensureDirectoryExists(dir) {
   if (!fs.existsSync(dir)) {
@@ -16,77 +19,58 @@ function ensureDirectoryExists(dir) {
   }
 }
 
-// Master list of all 49 test cases across 10 modules
-const masterTestCases = [
-  // 1. Login (9 tests)
-  { id: 'TC_LOGIN_01', module: 'Authentication', subtask: 'Login', feature: 'Successful Login', testType: 'Positive', description: 'Verify successful login with valid credentials', preCondition: 'User is on login page', testSteps: '1. Enter valid username: Admin\n2. Enter valid password: admin123\n3. Click Login button', expectedResult: 'User is logged in successfully and redirected to Dashboard page', priority: 'High', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_02', module: 'Authentication', subtask: 'Login', feature: 'Invalid Credentials', testType: 'Negative', description: 'Verify login fails with invalid credentials', preCondition: 'User is on login page', testSteps: '1. Enter invalid username\n2. Enter invalid password\n3. Click Login button', expectedResult: "Error alert displays 'Invalid credentials' and user remains on login page", priority: 'High', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_03', module: 'Authentication', subtask: 'Login', feature: 'Wrong Password validation', testType: 'Negative', description: 'Verify error message for valid username and wrong password', preCondition: 'User is on login page', testSteps: '1. Enter username: Admin\n2. Enter wrong password\n3. Click Login button', expectedResult: "Error alert displays 'Invalid credentials'", priority: 'High', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_04', module: 'Authentication', subtask: 'Login', feature: 'UI Verification', testType: 'Positive', description: 'Verify password field masks input characters', preCondition: 'User is on login page', testSteps: '1. Check input tag type attribute of password field', expectedResult: "Attribute type equals 'password' representing hidden chars", priority: 'Low', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_05', module: 'Authentication', subtask: 'Login', feature: 'UI Verification', testType: 'Positive', description: 'Verify all login page UI elements are visible', preCondition: 'User is on login page', testSteps: '1. Verify logo image\n2. Verify Login header title\n3. Verify form input fields and button\n4. Verify forgot password link\n5. Verify copyright text', expectedResult: 'All specified login page elements are visible and properly rendered', priority: 'Low', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_06', module: 'Authentication', subtask: 'Login', feature: 'UI Verification', testType: 'Positive', description: 'Verify credential hint box displays default login info', preCondition: 'User is on login page', testSteps: '1. Inspect the credential hint card above login form', expectedResult: "Hint box displays 'Username : Admin' and 'Password : admin123'", priority: 'Low', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_07', module: 'Authentication', subtask: 'Login', feature: 'Page Title', testType: 'Positive', description: 'Verify login page title contains OrangeHRM', preCondition: 'User is on login page', testSteps: '1. Read browser page title', expectedResult: "Page title contains 'OrangeHRM'", priority: 'Low', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_08', module: 'Authentication', subtask: 'Login', feature: 'URL Verification', testType: 'Positive', description: 'Verify login page URL contains auth/login', preCondition: 'User is on login page', testSteps: '1. Check current page URL', expectedResult: "URL contains '/auth/login'", priority: 'Low', specFile: 'login.spec.js' },
-  { id: 'TC_LOGIN_09', module: 'Authentication', subtask: 'Login', feature: 'Placeholder Text', testType: 'Positive', description: 'Verify input placeholders display correct text', preCondition: 'User is on login page', testSteps: '1. Read placeholder attribute of Username input\n2. Read placeholder attribute of Password input', expectedResult: "Username placeholder is 'Username' and Password placeholder is 'Password'", priority: 'Low', specFile: 'login.spec.js' },
-  // 2. Logout (3 tests)
-  { id: 'TC_LOGOUT_01', module: 'Authentication', subtask: 'Logout', feature: 'Logout Operation', testType: 'Positive', description: 'Verify logout functionality redirects to login page', preCondition: 'User is logged in', testSteps: '1. Click user profile dropdown\n2. Click Logout link', expectedResult: 'User is logged out and redirected to login page', priority: 'High', specFile: 'logout.spec.js' },
-  { id: 'TC_LOGOUT_02', module: 'Authentication', subtask: 'Logout', feature: 'Session Security', testType: 'Security', description: 'Verify dashboard cannot be accessed directly after logout', preCondition: 'User is logged out', testSteps: '1. Navigate directly to dashboard URL /web/index.php/dashboard/index', expectedResult: 'User is redirected to login page and cannot view dashboard without auth', priority: 'High', specFile: 'logout.spec.js' },
-  { id: 'TC_LOGOUT_03', module: 'Authentication', subtask: 'Logout', feature: 'Session Security', testType: 'Security', description: 'Verify browser back button does not access dashboard after logout', preCondition: 'User is logged out', testSteps: '1. Press browser back button after logout', expectedResult: 'User remains on login page and dashboard is not accessible', priority: 'Medium', specFile: 'logout.spec.js' },
-  { id: 'TC_VALID_01', module: 'Authentication', subtask: 'Validations', feature: 'Empty Fields validation', testType: 'Negative', description: 'Verify required field validations when both fields are blank', preCondition: 'User is on login page', testSteps: '1. Leave Username blank\n2. Leave Password blank\n3. Click Login button', expectedResult: '\'Required\' validation text is displayed under both inputs', priority: 'Medium', specFile: 'validations.spec.js' },
-  { id: 'TC_VALID_02', module: 'Authentication', subtask: 'Validations', feature: 'Empty Username validation', testType: 'Negative', description: 'Verify username required validation when only password is entered', preCondition: 'User is on login page', testSteps: '1. Leave Username blank\n2. Enter valid password\n3. Click Login button', expectedResult: "'Required' validation text is displayed under Username input only", priority: 'Medium', specFile: 'validations.spec.js' },
-  { id: 'TC_VALID_03', module: 'Authentication', subtask: 'Validations', feature: 'Empty Password validation', testType: 'Negative', description: 'Verify password required validation when only username is entered', preCondition: 'User is on login page', testSteps: '1. Enter valid username\n2. Leave Password blank\n3. Click Login button', expectedResult: "'Required' validation text is displayed under Password input only", priority: 'Medium', specFile: 'validations.spec.js' },
-  { id: 'TC_VALID_04', module: 'Authentication', subtask: 'Validations', feature: 'Special Characters', testType: 'Security', description: 'Verify login fails with special characters in credentials', preCondition: 'User is on login page', testSteps: '1. Enter script tags as username\n2. Enter special characters as password\n3. Click Login button', expectedResult: "Error alert displays 'Invalid credentials' and no XSS occurs", priority: 'High', specFile: 'validations.spec.js' },
-  // 4. Forgot Password (4 tests)
-  { id: 'TC_FORGOT_01', module: 'Authentication', subtask: 'Forgot Password', feature: 'Forgot Password Link', testType: 'Positive', description: 'Verify navigation to Forgot Password page', preCondition: 'User is on login page', testSteps: "1. Click 'Forgot your password?' link", expectedResult: 'User is navigated to Reset Password page showing username field and reset buttons', priority: 'Medium', specFile: 'forgotPassword.spec.js' },
-  { id: 'TC_FORGOT_02', module: 'Authentication', subtask: 'Forgot Password', feature: 'Cancel Operation', testType: 'Positive', description: 'Verify cancellation of password reset request', preCondition: 'User is on Forgot Password page', testSteps: '1. Click Cancel button', expectedResult: 'User is redirected back to Login page with Login button visible', priority: 'Medium', specFile: 'forgotPassword.spec.js' },
-  { id: 'TC_FORGOT_03', module: 'Authentication', subtask: 'Forgot Password', feature: 'Password Reset Submission', testType: 'Positive', description: 'Verify successful submission of password reset request', preCondition: 'User is on Forgot Password page', testSteps: '1. Enter username: Admin\n2. Click Reset Password button', expectedResult: "Success title displays 'Reset Password link sent successfully'", priority: 'High', specFile: 'forgotPassword.spec.js' },
-  { id: 'TC_FORGOT_04', module: 'Authentication', subtask: 'Forgot Password', feature: 'Page Heading', testType: 'Positive', description: 'Verify forgot password page heading text', preCondition: 'User is on Forgot Password page', testSteps: '1. Navigate to forgot password page\n2. Check heading text', expectedResult: "Heading displays 'Reset Password'", priority: 'Low', specFile: 'forgotPassword.spec.js' },
-  // 5. Dashboard (12 tests)
-  { id: 'TC_DASH_01', module: 'Dashboard', subtask: 'Dashboard Loading', feature: 'Page Verification', testType: 'Positive', description: 'Verify dashboard page loads after successful login', preCondition: 'User is logged in', testSteps: '1. Complete login flow\n2. Wait for page load', expectedResult: "URL contains '/dashboard' and header displays 'Dashboard' text", priority: 'High', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_02', module: 'Dashboard', subtask: 'Dashboard Widgets', feature: 'Widgets Visibility', testType: 'Positive', description: 'Verify dashboard widgets are visible', preCondition: 'User is logged in', testSteps: '1. Count visible widgets on the dashboard', expectedResult: 'Dashboard contains multiple active widgets', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_03', module: 'Dashboard', subtask: 'Dashboard Widgets', feature: 'Time at Work widget', testType: 'Positive', description: 'Verify Time at Work widget is displayed', preCondition: 'User is logged in', testSteps: '1. Locate Time at Work widget on dashboard', expectedResult: 'Time at Work widget is visible on screen', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_04', module: 'Dashboard', subtask: 'Dashboard Widgets', feature: 'My Actions widget', testType: 'Positive', description: 'Verify My Actions widget is displayed', preCondition: 'User is logged in', testSteps: '1. Locate My Actions widget on dashboard', expectedResult: 'My Actions widget is visible on screen', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_05', module: 'Dashboard', subtask: 'Dashboard Widgets', feature: 'Quick Launch widget', testType: 'Positive', description: 'Verify Quick Launch widget is displayed', preCondition: 'User is logged in', testSteps: '1. Locate Quick Launch widget on dashboard', expectedResult: 'Quick Launch widget is visible on screen', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_06', module: 'Dashboard', subtask: 'Sidebar Navigation', feature: 'Sidebar modules', testType: 'Positive', description: 'Verify sidebar contains all main navigation items', preCondition: 'User is logged in', testSteps: '1. Verify visibility of modules: Admin, PIM, Leave, Time, Recruitment, My Info, Performance, Dashboard, Directory, Maintenance, Claim, Buzz', expectedResult: 'All 12 module sidebar links are visible on screen', priority: 'High', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_07', module: 'Dashboard', subtask: 'User Dropdown', feature: 'Logged-in User Display', testType: 'Positive', description: 'Verify logged-in user name is displayed in header', preCondition: 'User is logged in', testSteps: '1. Inspect the top-right header section', expectedResult: 'Logged-in user name is visible in top right dropdown area', priority: 'Low', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_08', module: 'Dashboard', subtask: 'User Dropdown', feature: 'Dropdown Menu options', testType: 'Positive', description: 'Verify dropdown menu contains all user options', preCondition: 'User is logged in', testSteps: '1. Click user profile dropdown', expectedResult: 'Menu displays About, Support, Change Password, and Logout links', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_09', module: 'Dashboard', subtask: 'Sidebar Navigation', feature: 'Sidebar Collapse', testType: 'Positive', description: 'Verify sidebar collapse and expand functionality', preCondition: 'User is logged in', testSteps: '1. Click sidebar toggle to collapse\n2. Click sidebar toggle to expand', expectedResult: 'Sidebar collapses and expands correctly', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_10', module: 'Dashboard', subtask: 'Dashboard Widgets', feature: 'Employees on Leave widget', testType: 'Positive', description: 'Verify Employees on Leave Today widget is displayed', preCondition: 'User is logged in', testSteps: '1. Locate Employees on Leave Today widget on dashboard', expectedResult: 'Employees on Leave Today widget is visible on screen', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_11', module: 'Dashboard', subtask: 'Sidebar Navigation', feature: 'Sidebar Search', testType: 'Positive', description: 'Verify sidebar search filters navigation items', preCondition: 'User is logged in', testSteps: '1. Type "Admin" in sidebar search box', expectedResult: 'Only Admin-related items are visible in sidebar', priority: 'Medium', specFile: 'dashboard.spec.js' },
-  { id: 'TC_DASH_12', module: 'Dashboard', subtask: 'Dashboard Loading', feature: 'URL Verification', testType: 'Positive', description: 'Verify dashboard URL contains correct path', preCondition: 'User is logged in', testSteps: '1. Check current page URL after login', expectedResult: "URL contains '/dashboard/index'", priority: 'Low', specFile: 'dashboard.spec.js' },
-  // 6. PIM (6 tests)
-  { id: 'TC_PIM_01', module: 'PIM', subtask: 'Add Employee', feature: 'Employee Creation', testType: 'Positive', description: 'Verify adding a new employee', preCondition: 'User is logged in PIM module', testSteps: '1. Click Add Employee button\n2. Enter FirstName, LastName, ID\n3. Click Save button', expectedResult: 'Employee is successfully saved and shows up in search results', priority: 'High', specFile: 'pim.spec.js' },
-  { id: 'TC_PIM_02', module: 'PIM', subtask: 'Search Employee', feature: 'Search Operation', testType: 'Positive', description: 'Verify searching employee details by ID', preCondition: 'User is logged in PIM module', testSteps: '1. Enter Employee ID in search field\n2. Click Search button', expectedResult: 'Employee record matching ID is displayed in results table', priority: 'High', specFile: 'pim.spec.js' },
-  { id: 'TC_PIM_03', module: 'PIM', subtask: 'Update Employee', feature: 'Edit Operation', testType: 'Positive', description: 'Verify updating employee nickname', preCondition: 'User is logged in PIM module', testSteps: '1. Click Edit for employee\n2. Set Nickname\n3. Click Save button', expectedResult: 'Updated nickname is saved and persists on profile reload', priority: 'Medium', specFile: 'pim.spec.js' },
-  { id: 'TC_PIM_04', module: 'PIM', subtask: 'Delete Employee', feature: 'Delete Operation', testType: 'Positive', description: 'Verify deleting an employee record', preCondition: 'User is logged in PIM module', testSteps: '1. Locate employee in table\n2. Click Delete icon\n3. Confirm deletion in popup', expectedResult: 'Employee is removed from table and search returns no results', priority: 'High', specFile: 'pim.spec.js' },
-  { id: 'TC_PIM_05', module: 'PIM', subtask: 'Search Employee', feature: 'No Results Handling', testType: 'Negative', description: 'Verify search with non-existent employee ID returns no records', preCondition: 'User is logged in PIM module', testSteps: '1. Enter non-existent Employee ID\n2. Click Search button', expectedResult: 'Table displays 0 rows and no matching records found', priority: 'Medium', specFile: 'pim.spec.js' },
-  { id: 'TC_PIM_06', module: 'PIM', subtask: 'Employee List', feature: 'Tab Loading', testType: 'Positive', description: 'Verify PIM Employee List tab loads correctly', preCondition: 'User is logged in PIM module', testSteps: '1. Click Employee List tab\n2. Verify search form elements', expectedResult: 'Search form with Employee ID input, Search and Reset buttons is visible', priority: 'Low', specFile: 'pim.spec.js' },
-  // 7. Admin (6 tests)
-  { id: 'TC_ADMIN_01', module: 'Admin', subtask: 'Add User', feature: 'User Creation', testType: 'Positive', description: 'Verify adding new admin system user', preCondition: 'User is logged in Admin module', testSteps: '1. Click Add button\n2. Select User Role\n3. Enter existing employee name\n4. Enter unique username, password\n5. Click Save button', expectedResult: 'System user is created and visible in search list', priority: 'High', specFile: 'admin.spec.js' },
-  { id: 'TC_ADMIN_02', module: 'Admin', subtask: 'Search User', feature: 'Search Operation', testType: 'Positive', description: 'Verify searching system user by username', preCondition: 'User is logged in Admin module', testSteps: '1. Enter username\n2. Click Search button', expectedResult: 'User record matching username is displayed in results', priority: 'High', specFile: 'admin.spec.js' },
-  { id: 'TC_ADMIN_03', module: 'Admin', subtask: 'Update User', feature: 'Edit Operation', testType: 'Positive', description: 'Verify updating system user role', preCondition: 'User is logged in Admin module', testSteps: '1. Search user\n2. Click Edit\n3. Change role\n4. Click Save', expectedResult: 'Updated role is successfully saved and persists', priority: 'Medium', specFile: 'admin.spec.js' },
-  { id: 'TC_ADMIN_04', module: 'Admin', subtask: 'Search User', feature: 'Role Verification', testType: 'Positive', description: 'Verify user role displays correctly in search results', preCondition: 'User is logged in Admin module', testSteps: '1. Search user by username\n2. Check role column in results', expectedResult: 'Role column displays the correct updated role', priority: 'Medium', specFile: 'admin.spec.js' },
-  { id: 'TC_ADMIN_05', module: 'Admin', subtask: 'Admin Page', feature: 'UI Verification', testType: 'Positive', description: 'Verify Admin page has Add button visible', preCondition: 'User is logged in Admin module', testSteps: '1. Navigate to Admin module\n2. Check Add button visibility', expectedResult: 'Add button is visible on Admin page', priority: 'Low', specFile: 'admin.spec.js' },
-  { id: 'TC_ADMIN_06', module: 'Admin', subtask: 'Delete User', feature: 'Delete Operation', testType: 'Positive', description: 'Verify deleting system user', preCondition: 'User is logged in Admin module', testSteps: '1. Search user\n2. Click Delete button\n3. Confirm deletion', expectedResult: 'User is removed from database and search returns no results', priority: 'High', specFile: 'admin.spec.js' },
-  // 8. Leave (3 tests)
-  { id: 'TC_LEAVE_01', module: 'Leave', subtask: 'Apply Leave', feature: 'Apply Operation', testType: 'Positive', description: 'Verify applying for a leave request', preCondition: 'User is logged in Leave module', testSteps: '1. Click Apply link\n2. Select Leave Type\n3. Enter Start Date and End Date\n4. Add comments and click Apply', expectedResult: 'Leave request is successfully submitted', priority: 'High', specFile: 'leave.spec.js' },
-  { id: 'TC_LEAVE_02', module: 'Leave', subtask: 'Leave Status', feature: 'Status Verification', testType: 'Positive', description: 'Verify status of applied leave', preCondition: 'User is logged in Leave module', testSteps: '1. Navigate to My Leave list\n2. Check status of latest request', expectedResult: "Latest leave displays correct status (e.g. 'Pending Approval')", priority: 'High', specFile: 'leave.spec.js' },
-  { id: 'TC_LEAVE_03', module: 'Leave', subtask: 'Leave Details', feature: 'Details Verification', testType: 'Positive', description: 'Verify details of applied leave', preCondition: 'User is logged in Leave module', testSteps: '1. Check details of latest leave item in My Leave list', expectedResult: 'Leave type, dates, and comment details are displayed correctly', priority: 'Medium', specFile: 'leave.spec.js' },
-  // 9. Recruitment (4 tests)
-  { id: 'TC_REC_01', module: 'Recruitment', subtask: 'Add Candidate', feature: 'Candidate Creation', testType: 'Positive', description: 'Verify adding candidate details', preCondition: 'User is logged in Recruitment module', testSteps: '1. Click Add Candidate button\n2. Enter FirstName, LastName, Email, Contact\n3. Click Save button', expectedResult: 'Candidate is successfully added and profile page loads', priority: 'High', specFile: 'recruitment.spec.js' },
-  { id: 'TC_REC_02', module: 'Recruitment', subtask: 'Search Candidate', feature: 'Search Operation', testType: 'Positive', description: 'Verify searching candidate records', preCondition: 'User is logged in Recruitment module', testSteps: '1. Search candidate by name\n2. Verify results table', expectedResult: 'Candidate record is displayed in search results', priority: 'High', specFile: 'recruitment.spec.js' },
-  { id: 'TC_REC_03', module: 'Recruitment', subtask: 'Recruitment Page', feature: 'UI Verification', testType: 'Positive', description: 'Verify Recruitment page has Add button visible', preCondition: 'User is logged in Recruitment module', testSteps: '1. Navigate to Recruitment module\n2. Check Add button visibility', expectedResult: 'Add button is visible on Recruitment page', priority: 'Low', specFile: 'recruitment.spec.js' },
-  { id: 'TC_REC_04', module: 'Recruitment', subtask: 'Candidates Tab', feature: 'Tab Functionality', testType: 'Positive', description: 'Verify Candidates tab is functional', preCondition: 'User is logged in Recruitment module', testSteps: '1. Click Candidates tab\n2. Verify search form elements', expectedResult: 'Search button is visible and Candidates tab loads correctly', priority: 'Low', specFile: 'recruitment.spec.js' },
-  // 10. My Info (4 tests)
-  { id: 'TC_MYINFO_01', module: 'My Info', subtask: 'Update Personal Info', feature: 'Personal Details', testType: 'Positive', description: 'Verify updating personal details', preCondition: 'User is logged in My Info module', testSteps: '1. Enter Nickname\n2. Click Save button', expectedResult: 'Personal details are successfully saved and updated', priority: 'Medium', specFile: 'myinfo.spec.js' },
-  { id: 'TC_MYINFO_02', module: 'My Info', subtask: 'Upload Image', feature: 'Profile Picture', testType: 'Positive', description: 'Verify uploading profile image', preCondition: 'User is logged in My Info module', testSteps: '1. Click profile picture wrapper\n2. Choose file path\n3. Click Save', expectedResult: 'Profile image is successfully uploaded and preview container is visible', priority: 'Medium', specFile: 'myinfo.spec.js' },
-  { id: 'TC_MYINFO_03', module: 'My Info', subtask: 'Personal Info', feature: 'Pre-populated Fields', testType: 'Positive', description: 'Verify first name field is pre-populated', preCondition: 'User is logged in My Info module', testSteps: '1. Navigate to My Info page\n2. Check first name input value', expectedResult: 'First name field contains a non-empty value', priority: 'Low', specFile: 'myinfo.spec.js' },
-  { id: 'TC_MYINFO_04', module: 'My Info', subtask: 'Personal Info', feature: 'Page Heading', testType: 'Positive', description: 'Verify My Info page heading displays Personal Details', preCondition: 'User is logged in My Info module', testSteps: '1. Navigate to My Info page\n2. Check main heading text', expectedResult: "Heading displays 'Personal Details'", priority: 'Low', specFile: 'myinfo.spec.js' }
-];
+function deriveModuleFromFile(filename) {
+  if (!filename) return 'General';
+  const name = filename.replace('.spec.js', '');
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function deriveFeatureFromTitle(title) {
+  if (!title) return 'Verification';
+  return title.replace(/^TC_[A-Z0-9_]+:\s*/i, '');
+}
+
+function loadMasterTestCasesFromSpecs() {
+  const tcs = [];
+  const testDir = path.resolve(__dirname, '../tests');
+  if (!fs.existsSync(testDir)) return tcs;
+
+  const files = fs.readdirSync(testDir);
+  files.forEach(file => {
+    if (!file.endsWith('.spec.js')) return;
+    const content = fs.readFileSync(path.join(testDir, file), 'utf-8');
+    
+    const regex = /test\(\s*(['"`])(TC_[A-Z0-9_]+)\s*:\s*(.*?)\1/g;
+    let match;
+    while ((match = regex.exec(content)) !== null) {
+      const id = match[2];
+      const desc = match[3];
+      const moduleName = deriveModuleFromFile(file);
+      
+      tcs.push({
+        id,
+        module: moduleName,
+        subtask: moduleName,
+        feature: deriveFeatureFromTitle(desc),
+        testType: desc.toLowerCase().includes('negative') || desc.toLowerCase().includes('error') || desc.toLowerCase().includes('invalid') ? 'Negative' : 'Positive',
+        description: desc,
+        preCondition: 'OrangeHRM application is accessible',
+        testSteps: '1. Navigate to page\n2. Perform test actions\n3. Verify assertions',
+        expectedResult: 'Test executes successfully and all assertions pass',
+        priority: id.endsWith('01') || id.endsWith('02') || id.endsWith('03') ? 'High' : 'Medium',
+        specFile: file
+      });
+    }
+  });
+
+  return tcs;
+}
+
+const masterTestCases = loadMasterTestCasesFromSpecs();
 
 function getLatestResults() {
   if (!fs.existsSync(testResultsJson)) {
-    console.log(`⚠️ test-results.json not found. Generating default PASSED statuses.`);
+    console.log(`⚠️ test-results.json not found at ${testResultsJson}. Generating default PASSED statuses.`);
     return {};
   }
 
@@ -127,7 +111,9 @@ function getLatestResults() {
               resultsMap[tcId] = {
                 status,
                 duration: (duration / 1000).toFixed(2),
-                error: errorMsg
+                error: errorMsg,
+                title: spec.title,
+                file: spec.file ? path.basename(spec.file) : ''
               };
             }
           });
@@ -608,30 +594,62 @@ function writeCsvReport(filePath, testCases) {
   fs.writeFileSync(filePath, rows.join('\n'), 'utf-8');
 }
 
+
+
 async function run() {
   console.log('📊 Starting report packaging...');
 
   ensureDirectoryExists(reportsDir);
   ensureDirectoryExists(testCasesDir);
+  ensureDirectoryExists(csvDir);
+  ensureDirectoryExists(xlsxDir);
   ensureDirectoryExists(htmlReportDir);
 
   const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
   const resultsMap = getLatestResults();
 
-  // Populate statuses and durations into our test list
-  const enrichedTestCases = masterTestCases.map(tc => {
-    const runResult = resultsMap[tc.id];
-    // If the test ran, map to run result status. Otherwise default to PASSED.
-    const status = runResult ? runResult.status : 'PASSED';
-    const duration = runResult ? runResult.duration : '1.25';
-    const error = runResult ? runResult.error : '';
+  // Create a map of masterTestCases by ID for quick lookup
+  const masterMap = {};
+  masterTestCases.forEach(tc => {
+    masterMap[tc.id] = tc;
+  });
 
-    return {
-      ...tc,
-      status,
-      duration,
-      error
-    };
+  const enrichedTestCases = [];
+
+  // 1. Process all run results from Playwright JSON output
+  for (const [tcId, runResult] of Object.entries(resultsMap)) {
+    const masterTc = masterMap[tcId];
+    const specFile = runResult.file || (masterTc ? masterTc.specFile : '');
+    const moduleName = deriveModuleFromFile(specFile);
+    
+    enrichedTestCases.push({
+      id: tcId,
+      module: masterTc ? masterTc.module : moduleName,
+      subtask: masterTc ? masterTc.subtask : moduleName,
+      feature: masterTc ? masterTc.feature : deriveFeatureFromTitle(runResult.title),
+      testType: masterTc ? masterTc.testType : 'Positive',
+      description: masterTc ? masterTc.description : runResult.title,
+      preCondition: masterTc ? masterTc.preCondition : 'User is logged in',
+      testSteps: masterTc ? masterTc.testSteps : '1. Run test automation code',
+      expectedResult: masterTc ? masterTc.expectedResult : 'Action executes successfully and verification passes',
+      priority: masterTc ? masterTc.priority : 'Medium',
+      specFile: specFile,
+      status: runResult.status,
+      duration: runResult.duration,
+      error: runResult.error
+    });
+  }
+
+  // 2. Add any test cases from master list that were skipped / didn't execute
+  masterTestCases.forEach(masterTc => {
+    if (!resultsMap[masterTc.id]) {
+      enrichedTestCases.push({
+        ...masterTc,
+        status: 'SKIPPED',
+        duration: '0.00',
+        error: ''
+      });
+    }
   });
 
   // Group by spec file name to separate modules
@@ -640,12 +658,16 @@ async function run() {
     'logout': { title: 'Logout Module', filter: 'logout.spec.js' },
     'validations': { title: 'Validations Module', filter: 'validations.spec.js' },
     'forgotPassword': { title: 'Forgot Password Module', filter: 'forgotPassword.spec.js' },
+    'changePassword': { title: 'Change Password Module', filter: 'changePassword.spec.js' },
     'dashboard': { title: 'Dashboard Module', filter: 'dashboard.spec.js' },
     'pim': { title: 'PIM Module', filter: 'pim.spec.js' },
     'admin': { title: 'Admin Module', filter: 'admin.spec.js' },
     'leave': { title: 'Leave Module', filter: 'leave.spec.js' },
     'recruitment': { title: 'Recruitment Module', filter: 'recruitment.spec.js' },
-    'myinfo': { title: 'My Info Module', filter: 'myinfo.spec.js' }
+    'myinfo': { title: 'My Info Module', filter: 'myinfo.spec.js' },
+    'buzz': { title: 'Buzz Module', filter: 'buzz.spec.js' },
+    'time': { title: 'Time Module', filter: 'time.spec.js' },
+    'directory': { title: 'Directory Module', filter: 'directory.spec.js' }
   };
 
   // Ensure clean staging directory
@@ -656,12 +678,18 @@ async function run() {
   
   const stagingHtmlDir = path.join(stagingDir, 'HTMLReports');
   const stagingTestCasesDir = path.join(stagingDir, 'TestCases');
+  const stagingCsvDir = path.join(stagingTestCasesDir, 'CSV');
+  const stagingXlsxDir = path.join(stagingTestCasesDir, 'XLSX');
+  
   ensureDirectoryExists(stagingHtmlDir);
   ensureDirectoryExists(stagingTestCasesDir);
+  ensureDirectoryExists(stagingCsvDir);
+  ensureDirectoryExists(stagingXlsxDir);
 
   // 1. Generate Separate Reports for each Module
   for (const [key, mod] of Object.entries(modules)) {
     const modCases = enrichedTestCases.filter(tc => tc.specFile === mod.filter);
+    if (modCases.length === 0) continue;
     
     // Stats calculation
     const total = modCases.length;
@@ -674,20 +702,21 @@ async function run() {
 
     // HTML report
     const htmlContent = generateHtmlContent(`OrangeHRM - ${mod.title}`, modStats, modCases, timestamp);
-    const htmlPath = path.join(stagingHtmlDir, `${key}_ExecutionReport.html`);
+    const htmlPath = path.join(htmlReportDir, `${key}_ExecutionReport.html`);
     fs.writeFileSync(htmlPath, htmlContent, 'utf-8');
+    fs.copyFileSync(htmlPath, path.join(stagingHtmlDir, `${key}_ExecutionReport.html`));
     console.log(`✅ Generated separate HTML Report for ${mod.title}`);
 
     // CSV report
-    const csvPath = path.join(testCasesDir, `${key}_TestCases.csv`);
+    const csvPath = path.join(csvDir, `${key}_TestCases.csv`);
     writeCsvReport(csvPath, modCases);
-    fs.copyFileSync(csvPath, path.join(stagingTestCasesDir, `${key}_TestCases.csv`));
+    fs.copyFileSync(csvPath, path.join(stagingCsvDir, `${key}_TestCases.csv`));
     console.log(`✅ Generated separate CSV TestCases for ${mod.title}`);
 
     // Excel report
-    const xlsxPath = path.join(testCasesDir, `${key}_TestCases.xlsx`);
+    const xlsxPath = path.join(xlsxDir, `${key}_TestCases.xlsx`);
     await writeXlsxReport(xlsxPath, mod.title, modCases);
-    fs.copyFileSync(xlsxPath, path.join(stagingTestCasesDir, `${key}_TestCases.xlsx`));
+    fs.copyFileSync(xlsxPath, path.join(stagingXlsxDir, `${key}_TestCases.xlsx`));
     console.log(`✅ Generated separate XLSX TestCases for ${mod.title}`);
   }
 
@@ -700,22 +729,23 @@ async function run() {
   const masterStats = { total, passed, failed, skipped, passRate };
 
   const masterHtmlContent = generateHtmlContent('OrangeHRM - Consolidated Execution Report', masterStats, enrichedTestCases, timestamp);
-  const masterHtmlPath = path.join(stagingDir, 'ExecutionReport.html');
+  const masterHtmlPath = path.join(htmlReportDir, 'ExecutionReport.html');
   fs.writeFileSync(masterHtmlPath, masterHtmlContent, 'utf-8');
+  fs.copyFileSync(masterHtmlPath, path.join(stagingDir, 'ExecutionReport.html'));
   console.log(`✅ Generated Master Consolidated HTML Report`);
 
-  const masterCsvPath = path.join(testCasesDir, 'OrangeHRM_TestCases.csv');
+  const masterCsvPath = path.join(csvDir, 'OrangeHRM_TestCases.csv');
   writeCsvReport(masterCsvPath, enrichedTestCases);
-  fs.copyFileSync(masterCsvPath, path.join(stagingDir, 'OrangeHRM_TestCases.csv'));
-  console.log(`✅ Generated Master Consolidated CSV TestCases`);
+  fs.copyFileSync(masterCsvPath, path.join(stagingCsvDir, 'OrangeHRM_TestCases.csv'));
+  console.log(`✅ Generated Consolidated CSV TestCases`);
 
-  const masterXlsxPath = path.join(testCasesDir, 'OrangeHRM_TestCases.xlsx');
+  const masterXlsxPath = path.join(xlsxDir, 'OrangeHRM_TestCases.xlsx');
   await writeXlsxReport(masterXlsxPath, 'OrangeHRM Test Cases', enrichedTestCases);
-  fs.copyFileSync(masterXlsxPath, path.join(stagingDir, 'OrangeHRM_TestCases.xlsx'));
-  console.log(`✅ Generated Master Consolidated XLSX TestCases`);
+  fs.copyFileSync(masterXlsxPath, path.join(stagingXlsxDir, 'OrangeHRM_TestCases.xlsx'));
+  console.log(`✅ Generated Consolidated XLSX TestCases`);
 
   // 3. Copy Playwright standard HTML report if it exists
-  const playwrightReportSource = path.resolve(__dirname, '../playwright-report');
+  const playwrightReportSource = path.join(htmlReportDir, 'playwright-report');
   if (fs.existsSync(playwrightReportSource)) {
     const playwrightStagingDest = path.join(stagingDir, 'playwright-report');
     ensureDirectoryExists(playwrightStagingDest);
@@ -743,8 +773,10 @@ async function run() {
       fs.unlinkSync(zipOutputPath);
     }
     console.log(`🤐 Packaging all separate reports to ${zipOutputPath}...`);
+    // Wait 2 seconds for Windows file system / antivirus handles to release locks
+    await new Promise(resolve => setTimeout(resolve, 2000));
     execSync(`powershell -Command "Compress-Archive -Path '${stagingDir}\\*' -DestinationPath '${zipOutputPath}' -Force"`);
-    console.log('✅ Successfully created HTMLReport/Report.zip archive!');
+    console.log(`✅ Successfully created ${zipOutputPath} archive!`);
   } catch (error) {
     console.error('❌ Failed to compress report files:', error.message);
   } finally {
@@ -755,4 +787,10 @@ async function run() {
   }
 }
 
-run().catch(console.error);
+if (require.main === module) {
+  run().catch(console.error);
+}
+
+module.exports = async function globalTeardown(config) {
+  await run().catch(console.error);
+};

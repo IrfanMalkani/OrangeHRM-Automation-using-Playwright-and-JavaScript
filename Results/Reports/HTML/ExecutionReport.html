@@ -1,0 +1,4174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrangeHRM - Consolidated Execution Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --primary-color: #ff7919;
+      --primary-glow: rgba(255, 121, 25, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --failure: #ef4444;
+      --skipped: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-badge {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 24px;
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .meta-item strong {
+      color: var(--text-main);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--skipped);
+    }
+
+    .stat-card.total::after { background: var(--primary-color); }
+    .stat-card.passed::after { background: var(--success); }
+    .stat-card.failed::after { background: var(--failure); }
+    .stat-card.rate::after { background: #eab308; }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stat-card.passed .stat-value { color: var(--success); }
+    .stat-card.failed .stat-value { color: var(--failure); }
+    .stat-card.rate .stat-value { color: #eab308; }
+
+    /* Results Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .table-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .table-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background-color: rgba(15, 23, 42, 0.5);
+      padding: 12px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 14px 24px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge.passed {
+      background-color: rgba(16, 185, 129, 0.12);
+      color: var(--success);
+    }
+
+    .status-badge.failed {
+      background-color: rgba(239, 68, 68, 0.12);
+      color: var(--failure);
+    }
+
+    .status-badge.skipped {
+      background-color: rgba(100, 116, 139, 0.12);
+      color: var(--skipped);
+    }
+
+    .error-log {
+      font-family: monospace;
+      color: var(--failure);
+      background-color: rgba(239, 68, 68, 0.05);
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-size: 11px;
+      max-width: 500px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <h1>OrangeHRM - Consolidated Execution Report</h1>
+        <span class="logo-badge">PLAYWRIGHT</span>
+      </div>
+      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
+      
+      <div class="meta-grid">
+        <div class="meta-item">🕒 Timestamp: <strong>15/7/2026, 12:59:45 pm</strong></div>
+        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
+        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-label">Total Executed</div>
+        <div class="stat-value">350</div>
+      </div>
+      <div class="stat-card passed">
+        <div class="stat-label">Passed</div>
+        <div class="stat-value">0</div>
+      </div>
+      <div class="stat-card failed">
+        <div class="stat-label">Failed</div>
+        <div class="stat-value">1</div>
+      </div>
+      <div class="stat-card rate">
+        <div class="stat-label">Pass Rate</div>
+        <div class="stat-value">0.0%</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Test Case Details</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Test Scenario Name</th>
+            <th>Spec File</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+              <tr>
+                <td><strong>TC_LEAVE_01</strong></td>
+                <td>
+                  <div>Apply leave request flow</div>
+                  <div class="error-log">Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoBeNull[2m()[22m
+
+Received: [31mnull[39m</div>
+                </td>
+                <td>leave.spec.js</td>
+                <td>44.77s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_02</strong></td>
+                <td>
+                  <div>Verify leave type of applied leave request</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_03</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Apply is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_04</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab My Leave is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_05</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Entitlements dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_06</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Reports dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_07</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Configure dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_08</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Leave List is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_09</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Assign Leave is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_10</strong></td>
+                <td>
+                  <div>Verify validation error on empty Leave Type in Apply form</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_11</strong></td>
+                <td>
+                  <div>Verify From Date input field is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_12</strong></td>
+                <td>
+                  <div>Verify To Date input field is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_13</strong></td>
+                <td>
+                  <div>Verify comments textarea has correct maximum character details</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_14</strong></td>
+                <td>
+                  <div>Verify calendar icon buttons exist next to date input fields</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_15</strong></td>
+                <td>
+                  <div>Verify Show with Status checkboxes exist in My Leave list filters</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_16</strong></td>
+                <td>
+                  <div>Verify Leave Type dropdown filter is present in My Leave tab</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_17</strong></td>
+                <td>
+                  <div>Verify Reset button clears date inputs in My Leave filters</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_18</strong></td>
+                <td>
+                  <div>Verify table headers in My Leave results page</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_19</strong></td>
+                <td>
+                  <div>Verify date validation error message if To Date is before From Date</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_20</strong></td>
+                <td>
+                  <div>Verify calendar widget opens when From Date input is clicked</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_21</strong></td>
+                <td>
+                  <div>Verify calendar widget opens when To Date input is clicked</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_22</strong></td>
+                <td>
+                  <div>Verify Leave page header title displays Leave</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_23</strong></td>
+                <td>
+                  <div>Verify Leave Balance card is shown for specific leave types</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_24</strong></td>
+                <td>
+                  <div>Verify My Leave list table rows can be scrolled and are visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_25</strong></td>
+                <td>
+                  <div>Verify search button on My Leave filters page has correct CSS layout</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_01</strong></td>
+                <td>
+                  <div>Add new user (Pre-requisite: Add Employee first)</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_02</strong></td>
+                <td>
+                  <div>Search user by username</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_03</strong></td>
+                <td>
+                  <div>Update user details</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_04</strong></td>
+                <td>
+                  <div>Verify user role displays correctly in search results</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_05</strong></td>
+                <td>
+                  <div>Verify Admin page has Add button visible</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_06</strong></td>
+                <td>
+                  <div>Delete existing user and cleanup employee</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_07</strong></td>
+                <td>
+                  <div>Verify resetting the search form clears username field</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_08</strong></td>
+                <td>
+                  <div>Verify search with non-existent username returns zero records</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_09</strong></td>
+                <td>
+                  <div>Verify Admin sub-menu bar contains User Management item</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_10</strong></td>
+                <td>
+                  <div>Verify Job dropdown menu is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_11</strong></td>
+                <td>
+                  <div>Verify Organization dropdown menu is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_12</strong></td>
+                <td>
+                  <div>Verify Qualifications dropdown menu is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_13</strong></td>
+                <td>
+                  <div>Verify Nationalities tab item is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_14</strong></td>
+                <td>
+                  <div>Verify Corporate Branding tab item is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_15</strong></td>
+                <td>
+                  <div>Verify Configuration dropdown menu is visible in top navigation bar</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_16</strong></td>
+                <td>
+                  <div>Verify validation error on adding user with empty password</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_17</strong></td>
+                <td>
+                  <div>Verify validation error on adding user with mismatched confirm password</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_18</strong></td>
+                <td>
+                  <div>Verify autocomplete dropdown is hidden by default</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_19</strong></td>
+                <td>
+                  <div>Verify cancel button returns to user grid page</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_20</strong></td>
+                <td>
+                  <div>Verify select all checkbox is visible on table header</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_21</strong></td>
+                <td>
+                  <div>Verify row checkbox can be hovered and clicked</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_22</strong></td>
+                <td>
+                  <div>Verify records count display text exists above table</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_23</strong></td>
+                <td>
+                  <div>Verify Admin breadcrumb title contains User Management</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_24</strong></td>
+                <td>
+                  <div>Verify table column headers Username, User Role, Employee Name, Status, Actions exist</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_ADMIN_25</strong></td>
+                <td>
+                  <div>Verify search button tag name is button</div>
+                  
+                </td>
+                <td>admin.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_01</strong></td>
+                <td>
+                  <div>Verify Buzz page loads feed correctly</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_02</strong></td>
+                <td>
+                  <div>Verify successful creation of new post</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_03</strong></td>
+                <td>
+                  <div>Verify feed filtering tabs are functional</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_04</strong></td>
+                <td>
+                  <div>Verify post button is disabled/ignored when post text is empty</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_05</strong></td>
+                <td>
+                  <div>Verify Share Photos button is visible</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_06</strong></td>
+                <td>
+                  <div>Verify Share Video button is visible</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_07</strong></td>
+                <td>
+                  <div>Verify post textarea placeholder is What\</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_08</strong></td>
+                <td>
+                  <div>Verify Most Recent Posts tab is visible by default</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_09</strong></td>
+                <td>
+                  <div>Verify Most Commented Posts tab filters newsfeed</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_10</strong></td>
+                <td>
+                  <div>Verify newsfeed contains cards with profile avatars</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_11</strong></td>
+                <td>
+                  <div>Verify user profile name link is visible on each post card</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_12</strong></td>
+                <td>
+                  <div>Verify timestamp elapsed duration text exists on post</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_13</strong></td>
+                <td>
+                  <div>Verify clicking Like button toggles like state</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_14</strong></td>
+                <td>
+                  <div>Verify Comment icon button exists on feed posts</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_15</strong></td>
+                <td>
+                  <div>Verify Share icon button exists on feed posts</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_16</strong></td>
+                <td>
+                  <div>Verify Buzz page URL path is correct</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_17</strong></td>
+                <td>
+                  <div>Verify Share Photos button opens dialog pop-up</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_18</strong></td>
+                <td>
+                  <div>Verify Share Video button opens dialog pop-up</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_19</strong></td>
+                <td>
+                  <div>Verify post options dropdown (dot menu) is functional</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_20</strong></td>
+                <td>
+                  <div>Verify feed scroll behavior is responsive</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_21</strong></td>
+                <td>
+                  <div>Verify post content area does not overflow card width</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_22</strong></td>
+                <td>
+                  <div>Verify video link validation error message when empty video link is posted</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_23</strong></td>
+                <td>
+                  <div>Verify profile card elements are visible in left column of Buzz page</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_24</strong></td>
+                <td>
+                  <div>Verify post textarea accepts special characters and emojis</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_BUZZ_25</strong></td>
+                <td>
+                  <div>Verify Buzz title in topbar matches breadcrumb text</div>
+                  
+                </td>
+                <td>buzz.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_01</strong></td>
+                <td>
+                  <div>Verify navigation to Change Password page and input elements</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_02</strong></td>
+                <td>
+                  <div>Verify validation messages on empty form submission</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_03</strong></td>
+                <td>
+                  <div>Verify mismatch error for new and confirm passwords</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_04</strong></td>
+                <td>
+                  <div>Verify cancel button redirects back to dashboard</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_05</strong></td>
+                <td>
+                  <div>Verify page URL contains updatePassword</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_06</strong></td>
+                <td>
+                  <div>Verify heading title has class orangehrm-main-title</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_07</strong></td>
+                <td>
+                  <div>Verify current password field type attribute is password</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_08</strong></td>
+                <td>
+                  <div>Verify new password field type attribute is password</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_09</strong></td>
+                <td>
+                  <div>Verify confirm password field type attribute is password</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_10</strong></td>
+                <td>
+                  <div>Verify validation error on entering short new password</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_11</strong></td>
+                <td>
+                  <div>Verify current password input autocomplete settings</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_12</strong></td>
+                <td>
+                  <div>Verify cancel button tag name is button</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_13</strong></td>
+                <td>
+                  <div>Verify save button tag name is button</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_14</strong></td>
+                <td>
+                  <div>Verify cancel button has default ghost class</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_15</strong></td>
+                <td>
+                  <div>Verify save button has secondary submit class</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_16</strong></td>
+                <td>
+                  <div>Verify cursor hover properties on cancel button</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_17</strong></td>
+                <td>
+                  <div>Verify cursor hover properties on save button</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_18</strong></td>
+                <td>
+                  <div>Verify tab index flow from current password input</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_19</strong></td>
+                <td>
+                  <div>Verify tab index flow from new password input</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_20</strong></td>
+                <td>
+                  <div>Verify tab index flow from confirm password input</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_21</strong></td>
+                <td>
+                  <div>Verify HTML lang tag exists in document root</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_22</strong></td>
+                <td>
+                  <div>Verify secure connection protocol is HTTPS</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_23</strong></td>
+                <td>
+                  <div>Verify page title contains OrangeHRM</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_24</strong></td>
+                <td>
+                  <div>Verify form element wrapping exists</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PASSWORD_25</strong></td>
+                <td>
+                  <div>Verify Username input or label exists in userarea</div>
+                  
+                </td>
+                <td>changePassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_01</strong></td>
+                <td>
+                  <div>Verify dashboard page loads after login</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_02</strong></td>
+                <td>
+                  <div>Verify dashboard widgets are visible</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_03</strong></td>
+                <td>
+                  <div>Verify Time at Work widget is displayed</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_04</strong></td>
+                <td>
+                  <div>Verify My Actions widget is displayed</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_05</strong></td>
+                <td>
+                  <div>Verify Quick Launch widget is displayed</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_06</strong></td>
+                <td>
+                  <div>Verify sidebar contains all main navigation items</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_07</strong></td>
+                <td>
+                  <div>Verify logged-in user name is displayed in header</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_08</strong></td>
+                <td>
+                  <div>Verify user dropdown shows About, Support, Change Password, Logout</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_09</strong></td>
+                <td>
+                  <div>Verify sidebar collapse and expand functionality</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_10</strong></td>
+                <td>
+                  <div>Verify Employees on Leave Today widget is displayed</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_11</strong></td>
+                <td>
+                  <div>Verify sidebar search filters navigation items</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_12</strong></td>
+                <td>
+                  <div>Verify dashboard URL contains correct path</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_13</strong></td>
+                <td>
+                  <div>Verify user profile dropdown image has valid attributes</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_14</strong></td>
+                <td>
+                  <div>Verify corporate branding logo is visible in sidebar header</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_15</strong></td>
+                <td>
+                  <div>Verify sidebar search input is functional</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_16</strong></td>
+                <td>
+                  <div>Verify dashboard widgets have correct card container CSS classes</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_17</strong></td>
+                <td>
+                  <div>Verify Assign Leave link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_18</strong></td>
+                <td>
+                  <div>Verify Leave List link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_19</strong></td>
+                <td>
+                  <div>Verify Timesheets link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_20</strong></td>
+                <td>
+                  <div>Verify Apply Leave link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_21</strong></td>
+                <td>
+                  <div>Verify My Leave link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_22</strong></td>
+                <td>
+                  <div>Verify My Timesheet link in Quick Launch redirects properly</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_23</strong></td>
+                <td>
+                  <div>Verify Support option opens support page</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_24</strong></td>
+                <td>
+                  <div>Verify About link displays modal pop-up</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DASH_25</strong></td>
+                <td>
+                  <div>Verify dashboard topbar has header with correct tags</div>
+                  
+                </td>
+                <td>dashboard.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_01</strong></td>
+                <td>
+                  <div>Verify Directory page load and header breadcrumb</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_02</strong></td>
+                <td>
+                  <div>Verify search functionality by Job Title</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_03</strong></td>
+                <td>
+                  <div>Verify reset button clears search parameters</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_04</strong></td>
+                <td>
+                  <div>Verify searching with invalid employee name returns no records</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_05</strong></td>
+                <td>
+                  <div>Verify Location dropdown filter is visible</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_06</strong></td>
+                <td>
+                  <div>Verify Job Title dropdown filter is visible</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_07</strong></td>
+                <td>
+                  <div>Verify Employee Name input field is visible</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_08</strong></td>
+                <td>
+                  <div>Verify Search button is visible</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_09</strong></td>
+                <td>
+                  <div>Verify Reset button is visible</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_10</strong></td>
+                <td>
+                  <div>Verify card grid container is visible in search results</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_11</strong></td>
+                <td>
+                  <div>Verify employee card has image element</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_12</strong></td>
+                <td>
+                  <div>Verify employee card has name header link</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_13</strong></td>
+                <td>
+                  <div>Verify employee card job title text block exists</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_14</strong></td>
+                <td>
+                  <div>Verify employee card location text block exists</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_15</strong></td>
+                <td>
+                  <div>Verify autocomplete options container is hidden on page load</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_16</strong></td>
+                <td>
+                  <div>Verify search by Location filter option functionality</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_17</strong></td>
+                <td>
+                  <div>Verify Location dropdown is reset to -- Select -- on Reset click</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_18</strong></td>
+                <td>
+                  <div>Verify Search button has type submit attribute</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_19</strong></td>
+                <td>
+                  <div>Verify search cards count text matches results length</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_20</strong></td>
+                <td>
+                  <div>Verify employee name input accepts keyboard tab navigation</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_21</strong></td>
+                <td>
+                  <div>Verify directory layout contains search parameters fold collapsible element</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_22</strong></td>
+                <td>
+                  <div>Verify search panel title is Directory</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_23</strong></td>
+                <td>
+                  <div>Verify employee list is scrollable</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_24</strong></td>
+                <td>
+                  <div>Verify reset button hover styling properties</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_DIR_25</strong></td>
+                <td>
+                  <div>Verify search input field placeholder matches default text hint</div>
+                  
+                </td>
+                <td>directory.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_01</strong></td>
+                <td>
+                  <div>Verify forgot password link navigates correctly</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_02</strong></td>
+                <td>
+                  <div>Verify cancel button on forgot password returns to login</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_03</strong></td>
+                <td>
+                  <div>Verify password reset request with valid username</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_04</strong></td>
+                <td>
+                  <div>Verify forgot password page heading text</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_05</strong></td>
+                <td>
+                  <div>Verify URL contains auth/requestPasswordResetCode</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_06</strong></td>
+                <td>
+                  <div>Verify placeholder text for username is Username</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_07</strong></td>
+                <td>
+                  <div>Verify Company branding banner is visible on reset password page</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_08</strong></td>
+                <td>
+                  <div>Verify cancel button tag name is button</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_09</strong></td>
+                <td>
+                  <div>Verify reset button tag name is button</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_10</strong></td>
+                <td>
+                  <div>Verify validation error on submitting empty username</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_11</strong></td>
+                <td>
+                  <div>Verify focus is not auto-assigned if click outside</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_12</strong></td>
+                <td>
+                  <div>Verify description instructing user on password reset exists</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_13</strong></td>
+                <td>
+                  <div>Verify page tab title on reset page contains OrangeHRM</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_14</strong></td>
+                <td>
+                  <div>Verify secure HTTPS connection on forgot password page</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_15</strong></td>
+                <td>
+                  <div>Verify autocomplete attribute is off on input field</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_16</strong></td>
+                <td>
+                  <div>Verify reset password container wrapper exists</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_17</strong></td>
+                <td>
+                  <div>Verify reset password title has correct CSS class name</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_18</strong></td>
+                <td>
+                  <div>Verify cancel button has outline default class name</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_19</strong></td>
+                <td>
+                  <div>Verify reset button has filled primary class name</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_20</strong></td>
+                <td>
+                  <div>Verify cancel cursor is pointer on hover</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_21</strong></td>
+                <td>
+                  <div>Verify reset cursor is pointer on hover</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_22</strong></td>
+                <td>
+                  <div>Verify HTML lang tag exists on forgot password DOM</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_23</strong></td>
+                <td>
+                  <div>Verify reset instruction text textContent length</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_24</strong></td>
+                <td>
+                  <div>Verify tab key navigation from username to cancel button</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_FORGOT_25</strong></td>
+                <td>
+                  <div>Verify tab key navigation from cancel to reset button</div>
+                  
+                </td>
+                <td>forgotPassword.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_01</strong></td>
+                <td>
+                  <div>Verify successful login with valid credentials</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_02</strong></td>
+                <td>
+                  <div>Verify login with invalid credentials</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_03</strong></td>
+                <td>
+                  <div>Verify error with valid username and wrong password</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_04</strong></td>
+                <td>
+                  <div>Verify password field masks the input characters</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_05</strong></td>
+                <td>
+                  <div>Verify login page UI elements are visible</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_06</strong></td>
+                <td>
+                  <div>Verify credential hint box displays default credentials</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_07</strong></td>
+                <td>
+                  <div>Verify login page title contains OrangeHRM</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_08</strong></td>
+                <td>
+                  <div>Verify login page URL contains auth/login</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_09</strong></td>
+                <td>
+                  <div>Verify input placeholders display correct text</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_10</strong></td>
+                <td>
+                  <div>Verify username field is focused on page load</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_11</strong></td>
+                <td>
+                  <div>Verify tab key navigation flows logically from username to password</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_12</strong></td>
+                <td>
+                  <div>Verify login button is enabled by default</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_13</strong></td>
+                <td>
+                  <div>Verify brand logo has descriptive alt text</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_14</strong></td>
+                <td>
+                  <div>Verify brand logo height and width attributes are positive</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_15</strong></td>
+                <td>
+                  <div>Verify copyright footer contains correct organization name</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_16</strong></td>
+                <td>
+                  <div>Verify input fields are empty on default page load</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_17</strong></td>
+                <td>
+                  <div>Verify custom CSS properties on Username label</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_18</strong></td>
+                <td>
+                  <div>Verify login page layout is responsive under mobile width</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_19</strong></td>
+                <td>
+                  <div>Verify autocomplete tags are present on input fields</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_20</strong></td>
+                <td>
+                  <div>Verify error panel CSS classes contain validation properties</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_21</strong></td>
+                <td>
+                  <div>Verify login card is visible</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_22</strong></td>
+                <td>
+                  <div>Verify credential hint box contains header title</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_23</strong></td>
+                <td>
+                  <div>Verify forgot password link has pointer cursor on hover</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_24</strong></td>
+                <td>
+                  <div>Verify HTML tag has lang attribute set to en</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGIN_25</strong></td>
+                <td>
+                  <div>Verify connection security protocol is HTTPS</div>
+                  
+                </td>
+                <td>login.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_01</strong></td>
+                <td>
+                  <div>Verify logout functionality redirects to login page</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_02</strong></td>
+                <td>
+                  <div>Verify dashboard is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_03</strong></td>
+                <td>
+                  <div>Verify browser back button does not access dashboard after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_04</strong></td>
+                <td>
+                  <div>Verify user dropdown is collapsed by default</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_05</strong></td>
+                <td>
+                  <div>Verify user dropdown lists Logout link on click</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_06</strong></td>
+                <td>
+                  <div>Verify clicking outside user dropdown closes the dropdown menu</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_07</strong></td>
+                <td>
+                  <div>Verify Logout dropdown item tag is anchor link</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_08</strong></td>
+                <td>
+                  <div>Verify cookies are cleared or altered after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_09</strong></td>
+                <td>
+                  <div>Verify Admin page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_10</strong></td>
+                <td>
+                  <div>Verify PIM page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_11</strong></td>
+                <td>
+                  <div>Verify Leave page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_12</strong></td>
+                <td>
+                  <div>Verify Time page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_13</strong></td>
+                <td>
+                  <div>Verify Recruitment page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_14</strong></td>
+                <td>
+                  <div>Verify My Info page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_15</strong></td>
+                <td>
+                  <div>Verify Buzz page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_16</strong></td>
+                <td>
+                  <div>Verify Directory page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_17</strong></td>
+                <td>
+                  <div>Verify Performance page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_18</strong></td>
+                <td>
+                  <div>Verify Maintenance page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_19</strong></td>
+                <td>
+                  <div>Verify Claim page is not accessible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_20</strong></td>
+                <td>
+                  <div>Verify browser forward button does not re-authenticate user after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_21</strong></td>
+                <td>
+                  <div>Verify session storage is cleared on logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_22</strong></td>
+                <td>
+                  <div>Verify localStorage does not contain sensitive tokens after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_23</strong></td>
+                <td>
+                  <div>Verify logout link text matches exact text Logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_24</strong></td>
+                <td>
+                  <div>Verify user profile details container elements are not visible after logout</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LOGOUT_25</strong></td>
+                <td>
+                  <div>Verify logout cursor is a pointer</div>
+                  
+                </td>
+                <td>logout.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_01</strong></td>
+                <td>
+                  <div>Update personal details</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_02</strong></td>
+                <td>
+                  <div>Upload profile image</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_03</strong></td>
+                <td>
+                  <div>Verify first name field is pre-populated</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_04</strong></td>
+                <td>
+                  <div>Verify My Info page heading displays Personal Details</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_05</strong></td>
+                <td>
+                  <div>Verify Contact Details sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_06</strong></td>
+                <td>
+                  <div>Verify Emergency Contacts sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_07</strong></td>
+                <td>
+                  <div>Verify Dependents sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_08</strong></td>
+                <td>
+                  <div>Verify Immigration sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_09</strong></td>
+                <td>
+                  <div>Verify Job sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_10</strong></td>
+                <td>
+                  <div>Verify Salary sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_11</strong></td>
+                <td>
+                  <div>Verify Tax Exemptions sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_12</strong></td>
+                <td>
+                  <div>Verify Report-to sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_13</strong></td>
+                <td>
+                  <div>Verify Qualifications sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_14</strong></td>
+                <td>
+                  <div>Verify Memberships sub-tab is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_15</strong></td>
+                <td>
+                  <div>Verify middle name field is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_16</strong></td>
+                <td>
+                  <div>Verify last name field is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_17</strong></td>
+                <td>
+                  <div>Verify Employee ID field is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_18</strong></td>
+                <td>
+                  <div>Verify Driver\</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_19</strong></td>
+                <td>
+                  <div>Verify SSN Number field is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_20</strong></td>
+                <td>
+                  <div>Verify SIN Number field is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_21</strong></td>
+                <td>
+                  <div>Verify Nationality dropdown is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_22</strong></td>
+                <td>
+                  <div>Verify Marital Status dropdown is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_23</strong></td>
+                <td>
+                  <div>Verify Gender radio buttons exist</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_24</strong></td>
+                <td>
+                  <div>Verify Custom Fields heading is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_MYINFO_25</strong></td>
+                <td>
+                  <div>Verify Attachments Add button is visible</div>
+                  
+                </td>
+                <td>myinfo.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_01</strong></td>
+                <td>
+                  <div>Add new employee</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_02</strong></td>
+                <td>
+                  <div>Search employee details</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_03</strong></td>
+                <td>
+                  <div>Update employee information</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_04</strong></td>
+                <td>
+                  <div>Delete employee records</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_05</strong></td>
+                <td>
+                  <div>Verify PIM search with non-existent employee ID returns no records</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_06</strong></td>
+                <td>
+                  <div>Verify PIM Employee List tab loads correctly</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_07</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Configuration tab</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_08</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Reports tab</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_09</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Optional Fields menu</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_10</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Custom Fields menu</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_11</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Data Import menu</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_12</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Reporting Methods menu</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_13</strong></td>
+                <td>
+                  <div>Verify PIM top menu has Termination Reasons menu</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_14</strong></td>
+                <td>
+                  <div>Verify validation error on empty First Name input</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_15</strong></td>
+                <td>
+                  <div>Verify validation error on empty Last Name input</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_16</strong></td>
+                <td>
+                  <div>Verify Create Login Details switch toggle is visible</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_17</strong></td>
+                <td>
+                  <div>Verify Cancel button on Add Employee form returns to employee list</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_18</strong></td>
+                <td>
+                  <div>Verify table checkboxes exist for employee rows</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_19</strong></td>
+                <td>
+                  <div>Verify reset button clears Employee Id search field</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_20</strong></td>
+                <td>
+                  <div>Verify PIM breadcrumb title contains PIM</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_21</strong></td>
+                <td>
+                  <div>Verify job title dropdown is functional in search form</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_22</strong></td>
+                <td>
+                  <div>Verify sub unit dropdown is functional in search form</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_23</strong></td>
+                <td>
+                  <div>Verify employment status dropdown is functional in search form</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_24</strong></td>
+                <td>
+                  <div>Verify supervisor name input autocomplete has autocomplete attributes</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_PIM_25</strong></td>
+                <td>
+                  <div>Verify add employee photoupload element has file type input attribute</div>
+                  
+                </td>
+                <td>pim.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_01</strong></td>
+                <td>
+                  <div>Add candidate details</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_02</strong></td>
+                <td>
+                  <div>Search candidate records</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_03</strong></td>
+                <td>
+                  <div>Verify Recruitment page has Add button visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_04</strong></td>
+                <td>
+                  <div>Verify Candidates tab is functional</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_05</strong></td>
+                <td>
+                  <div>Verify top navigation contains Vacancies tab</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_06</strong></td>
+                <td>
+                  <div>Verify job title dropdown filter is visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_07</strong></td>
+                <td>
+                  <div>Verify vacancy dropdown filter is visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_08</strong></td>
+                <td>
+                  <div>Verify hiring manager dropdown filter is visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_09</strong></td>
+                <td>
+                  <div>Verify status dropdown filter is visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_10</strong></td>
+                <td>
+                  <div>Verify method of application dropdown filter is visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_11</strong></td>
+                <td>
+                  <div>Verify validation error on empty First Name input</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_12</strong></td>
+                <td>
+                  <div>Verify validation error on empty Last Name input</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_13</strong></td>
+                <td>
+                  <div>Verify validation error on empty Email input</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_14</strong></td>
+                <td>
+                  <div>Verify validation error on invalid Email format</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_15</strong></td>
+                <td>
+                  <div>Verify Cancel button on Add Candidate form returns to candidates page</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_16</strong></td>
+                <td>
+                  <div>Verify Reset button clears Candidate Name input</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_17</strong></td>
+                <td>
+                  <div>Verify Recruitment header breadcrumb displays Recruitment / Candidates</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_18</strong></td>
+                <td>
+                  <div>Verify table checkboxes exist for recruitment rows</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_19</strong></td>
+                <td>
+                  <div>Verify date of application filter inputs are visible</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_20</strong></td>
+                <td>
+                  <div>Verify Keywords input is functional</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_21</strong></td>
+                <td>
+                  <div>Verify select all checkbox is in the header</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_22</strong></td>
+                <td>
+                  <div>Verify records text is visible above the table</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_23</strong></td>
+                <td>
+                  <div>Verify file upload field accepts doc/docx/pdf file types</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_24</strong></td>
+                <td>
+                  <div>Verify consent checkbox is visible in Add Candidate form</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_REC_25</strong></td>
+                <td>
+                  <div>Verify Vacancy dropdown has option elements loaded</div>
+                  
+                </td>
+                <td>recruitment.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_01</strong></td>
+                <td>
+                  <div>Verify Time page loads with sub-navigation headers</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_02</strong></td>
+                <td>
+                  <div>Verify access to My Timesheets page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_03</strong></td>
+                <td>
+                  <div>Verify access to Punch In/Out attendance page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_04</strong></td>
+                <td>
+                  <div>Verify search button validation with empty/invalid inputs in employee timesheets</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_05</strong></td>
+                <td>
+                  <div>Verify top navigation contains Reports tab</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_06</strong></td>
+                <td>
+                  <div>Verify top navigation contains Project Info tab</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_07</strong></td>
+                <td>
+                  <div>Verify Customers option exists under Project Info</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_08</strong></td>
+                <td>
+                  <div>Verify Projects option exists under Project Info</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_09</strong></td>
+                <td>
+                  <div>Verify Activities option exists under Project Info</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_10</strong></td>
+                <td>
+                  <div>Verify Project Reports option exists under Reports menu</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_11</strong></td>
+                <td>
+                  <div>Verify Employee Reports option exists under Reports menu</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_12</strong></td>
+                <td>
+                  <div>Verify Attendance Summary option exists under Reports menu</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_13</strong></td>
+                <td>
+                  <div>Verify employee name search input field exists on Employee Timesheets page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_14</strong></td>
+                <td>
+                  <div>Verify punch page has date input element</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_15</strong></td>
+                <td>
+                  <div>Verify punch page has time input element</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_16</strong></td>
+                <td>
+                  <div>Verify punch page note textarea is functional</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_17</strong></td>
+                <td>
+                  <div>Verify attendance table headers in My Records page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_18</strong></td>
+                <td>
+                  <div>Verify My Records date picker input elements exist</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_19</strong></td>
+                <td>
+                  <div>Verify calendar pop-up opens on clicking date input in My Records page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_20</strong></td>
+                <td>
+                  <div>Verify Reset button clears search filters in My Records page</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_21</strong></td>
+                <td>
+                  <div>Verify view records button text contains View</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_22</strong></td>
+                <td>
+                  <div>Verify breadcrumb title text details are visible</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_23</strong></td>
+                <td>
+                  <div>Verify Timesheets menu is visible in sub-navigation bar</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_24</strong></td>
+                <td>
+                  <div>Verify Attendance menu is visible in sub-navigation bar</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_TIME_25</strong></td>
+                <td>
+                  <div>Verify Punch In button exists in Punch page when logged out or punched out</div>
+                  
+                </td>
+                <td>time.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_01</strong></td>
+                <td>
+                  <div>Verify required field validations for empty fields</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_02</strong></td>
+                <td>
+                  <div>Verify validation when only password is entered</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_03</strong></td>
+                <td>
+                  <div>Verify validation when only username is entered</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_04</strong></td>
+                <td>
+                  <div>Verify login fails with special characters in credentials</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_05</strong></td>
+                <td>
+                  <div>Verify validation error message when username has only spaces</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_06</strong></td>
+                <td>
+                  <div>Verify validation error message when password has only spaces</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_07</strong></td>
+                <td>
+                  <div>Verify login fails with SQL Injection payload in username</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_08</strong></td>
+                <td>
+                  <div>Verify login fails with SQL Injection payload in password</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_09</strong></td>
+                <td>
+                  <div>Verify error validation text elements have correct text color (red)</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_10</strong></td>
+                <td>
+                  <div>Verify username field does not exceed max length limit of HTML standards</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_11</strong></td>
+                <td>
+                  <div>Verify password field does not exceed max length limit of HTML standards</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_12</strong></td>
+                <td>
+                  <div>Verify error message font weight is responsive</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_13</strong></td>
+                <td>
+                  <div>Verify input error borders are styled on required error trigger</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_14</strong></td>
+                <td>
+                  <div>Verify form submits only when all validation requirements are met</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_15</strong></td>
+                <td>
+                  <div>Verify username input case-sensitivity</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_16</strong></td>
+                <td>
+                  <div>Verify password input case-sensitivity</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_17</strong></td>
+                <td>
+                  <div>Verify error alert has company icon or style container</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_18</strong></td>
+                <td>
+                  <div>Verify login page form submission tag exists</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_19</strong></td>
+                <td>
+                  <div>Verify login button is of type submit</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_20</strong></td>
+                <td>
+                  <div>Verify field label tags are capitalized</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_21</strong></td>
+                <td>
+                  <div>Verify password input field has password autocomplete settings</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_22</strong></td>
+                <td>
+                  <div>Verify spacing styles around form input groupings</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_23</strong></td>
+                <td>
+                  <div>Verify login button displays hover class transitions</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_24</strong></td>
+                <td>
+                  <div>Verify HTML lang details exist on login viewport</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_VALID_25</strong></td>
+                <td>
+                  <div>Verify validation on long username does not crash backend</div>
+                  
+                </td>
+                <td>validations.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
+    </footer>
+  </div>
+</body>
+</html>

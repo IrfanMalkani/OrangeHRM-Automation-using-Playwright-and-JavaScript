@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrangeHRM - Leave Module</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --primary-color: #ff7919;
+      --primary-glow: rgba(255, 121, 25, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --failure: #ef4444;
+      --skipped: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-badge {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 24px;
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .meta-item strong {
+      color: var(--text-main);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--skipped);
+    }
+
+    .stat-card.total::after { background: var(--primary-color); }
+    .stat-card.passed::after { background: var(--success); }
+    .stat-card.failed::after { background: var(--failure); }
+    .stat-card.rate::after { background: #eab308; }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stat-card.passed .stat-value { color: var(--success); }
+    .stat-card.failed .stat-value { color: var(--failure); }
+    .stat-card.rate .stat-value { color: #eab308; }
+
+    /* Results Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .table-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .table-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background-color: rgba(15, 23, 42, 0.5);
+      padding: 12px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 14px 24px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge.passed {
+      background-color: rgba(16, 185, 129, 0.12);
+      color: var(--success);
+    }
+
+    .status-badge.failed {
+      background-color: rgba(239, 68, 68, 0.12);
+      color: var(--failure);
+    }
+
+    .status-badge.skipped {
+      background-color: rgba(100, 116, 139, 0.12);
+      color: var(--skipped);
+    }
+
+    .error-log {
+      font-family: monospace;
+      color: var(--failure);
+      background-color: rgba(239, 68, 68, 0.05);
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 4px;
+      font-size: 11px;
+      max-width: 500px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <h1>OrangeHRM - Leave Module</h1>
+        <span class="logo-badge">PLAYWRIGHT</span>
+      </div>
+      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
+      
+      <div class="meta-grid">
+        <div class="meta-item">🕒 Timestamp: <strong>15/7/2026, 12:59:45 pm</strong></div>
+        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
+        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-label">Total Executed</div>
+        <div class="stat-value">25</div>
+      </div>
+      <div class="stat-card passed">
+        <div class="stat-label">Passed</div>
+        <div class="stat-value">0</div>
+      </div>
+      <div class="stat-card failed">
+        <div class="stat-label">Failed</div>
+        <div class="stat-value">1</div>
+      </div>
+      <div class="stat-card rate">
+        <div class="stat-label">Pass Rate</div>
+        <div class="stat-value">0.0%</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Test Case Details</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Test Scenario Name</th>
+            <th>Spec File</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+              <tr>
+                <td><strong>TC_LEAVE_01</strong></td>
+                <td>
+                  <div>Apply leave request flow</div>
+                  <div class="error-log">Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoBeNull[2m()[22m
+
+Received: [31mnull[39m</div>
+                </td>
+                <td>leave.spec.js</td>
+                <td>44.77s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_02</strong></td>
+                <td>
+                  <div>Verify leave type of applied leave request</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_03</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Apply is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_04</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab My Leave is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_05</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Entitlements dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_06</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Reports dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_07</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Configure dropdown is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_08</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Leave List is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_09</strong></td>
+                <td>
+                  <div>Verify Top Navigation Tab Assign Leave is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_10</strong></td>
+                <td>
+                  <div>Verify validation error on empty Leave Type in Apply form</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_11</strong></td>
+                <td>
+                  <div>Verify From Date input field is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_12</strong></td>
+                <td>
+                  <div>Verify To Date input field is visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_13</strong></td>
+                <td>
+                  <div>Verify comments textarea has correct maximum character details</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_14</strong></td>
+                <td>
+                  <div>Verify calendar icon buttons exist next to date input fields</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_15</strong></td>
+                <td>
+                  <div>Verify Show with Status checkboxes exist in My Leave list filters</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_16</strong></td>
+                <td>
+                  <div>Verify Leave Type dropdown filter is present in My Leave tab</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_17</strong></td>
+                <td>
+                  <div>Verify Reset button clears date inputs in My Leave filters</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_18</strong></td>
+                <td>
+                  <div>Verify table headers in My Leave results page</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_19</strong></td>
+                <td>
+                  <div>Verify date validation error message if To Date is before From Date</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_20</strong></td>
+                <td>
+                  <div>Verify calendar widget opens when From Date input is clicked</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_21</strong></td>
+                <td>
+                  <div>Verify calendar widget opens when To Date input is clicked</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_22</strong></td>
+                <td>
+                  <div>Verify Leave page header title displays Leave</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_23</strong></td>
+                <td>
+                  <div>Verify Leave Balance card is shown for specific leave types</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_24</strong></td>
+                <td>
+                  <div>Verify My Leave list table rows can be scrolled and are visible</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>TC_LEAVE_25</strong></td>
+                <td>
+                  <div>Verify search button on My Leave filters page has correct CSS layout</div>
+                  
+                </td>
+                <td>leave.spec.js</td>
+                <td>0.00s</td>
+                <td><span class="status-badge skipped">SKIPPED</span></td>
+              </tr>
+            
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
+    </footer>
+  </div>
+</body>
+</html>

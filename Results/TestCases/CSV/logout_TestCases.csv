@@ -1,0 +1,76 @@
+Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
+TC_LOGOUT_01,Logout,Logout,Verify logout functionality redirects to login page,Positive,Verify logout functionality redirects to login page,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_LOGOUT_02,Logout,Logout,Verify dashboard is not accessible after logout,Positive,Verify dashboard is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_LOGOUT_03,Logout,Logout,Verify browser back button does not access dashboard after logout,Positive,Verify browser back button does not access dashboard after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+TC_LOGOUT_04,Logout,Logout,Verify user dropdown is collapsed by default,Positive,Verify user dropdown is collapsed by default,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_05,Logout,Logout,Verify user dropdown lists Logout link on click,Positive,Verify user dropdown lists Logout link on click,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_06,Logout,Logout,Verify clicking outside user dropdown closes the dropdown menu,Positive,Verify clicking outside user dropdown closes the dropdown menu,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_07,Logout,Logout,Verify Logout dropdown item tag is anchor link,Positive,Verify Logout dropdown item tag is anchor link,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_08,Logout,Logout,Verify cookies are cleared or altered after logout,Positive,Verify cookies are cleared or altered after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_09,Logout,Logout,Verify Admin page is not accessible after logout,Positive,Verify Admin page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_10,Logout,Logout,Verify PIM page is not accessible after logout,Positive,Verify PIM page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_11,Logout,Logout,Verify Leave page is not accessible after logout,Positive,Verify Leave page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_12,Logout,Logout,Verify Time page is not accessible after logout,Positive,Verify Time page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_13,Logout,Logout,Verify Recruitment page is not accessible after logout,Positive,Verify Recruitment page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_14,Logout,Logout,Verify My Info page is not accessible after logout,Positive,Verify My Info page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_15,Logout,Logout,Verify Buzz page is not accessible after logout,Positive,Verify Buzz page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_16,Logout,Logout,Verify Directory page is not accessible after logout,Positive,Verify Directory page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_17,Logout,Logout,Verify Performance page is not accessible after logout,Positive,Verify Performance page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_18,Logout,Logout,Verify Maintenance page is not accessible after logout,Positive,Verify Maintenance page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_19,Logout,Logout,Verify Claim page is not accessible after logout,Positive,Verify Claim page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_20,Logout,Logout,Verify browser forward button does not re-authenticate user after logout,Positive,Verify browser forward button does not re-authenticate user after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_21,Logout,Logout,Verify session storage is cleared on logout,Positive,Verify session storage is cleared on logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_22,Logout,Logout,Verify localStorage does not contain sensitive tokens after logout,Positive,Verify localStorage does not contain sensitive tokens after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_23,Logout,Logout,Verify logout link text matches exact text Logout,Positive,Verify logout link text matches exact text Logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_24,Logout,Logout,Verify user profile details container elements are not visible after logout,Positive,Verify user profile details container elements are not visible after logout,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+TC_LOGOUT_25,Logout,Logout,Verify logout cursor is a pointer,Positive,Verify logout cursor is a pointer,OrangeHRM application is accessible,"1. Navigate to page
+2. Perform test actions
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED

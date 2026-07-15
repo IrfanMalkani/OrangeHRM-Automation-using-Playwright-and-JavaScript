@@ -6,6 +6,9 @@ const AdminPage = require('../pages/AdminPage');
 const LeavePage = require('../pages/LeavePage');
 const RecruitmentPage = require('../pages/RecruitmentPage');
 const MyInfoPage = require('../pages/MyInfoPage');
+const DirectoryPage = require('../pages/DirectoryPage');
+const BuzzPage = require('../pages/BuzzPage');
+const TimePage = require('../pages/TimePage');
 
 // Extend basic test with custom fixtures
 const test = base.extend({
@@ -30,9 +33,19 @@ const test = base.extend({
   myInfoPage: async ({ page }, use) => {
     await use(new MyInfoPage(page));
   },
+  directoryPage: async ({ page }, use) => {
+    await use(new DirectoryPage(page));
+  },
+  buzzPage: async ({ page }, use) => {
+    await use(new BuzzPage(page));
+  },
+  timePage: async ({ page }, use) => {
+    await use(new TimePage(page));
+  },
 });
 
 module.exports = {
   test,
   expect: base.expect,
 };
+

@@ -1,0 +1,1398 @@
+{
+  "config": {
+    "configFile": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\playwright.config.js",
+    "rootDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\utils\\zipReports.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/Results/Evidence",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/Results/Evidence",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/Results/Evidence",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/OrangeHRM-Automation-using-Playwright-and-JavaScript/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "Results/Reports/HTML/playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "Results/Reports/JSON/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "Results/Reports/JUnit/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "leave.spec.js",
+      "file": "leave.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "OrangeHRM Leave Module",
+          "file": "leave.spec.js",
+          "line": 20,
+          "column": 15,
+          "specs": [
+            {
+              "title": "TC_LEAVE_01: Apply leave request flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 43441,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:22:32.357Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 44660,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"pending approval\"\u001b[39m\nReceived string:    \u001b[31m\"cancelled (2.00)\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"pending approval\"\u001b[39m\nReceived string:    \u001b[31m\"cancelled (2.00)\"\u001b[39m\n    at D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js:99:34",
+                        "location": {
+                          "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                          "column": 34,
+                          "line": 99
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  97 |\u001b[39m     \u001b[36mconst\u001b[39m status \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m leavePage\u001b[33m.\u001b[39mgetLatestLeaveStatus(startDate\u001b[33m,\u001b[39m endDate)\u001b[33m;\u001b[39m\n \u001b[90m  98 |\u001b[39m     expect(status)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeNull()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  99 |\u001b[39m     expect(status\u001b[33m.\u001b[39mtoLowerCase())\u001b[33m.\u001b[39mtoContain(\u001b[32m'pending approval'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 100 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 101 |\u001b[39m\n \u001b[90m 102 |\u001b[39m   test(\u001b[32m'TC_LEAVE_02: Verify leave type of applied leave request'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ leavePage }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                            "column": 34,
+                            "line": 99
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"pending approval\"\u001b[39m\nReceived string:    \u001b[31m\"cancelled (2.00)\"\u001b[39m\n\n   97 |     const status = await leavePage.getLatestLeaveStatus(startDate, endDate);\n   98 |     expect(status).not.toBeNull();\n>  99 |     expect(status.toLowerCase()).toContain('pending approval');\n      |                                  ^\n  100 |   });\n  101 |\n  102 |   test('TC_LEAVE_02: Verify leave type of applied leave request', async ({ leavePage }) => {\n    at D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js:99:34"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:28:38.006Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                        "column": 34,
+                        "line": 99
+                      }
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-69acc8dfa29995e0cc77",
+              "file": "leave.spec.js",
+              "line": 95,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_02: Verify leave type of applied leave request",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28684,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:23:45.878Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-823f6fb2997858e60ecf",
+              "file": "leave.spec.js",
+              "line": 102,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_03: Verify Top Navigation Tab Apply is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19574,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:24:14.578Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-79951f1e390d8ada4d3d",
+              "file": "leave.spec.js",
+              "line": 107,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_04: Verify Top Navigation Tab My Leave is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16382,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:24:34.168Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-4b04b9f841e819042813",
+              "file": "leave.spec.js",
+              "line": 111,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_05: Verify Top Navigation Tab Entitlements dropdown is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17461,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:24:50.566Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-25999612aa39d708de6d",
+              "file": "leave.spec.js",
+              "line": 115,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_06: Verify Top Navigation Tab Reports dropdown is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8303,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:08.043Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-c9d2f9e148e172cf91d5",
+              "file": "leave.spec.js",
+              "line": 120,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_07: Verify Top Navigation Tab Configure dropdown is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10834,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:16.359Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-bbc5fb4d9b345e3bd5d5",
+              "file": "leave.spec.js",
+              "line": 125,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_08: Verify Top Navigation Tab Leave List is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8957,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:27.205Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-3836b25a1151c1326155",
+              "file": "leave.spec.js",
+              "line": 130,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_09: Verify Top Navigation Tab Assign Leave is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10252,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:36.176Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-4bdb515beb49a7767f5a",
+              "file": "leave.spec.js",
+              "line": 135,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_10: Verify validation error on empty Leave Type in Apply form",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11962,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:46.441Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-cd23feefaf7a22c869d4",
+              "file": "leave.spec.js",
+              "line": 140,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_11: Verify From Date input field is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:25:58.418Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-017649e9c2043384980a",
+              "file": "leave.spec.js",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_12: Verify To Date input field is visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8043,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:26:05.176Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-6f47769322a52640cb75",
+              "file": "leave.spec.js",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_13: Verify comments textarea has correct maximum character details",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16399,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:26:13.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-9d477a1bf52835a3bcb0",
+              "file": "leave.spec.js",
+              "line": 155,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_14: Verify calendar icon buttons exist next to date input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25055,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:26:29.641Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-466847e13ca9ed68e039",
+              "file": "leave.spec.js",
+              "line": 160,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_15: Verify Show with Status checkboxes exist in My Leave list filters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23103,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:26:54.709Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-29ebae2f17b9cee74ca9",
+              "file": "leave.spec.js",
+              "line": 165,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_16: Verify Leave Type dropdown filter is present in My Leave tab",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14004,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:27:17.825Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-59288d00108299c9b807",
+              "file": "leave.spec.js",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_17: Verify Reset button clears date inputs in My Leave filters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17751,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:27:31.843Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-da31be111e6c49041281",
+              "file": "leave.spec.js",
+              "line": 177,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_18: Verify table headers in My Leave results page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14566,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:27:49.608Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-009b2c67bf24e5751588",
+              "file": "leave.spec.js",
+              "line": 187,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_19: Verify date validation error message if To Date is before From Date",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 33071,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\nExpected: \u001b[32m\"\u001b[7mTo date should be after from d\u001b[27mat\u001b[7me\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mShould be a valid date in yyyy-dd-mm form\u001b[27mat\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\u001b[22m\n\u001b[2m    28 × locator resolved to <span data-v-7b563373=\"\" data-v-957b4417=\"\" class=\"oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message\">Should be a valid date in yyyy-dd-mm format</span>\u001b[22m\n\u001b[2m       - unexpected value \"Should be a valid date in yyyy-dd-mm format\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\nExpected: \u001b[32m\"\u001b[7mTo date should be after from d\u001b[27mat\u001b[7me\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mShould be a valid date in yyyy-dd-mm form\u001b[27mat\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\u001b[22m\n\u001b[2m    28 × locator resolved to <span data-v-7b563373=\"\" data-v-957b4417=\"\" class=\"oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message\">Should be a valid date in yyyy-dd-mm format</span>\u001b[22m\n\u001b[2m       - unexpected value \"Should be a valid date in yyyy-dd-mm format\"\u001b[22m\n\n    at D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js:199:23",
+                        "location": {
+                          "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                          "column": 23,
+                          "line": 199
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 197 |\u001b[39m     \u001b[36mawait\u001b[39m leavePage\u001b[33m.\u001b[39mtoDateInput\u001b[33m.\u001b[39mpress(\u001b[32m'Tab'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 198 |\u001b[39m     \u001b[36mconst\u001b[39m err \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m     \u001b[36mawait\u001b[39m expect(err)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'To date should be after from date'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m\n \u001b[90m 202 |\u001b[39m   test(\u001b[32m'TC_LEAVE_20: Verify calendar widget opens when From Date input is clicked'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ leavePage\u001b[33m,\u001b[39m page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                            "column": 23,
+                            "line": 199
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\nExpected: \u001b[32m\"\u001b[7mTo date should be after from d\u001b[27mat\u001b[7me\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mShould be a valid date in yyyy-dd-mm form\u001b[27mat\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message')\u001b[22m\n\u001b[2m    28 × locator resolved to <span data-v-7b563373=\"\" data-v-957b4417=\"\" class=\"oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message\">Should be a valid date in yyyy-dd-mm format</span>\u001b[22m\n\u001b[2m       - unexpected value \"Should be a valid date in yyyy-dd-mm format\"\u001b[22m\n\n\n  197 |     await leavePage.toDateInput.press('Tab');\n  198 |     const err = page.locator('.oxd-input-group:has-text(\"To Date\") .oxd-input-group__message');\n> 199 |     await expect(err).toHaveText('To date should be after from date');\n      |                       ^\n  200 |   });\n  201 |\n  202 |   test('TC_LEAVE_20: Verify calendar widget opens when From Date input is clicked', async ({ leavePage, page }) => {\n    at D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js:199:23"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:04.186Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\Results\\Evidence\\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\OrangeHRM-Automation-using-Playwright-and-JavaScript\\tests\\leave.spec.js",
+                        "column": 23,
+                        "line": 199
+                      }
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-b82dfea6497e573238f9",
+              "file": "leave.spec.js",
+              "line": 193,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_20: Verify calendar widget opens when From Date input is clicked",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-90ede840914175a8aaa6",
+              "file": "leave.spec.js",
+              "line": 202,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_21: Verify calendar widget opens when To Date input is clicked",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-e238a816d8c4a15a12ba",
+              "file": "leave.spec.js",
+              "line": 209,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_22: Verify Leave page header title displays Leave",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-eb55fad15d1d480f2a5c",
+              "file": "leave.spec.js",
+              "line": 216,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_23: Verify Leave Balance card is shown for specific leave types",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-0e1c4a976283d901f307",
+              "file": "leave.spec.js",
+              "line": 221,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_24: Verify My Leave list table rows can be scrolled and are visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-cdef10f07b83c979af80",
+              "file": "leave.spec.js",
+              "line": 229,
+              "column": 3
+            },
+            {
+              "title": "TC_LEAVE_25: Verify search button on My Leave filters page has correct CSS layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-15T07:28:37.474Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-07-15T07:29:45.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5db1e2600b5d9083256f-56ee616a2125f8872758",
+              "file": "leave.spec.js",
+              "line": 235,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-15T07:22:31.853Z",
+    "duration": 438406.82800000004,
+    "expected": 17,
+    "skipped": 6,
+    "unexpected": 1,
+    "flaky": 1
+  }
+}

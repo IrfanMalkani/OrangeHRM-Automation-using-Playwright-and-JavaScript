@@ -35,6 +35,11 @@ class AdminPage {
   async searchUser(username) {
     await this.searchUsernameInput.fill(username);
     await this.searchButton.click();
+    const spinner = this.page.locator('.oxd-loading-spinner-container');
+    try {
+      await spinner.waitFor({ state: 'visible', timeout: 1000 });
+    } catch (e) {}
+    await spinner.waitFor({ state: 'detached', timeout: 15000 }).catch(() => {});
   }
 
   async isUserInResults(username) {

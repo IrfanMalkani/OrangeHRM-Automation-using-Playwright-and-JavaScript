@@ -1,0 +1,133 @@
+<testsuites id="" name="" tests="25" failures="1" skipped="6" errors="0" time="438.406828">
+<testsuite name="leave.spec.js" timestamp="2026-07-15T07:22:31.940Z" hostname="chromium" tests="25" failures="1" skipped="6" time="379.245" errors="0">
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_01: Apply leave request flow" classname="leave.spec.js" time="88.101">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\video.webm]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\error-context.md]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-chromium-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_02: Verify leave type of applied leave request" classname="leave.spec.js" time="28.684">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_03: Verify Top Navigation Tab Apply is visible" classname="leave.spec.js" time="19.574">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_04: Verify Top Navigation Tab My Leave is visible" classname="leave.spec.js" time="16.382">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_05: Verify Top Navigation Tab Entitlements dropdown is visible" classname="leave.spec.js" time="17.461">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_06: Verify Top Navigation Tab Reports dropdown is visible" classname="leave.spec.js" time="8.303">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_07: Verify Top Navigation Tab Configure dropdown is visible" classname="leave.spec.js" time="10.834">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_08: Verify Top Navigation Tab Leave List is visible" classname="leave.spec.js" time="8.957">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_09: Verify Top Navigation Tab Assign Leave is visible" classname="leave.spec.js" time="10.252">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_10: Verify validation error on empty Leave Type in Apply form" classname="leave.spec.js" time="11.962">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_11: Verify From Date input field is visible" classname="leave.spec.js" time="6.743">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_12: Verify To Date input field is visible" classname="leave.spec.js" time="8.043">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_13: Verify comments textarea has correct maximum character details" classname="leave.spec.js" time="16.399">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_14: Verify calendar icon buttons exist next to date input fields" classname="leave.spec.js" time="25.055">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_15: Verify Show with Status checkboxes exist in My Leave list filters" classname="leave.spec.js" time="23.103">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_16: Verify Leave Type dropdown filter is present in My Leave tab" classname="leave.spec.js" time="14.004">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_17: Verify Reset button clears date inputs in My Leave filters" classname="leave.spec.js" time="17.751">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_18: Verify table headers in My Leave results page" classname="leave.spec.js" time="14.566">
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_19: Verify date validation error message if To Date is before From Date" classname="leave.spec.js" time="33.071">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\video.webm]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\error-context.md]]
+
+[[ATTACHMENT|..\..\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toHaveText(expected) failed" type="expect.toHaveText">
+<![CDATA[  [chromium] › leave.spec.js:193:3 › OrangeHRM Leave Module › TC_LEAVE_19: Verify date validation error message if To Date is before From Date 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('.oxd-input-group:has-text("To Date") .oxd-input-group__message')
+    Expected: "To date should be after from date"
+    Received: "Should be a valid date in yyyy-dd-mm format"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveText" with timeout 15000ms
+      - waiting for locator('.oxd-input-group:has-text("To Date") .oxd-input-group__message')
+        28 × locator resolved to <span data-v-7b563373="" data-v-957b4417="" class="oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message">Should be a valid date in yyyy-dd-mm format</span>
+           - unexpected value "Should be a valid date in yyyy-dd-mm format"
+
+
+      197 |     await leavePage.toDateInput.press('Tab');
+      198 |     const err = page.locator('.oxd-input-group:has-text("To Date") .oxd-input-group__message');
+    > 199 |     await expect(err).toHaveText('To date should be after from date');
+          |                       ^
+      200 |   });
+      201 |
+      202 |   test('TC_LEAVE_20: Verify calendar widget opens when From Date input is clicked', async ({ leavePage, page }) => {
+        at D:\OrangeHRM-Automation-using-Playwright-and-JavaScript\tests\leave.spec.js:199:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\Results\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\Results\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\Results\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\Results\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\Results\Evidence\leave-OrangeHRM-Leave-Modu-fb3f7-To-Date-is-before-From-Date-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_20: Verify calendar widget opens when From Date input is clicked" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_21: Verify calendar widget opens when To Date input is clicked" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_22: Verify Leave page header title displays Leave" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_23: Verify Leave Balance card is shown for specific leave types" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_24: Verify My Leave list table rows can be scrolled and are visible" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="OrangeHRM Leave Module › TC_LEAVE_25: Verify search button on My Leave filters page has correct CSS layout" classname="leave.spec.js">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

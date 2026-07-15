@@ -67,26 +67,24 @@ class LeavePage {
   }
 
   async getLatestLeaveStatus(startDate, endDate) {
-    if (!this.page.url().includes('viewMyLeaveList')) {
-      await this.myLeaveTab.waitFor({ state: 'visible', timeout: 20000 });
-      await this.myLeaveTab.click();
-      await this.page.waitForSelector('.oxd-table-filter', { state: 'visible', timeout: 25000 });
-      
-      // Clear and fill date filters
-      await this.fromDateInput.click();
-      await this.page.keyboard.press('Control+A');
-      await this.page.keyboard.press('Backspace');
-      await this.fromDateInput.fill(startDate || '2026-01-01');
-      
-      await this.toDateInput.click();
-      await this.page.keyboard.press('Control+A');
-      await this.page.keyboard.press('Backspace');
-      await this.toDateInput.fill(endDate || '2027-12-31');
-      
-      // Click Search button
-      await this.page.locator('button[type="submit"]').click();
-      await this.waitForSpinner();
-    }
+    await this.myLeaveTab.waitFor({ state: 'visible', timeout: 20000 });
+    await this.myLeaveTab.click();
+    await this.page.waitForSelector('.oxd-table-filter', { state: 'visible', timeout: 25000 });
+    
+    // Clear and fill date filters
+    await this.fromDateInput.click();
+    await this.page.keyboard.press('Control+A');
+    await this.page.keyboard.press('Backspace');
+    await this.fromDateInput.fill(startDate || '2026-01-01');
+    
+    await this.toDateInput.click();
+    await this.page.keyboard.press('Control+A');
+    await this.page.keyboard.press('Backspace');
+    await this.toDateInput.fill(endDate || '2027-12-31');
+    
+    // Click Search button
+    await this.page.locator('button[type="submit"]').click();
+    await this.waitForSpinner();
     
     const count = await this.tableRows.count();
     if (count === 0) {
@@ -100,26 +98,24 @@ class LeavePage {
   }
 
   async getLatestLeaveType(startDate, endDate) {
-    if (!this.page.url().includes('viewMyLeaveList')) {
-      await this.myLeaveTab.waitFor({ state: 'visible', timeout: 20000 });
-      await this.myLeaveTab.click();
-      await this.page.waitForSelector('.oxd-table-filter', { state: 'visible', timeout: 25000 });
-      
-      // Clear and fill date filters
-      await this.fromDateInput.click();
-      await this.page.keyboard.press('Control+A');
-      await this.page.keyboard.press('Backspace');
-      await this.fromDateInput.fill(startDate || '2026-01-01');
-      
-      await this.toDateInput.click();
-      await this.page.keyboard.press('Control+A');
-      await this.page.keyboard.press('Backspace');
-      await this.toDateInput.fill(endDate || '2027-12-31');
-      
-      // Click Search button
-      await this.page.locator('button[type="submit"]').click();
-      await this.waitForSpinner();
-    }
+    await this.myLeaveTab.waitFor({ state: 'visible', timeout: 20000 });
+    await this.myLeaveTab.click();
+    await this.page.waitForSelector('.oxd-table-filter', { state: 'visible', timeout: 25000 });
+    
+    // Clear and fill date filters
+    await this.fromDateInput.click();
+    await this.page.keyboard.press('Control+A');
+    await this.page.keyboard.press('Backspace');
+    await this.fromDateInput.fill(startDate || '2026-01-01');
+    
+    await this.toDateInput.click();
+    await this.page.keyboard.press('Control+A');
+    await this.page.keyboard.press('Backspace');
+    await this.toDateInput.fill(endDate || '2027-12-31');
+    
+    // Click Search button
+    await this.page.locator('button[type="submit"]').click();
+    await this.waitForSpinner();
     
     const count = await this.tableRows.count();
     if (count === 0) return null;
