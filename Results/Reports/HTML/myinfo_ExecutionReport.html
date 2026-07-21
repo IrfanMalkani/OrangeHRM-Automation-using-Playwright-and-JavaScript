@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
   <title>OrangeHRM - My Info Module</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -269,36 +270,36 @@
       <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
       
       <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>15/7/2026, 12:59:45 pm</strong></div>
+        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
         <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
         <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
       </div>
     </header>
 
     <div class="stats-grid">
-      <div class="stat-card total">
+      <div id="stat-card-total" class="stat-card total">
         <div class="stat-label">Total Executed</div>
         <div class="stat-value">25</div>
       </div>
-      <div class="stat-card passed">
+      <div id="stat-card-passed" class="stat-card passed">
         <div class="stat-label">Passed</div>
-        <div class="stat-value">0</div>
+        <div class="stat-value">22</div>
       </div>
-      <div class="stat-card failed">
+      <div id="stat-card-failed" class="stat-card failed">
         <div class="stat-label">Failed</div>
-        <div class="stat-value">0</div>
+        <div class="stat-value">3</div>
       </div>
-      <div class="stat-card rate">
+      <div id="stat-card-rate" class="stat-card rate">
         <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">0.0%</div>
+        <div class="stat-value">88.0%</div>
       </div>
     </div>
 
     <div class="table-container">
       <div class="table-header">
-        <h2>Test Case Details</h2>
+        <h2 id="table-title">Test Case Details</h2>
       </div>
-      <table>
+      <table id="execution-results-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -317,19 +318,31 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>68.00s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
                 <td><strong>TC_MYINFO_02</strong></td>
                 <td>
                   <div>Upload profile image</div>
-                  
+                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'My Info' })[22m
+[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/pim/viewMyDetails&quot;&gt;…&lt;/a&gt;[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+[2m    - click action done[22m
+[2m    - waiting for scheduled navigations to finish[22m
+</div>
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>45.83s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
               </tr>
             
               <tr>
@@ -339,8 +352,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>45.63s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -350,8 +363,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>42.54s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -361,8 +374,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>52.32s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -372,8 +385,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>44.56s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -383,8 +396,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>48.06s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -394,8 +407,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>51.61s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -405,8 +418,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>40.57s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -416,19 +429,29 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>54.38s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
                 <td><strong>TC_MYINFO_11</strong></td>
                 <td>
                   <div>Verify Tax Exemptions sub-tab is visible</div>
-                  
+                  <div class="error-log">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator('a.orangehrm-tabs-item').filter({ hasText: 'Tax Exemptions' })
+Expected: visible
+Timeout: 15000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 15000ms[22m
+[2m  - waiting for locator('a.orangehrm-tabs-item').filter({ hasText: 'Tax Exemptions' })[22m
+</div>
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>65.81s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
               </tr>
             
               <tr>
@@ -438,8 +461,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>51.27s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -449,8 +472,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>42.34s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -460,8 +483,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>50.82s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -471,8 +494,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>45.74s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -482,8 +505,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>37.79s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -493,19 +516,31 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>54.39s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
                 <td><strong>TC_MYINFO_18</strong></td>
                 <td>
-                  <div>Verify Driver\</div>
-                  
+                  <div>Verify Driver's License Number field is visible</div>
+                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'My Info' })[22m
+[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/pim/viewMyDetails&quot;&gt;…&lt;/a&gt;[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+[2m    - click action done[22m
+[2m    - waiting for scheduled navigations to finish[22m
+</div>
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>46.72s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
               </tr>
             
               <tr>
@@ -515,8 +550,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>58.97s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -526,8 +561,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>42.29s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -537,8 +572,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>57.42s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -548,8 +583,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>53.22s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -559,8 +594,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>45.27s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -570,8 +605,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>52.68s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
               <tr>
@@ -581,8 +616,8 @@
                   
                 </td>
                 <td>myinfo.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>52.99s</td>
+                <td><span class="status-badge passed">PASSED</span></td>
               </tr>
             
         </tbody>

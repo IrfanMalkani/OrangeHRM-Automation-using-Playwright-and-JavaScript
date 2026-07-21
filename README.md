@@ -1,9 +1,3 @@
-# OrangeHRM E2E Automation Suite using Playwright & JavaScript
-
-[![Playwright Version](https://img.shields.io/badge/playwright-%5E1.49.0-blueviolet?style=flat-square&logo=playwright)](https://playwright.dev/)
-[![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-green?style=flat-square&logo=node.js)](https://nodejs.org/)
-[![Language](https://img.shields.io/badge/language-pure%20javascript-yellow?style=flat-square&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License](https://img.shields.io/badge/license-ISC-orange?style=flat-square)](https://opensource.org/licenses/ISC)
 
 ## 📊 Executive Overview
 

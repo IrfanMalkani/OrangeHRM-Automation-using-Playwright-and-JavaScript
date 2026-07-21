@@ -1,76 +1,76 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_MYINFO_01,Myinfo,Myinfo,Update personal details,Positive,Update personal details,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_MYINFO_02,Myinfo,Myinfo,Upload profile image,Positive,Upload profile image,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
 TC_MYINFO_03,Myinfo,Myinfo,Verify first name field is pre-populated,Positive,Verify first name field is pre-populated,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_MYINFO_04,Myinfo,Myinfo,Verify My Info page heading displays Personal Details,Positive,Verify My Info page heading displays Personal Details,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_05,Myinfo,Myinfo,Verify Contact Details sub-tab is visible,Positive,Verify Contact Details sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_06,Myinfo,Myinfo,Verify Emergency Contacts sub-tab is visible,Positive,Verify Emergency Contacts sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_07,Myinfo,Myinfo,Verify Dependents sub-tab is visible,Positive,Verify Dependents sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_08,Myinfo,Myinfo,Verify Immigration sub-tab is visible,Positive,Verify Immigration sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_09,Myinfo,Myinfo,Verify Job sub-tab is visible,Positive,Verify Job sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_10,Myinfo,Myinfo,Verify Salary sub-tab is visible,Positive,Verify Salary sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_11,Myinfo,Myinfo,Verify Tax Exemptions sub-tab is visible,Positive,Verify Tax Exemptions sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
 TC_MYINFO_12,Myinfo,Myinfo,Verify Report-to sub-tab is visible,Positive,Verify Report-to sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_13,Myinfo,Myinfo,Verify Qualifications sub-tab is visible,Positive,Verify Qualifications sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_14,Myinfo,Myinfo,Verify Memberships sub-tab is visible,Positive,Verify Memberships sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_15,Myinfo,Myinfo,Verify middle name field is visible,Positive,Verify middle name field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_16,Myinfo,Myinfo,Verify last name field is visible,Positive,Verify last name field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_17,Myinfo,Myinfo,Verify Employee ID field is visible,Positive,Verify Employee ID field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_MYINFO_18,Myinfo,Myinfo,Verify Driver\,Positive,Verify Driver\,OrangeHRM application is accessible,"1. Navigate to page
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_MYINFO_18,Myinfo,Myinfo,Verify Driver's License Number field is visible,Positive,Verify Driver's License Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
 TC_MYINFO_19,Myinfo,Myinfo,Verify SSN Number field is visible,Positive,Verify SSN Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_20,Myinfo,Myinfo,Verify SIN Number field is visible,Positive,Verify SIN Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_21,Myinfo,Myinfo,Verify Nationality dropdown is visible,Positive,Verify Nationality dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_22,Myinfo,Myinfo,Verify Marital Status dropdown is visible,Positive,Verify Marital Status dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_23,Myinfo,Myinfo,Verify Gender radio buttons exist,Positive,Verify Gender radio buttons exist,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_24,Myinfo,Myinfo,Verify Custom Fields heading is visible,Positive,Verify Custom Fields heading is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_MYINFO_25,Myinfo,Myinfo,Verify Attachments Add button is visible,Positive,Verify Attachments Add button is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED

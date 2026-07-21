@@ -1,76 +1,76 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_DIR_01,Directory,Directory,Verify Directory page load and header breadcrumb,Positive,Verify Directory page load and header breadcrumb,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DIR_02,Directory,Directory,Verify search functionality by Job Title,Positive,Verify search functionality by Job Title,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DIR_03,Directory,Directory,Verify reset button clears search parameters,Positive,Verify reset button clears search parameters,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DIR_04,Directory,Directory,Verify searching with invalid employee name returns no records,Negative,Verify searching with invalid employee name returns no records,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_05,Directory,Directory,Verify Location dropdown filter is visible,Positive,Verify Location dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_06,Directory,Directory,Verify Job Title dropdown filter is visible,Positive,Verify Job Title dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_07,Directory,Directory,Verify Employee Name input field is visible,Positive,Verify Employee Name input field is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_08,Directory,Directory,Verify Search button is visible,Positive,Verify Search button is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_09,Directory,Directory,Verify Reset button is visible,Positive,Verify Reset button is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_10,Directory,Directory,Verify card grid container is visible in search results,Positive,Verify card grid container is visible in search results,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_11,Directory,Directory,Verify employee card has image element,Positive,Verify employee card has image element,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_12,Directory,Directory,Verify employee card has name header link,Positive,Verify employee card has name header link,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_13,Directory,Directory,Verify employee card job title text block exists,Positive,Verify employee card job title text block exists,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_14,Directory,Directory,Verify employee card location text block exists,Positive,Verify employee card location text block exists,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_15,Directory,Directory,Verify autocomplete options container is hidden on page load,Positive,Verify autocomplete options container is hidden on page load,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_16,Directory,Directory,Verify search by Location filter option functionality,Positive,Verify search by Location filter option functionality,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_17,Directory,Directory,Verify Location dropdown is reset to -- Select -- on Reset click,Positive,Verify Location dropdown is reset to -- Select -- on Reset click,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_18,Directory,Directory,Verify Search button has type submit attribute,Positive,Verify Search button has type submit attribute,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_19,Directory,Directory,Verify search cards count text matches results length,Positive,Verify search cards count text matches results length,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_20,Directory,Directory,Verify employee name input accepts keyboard tab navigation,Positive,Verify employee name input accepts keyboard tab navigation,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_21,Directory,Directory,Verify directory layout contains search parameters fold collapsible element,Positive,Verify directory layout contains search parameters fold collapsible element,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_22,Directory,Directory,Verify search panel title is Directory,Positive,Verify search panel title is Directory,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_23,Directory,Directory,Verify employee list is scrollable,Positive,Verify employee list is scrollable,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_24,Directory,Directory,Verify reset button hover styling properties,Positive,Verify reset button hover styling properties,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DIR_25,Directory,Directory,Verify search input field placeholder matches default text hint,Positive,Verify search input field placeholder matches default text hint,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED

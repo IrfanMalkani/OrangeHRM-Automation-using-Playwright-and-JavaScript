@@ -40,11 +40,11 @@ function loadMasterTestCasesFromSpecs() {
     if (!file.endsWith('.spec.js')) return;
     const content = fs.readFileSync(path.join(testDir, file), 'utf-8');
     
-    const regex = /test\(\s*(['"`])(TC_[A-Z0-9_]+)\s*:\s*(.*?)\1/g;
+    const regex = /test\(\s*(['"`])(TC_[A-Z0-9_]+)\s*:\s*((?:\\.|(?!\1).)*)\1/g;
     let match;
     while ((match = regex.exec(content)) !== null) {
       const id = match[2];
-      const desc = match[3];
+      const desc = match[3].replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\`/g, '`').replace(/\\\\/g, '\\');
       const moduleName = deriveModuleFromFile(file);
       
       tcs.push({
@@ -149,6 +149,7 @@ function generateHtmlContent(title, stats, testCases, timestamp) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
   <title>${title}</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -422,19 +423,19 @@ function generateHtmlContent(title, stats, testCases, timestamp) {
     </header>
 
     <div class="stats-grid">
-      <div class="stat-card total">
+      <div id="stat-card-total" class="stat-card total">
         <div class="stat-label">Total Executed</div>
         <div class="stat-value">${stats.total}</div>
       </div>
-      <div class="stat-card passed">
+      <div id="stat-card-passed" class="stat-card passed">
         <div class="stat-label">Passed</div>
         <div class="stat-value">${stats.passed}</div>
       </div>
-      <div class="stat-card failed">
+      <div id="stat-card-failed" class="stat-card failed">
         <div class="stat-label">Failed</div>
         <div class="stat-value">${stats.failed}</div>
       </div>
-      <div class="stat-card rate">
+      <div id="stat-card-rate" class="stat-card rate">
         <div class="stat-label">Pass Rate</div>
         <div class="stat-value">${stats.passRate}%</div>
       </div>
@@ -442,9 +443,9 @@ function generateHtmlContent(title, stats, testCases, timestamp) {
 
     <div class="table-container">
       <div class="table-header">
-        <h2>Test Case Details</h2>
+        <h2 id="table-title">Test Case Details</h2>
       </div>
-      <table>
+      <table id="execution-results-table">
         <thead>
           <tr>
             <th>ID</th>

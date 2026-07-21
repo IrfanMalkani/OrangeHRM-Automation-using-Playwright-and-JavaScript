@@ -1,76 +1,76 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_BUZZ_01,Buzz,Buzz,Verify Buzz page loads feed correctly,Positive,Verify Buzz page loads feed correctly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_BUZZ_02,Buzz,Buzz,Verify successful creation of new post,Positive,Verify successful creation of new post,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_BUZZ_03,Buzz,Buzz,Verify feed filtering tabs are functional,Positive,Verify feed filtering tabs are functional,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_BUZZ_04,Buzz,Buzz,Verify post button is disabled/ignored when post text is empty,Positive,Verify post button is disabled/ignored when post text is empty,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_05,Buzz,Buzz,Verify Share Photos button is visible,Positive,Verify Share Photos button is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_06,Buzz,Buzz,Verify Share Video button is visible,Positive,Verify Share Video button is visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_BUZZ_07,Buzz,Buzz,Verify post textarea placeholder is What\,Positive,Verify post textarea placeholder is What\,OrangeHRM application is accessible,"1. Navigate to page
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_BUZZ_07,Buzz,Buzz,Verify post textarea placeholder is What's on your mind?,Positive,Verify post textarea placeholder is What's on your mind?,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_08,Buzz,Buzz,Verify Most Recent Posts tab is visible by default,Positive,Verify Most Recent Posts tab is visible by default,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_09,Buzz,Buzz,Verify Most Commented Posts tab filters newsfeed,Positive,Verify Most Commented Posts tab filters newsfeed,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_10,Buzz,Buzz,Verify newsfeed contains cards with profile avatars,Positive,Verify newsfeed contains cards with profile avatars,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_11,Buzz,Buzz,Verify user profile name link is visible on each post card,Positive,Verify user profile name link is visible on each post card,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_12,Buzz,Buzz,Verify timestamp elapsed duration text exists on post,Positive,Verify timestamp elapsed duration text exists on post,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_13,Buzz,Buzz,Verify clicking Like button toggles like state,Positive,Verify clicking Like button toggles like state,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_14,Buzz,Buzz,Verify Comment icon button exists on feed posts,Positive,Verify Comment icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_15,Buzz,Buzz,Verify Share icon button exists on feed posts,Positive,Verify Share icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_16,Buzz,Buzz,Verify Buzz page URL path is correct,Positive,Verify Buzz page URL path is correct,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_17,Buzz,Buzz,Verify Share Photos button opens dialog pop-up,Positive,Verify Share Photos button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_18,Buzz,Buzz,Verify Share Video button opens dialog pop-up,Positive,Verify Share Video button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_19,Buzz,Buzz,Verify post options dropdown (dot menu) is functional,Positive,Verify post options dropdown (dot menu) is functional,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_20,Buzz,Buzz,Verify feed scroll behavior is responsive,Positive,Verify feed scroll behavior is responsive,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_21,Buzz,Buzz,Verify post content area does not overflow card width,Positive,Verify post content area does not overflow card width,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_22,Buzz,Buzz,Verify video link validation error message when empty video link is posted,Negative,Verify video link validation error message when empty video link is posted,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_23,Buzz,Buzz,Verify profile card elements are visible in left column of Buzz page,Positive,Verify profile card elements are visible in left column of Buzz page,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_24,Buzz,Buzz,Verify post textarea accepts special characters and emojis,Positive,Verify post textarea accepts special characters and emojis,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_BUZZ_25,Buzz,Buzz,Verify Buzz title in topbar matches breadcrumb text,Positive,Verify Buzz title in topbar matches breadcrumb text,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED

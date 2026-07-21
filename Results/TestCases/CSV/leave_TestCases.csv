@@ -41,7 +41,7 @@ TC_LEAVE_13,Leave,Leave,Verify comments textarea has correct maximum character d
 TC_LEAVE_14,Leave,Leave,Verify calendar icon buttons exist next to date input fields,Positive,Verify calendar icon buttons exist next to date input fields,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
 3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_LEAVE_15,Leave,Leave,Verify Show with Status checkboxes exist in My Leave list filters,Positive,Verify Show with Status checkboxes exist in My Leave list filters,OrangeHRM application is accessible,"1. Navigate to page
+TC_LEAVE_15,Leave,Leave,Verify Show with Status multiselect chips exist in My Leave list filters,Positive,Verify Show with Status multiselect chips exist in My Leave list filters,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
 3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
 TC_LEAVE_16,Leave,Leave,Verify Leave Type dropdown filter is present in My Leave tab,Positive,Verify Leave Type dropdown filter is present in My Leave tab,OrangeHRM application is accessible,"1. Navigate to page

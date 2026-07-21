@@ -1,10 +1,10 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_PIM_01,Pim,Pim,Add new employee,Positive,Add new employee,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_PIM_02,Pim,Pim,Search employee details,Positive,Search employee details,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
 TC_PIM_03,Pim,Pim,Update employee information,Positive,Update employee information,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
 3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED

@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Local/Dynamic Test Evidence
+Results/Evidence/
+test-results/
+
+# Native Playwright Reports
+Results/Reports/HTML/playwright-report/
+Results/Reports/JUnit/
+Results/Reports/JSON/results.json
+
+# Environment variables
+.env

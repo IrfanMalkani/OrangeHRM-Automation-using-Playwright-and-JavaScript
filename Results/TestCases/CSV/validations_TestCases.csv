@@ -1,76 +1,76 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_VALID_01,Validations,Validations,Verify required field validations for empty fields,Positive,Verify required field validations for empty fields,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_VALID_02,Validations,Validations,Verify validation when only password is entered,Positive,Verify validation when only password is entered,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_VALID_03,Validations,Validations,Verify validation when only username is entered,Positive,Verify validation when only username is entered,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_VALID_04,Validations,Validations,Verify login fails with special characters in credentials,Positive,Verify login fails with special characters in credentials,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_05,Validations,Validations,Verify validation error message when username has only spaces,Negative,Verify validation error message when username has only spaces,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_06,Validations,Validations,Verify validation error message when password has only spaces,Negative,Verify validation error message when password has only spaces,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_07,Validations,Validations,Verify login fails with SQL Injection payload in username,Positive,Verify login fails with SQL Injection payload in username,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_08,Validations,Validations,Verify login fails with SQL Injection payload in password,Positive,Verify login fails with SQL Injection payload in password,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_09,Validations,Validations,Verify error validation text elements have correct text color (red),Negative,Verify error validation text elements have correct text color (red),OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_10,Validations,Validations,Verify username field does not exceed max length limit of HTML standards,Positive,Verify username field does not exceed max length limit of HTML standards,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_11,Validations,Validations,Verify password field does not exceed max length limit of HTML standards,Positive,Verify password field does not exceed max length limit of HTML standards,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_12,Validations,Validations,Verify error message font weight is responsive,Negative,Verify error message font weight is responsive,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_13,Validations,Validations,Verify input error borders are styled on required error trigger,Negative,Verify input error borders are styled on required error trigger,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_14,Validations,Validations,Verify form submits only when all validation requirements are met,Positive,Verify form submits only when all validation requirements are met,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_15,Validations,Validations,Verify username input case-sensitivity,Positive,Verify username input case-sensitivity,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_16,Validations,Validations,Verify password input case-sensitivity,Positive,Verify password input case-sensitivity,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_17,Validations,Validations,Verify error alert has company icon or style container,Negative,Verify error alert has company icon or style container,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_18,Validations,Validations,Verify login page form submission tag exists,Positive,Verify login page form submission tag exists,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_19,Validations,Validations,Verify login button is of type submit,Positive,Verify login button is of type submit,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_20,Validations,Validations,Verify field label tags are capitalized,Positive,Verify field label tags are capitalized,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_21,Validations,Validations,Verify password input field has password autocomplete settings,Positive,Verify password input field has password autocomplete settings,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_22,Validations,Validations,Verify spacing styles around form input groupings,Positive,Verify spacing styles around form input groupings,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_23,Validations,Validations,Verify login button displays hover class transitions,Positive,Verify login button displays hover class transitions,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_24,Validations,Validations,Verify HTML lang details exist on login viewport,Positive,Verify HTML lang details exist on login viewport,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_VALID_25,Validations,Validations,Verify validation on long username does not crash backend,Positive,Verify validation on long username does not crash backend,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED

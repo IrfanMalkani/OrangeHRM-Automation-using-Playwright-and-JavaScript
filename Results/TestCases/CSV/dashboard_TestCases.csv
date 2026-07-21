@@ -1,76 +1,76 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
 TC_DASH_01,Dashboard,Dashboard,Verify dashboard page loads after login,Positive,Verify dashboard page loads after login,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DASH_02,Dashboard,Dashboard,Verify dashboard widgets are visible,Positive,Verify dashboard widgets are visible,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DASH_03,Dashboard,Dashboard,Verify Time at Work widget is displayed,Positive,Verify Time at Work widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
 TC_DASH_04,Dashboard,Dashboard,Verify My Actions widget is displayed,Positive,Verify My Actions widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_05,Dashboard,Dashboard,Verify Quick Launch widget is displayed,Positive,Verify Quick Launch widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_06,Dashboard,Dashboard,Verify sidebar contains all main navigation items,Positive,Verify sidebar contains all main navigation items,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_07,Dashboard,Dashboard,Verify logged-in user name is displayed in header,Positive,Verify logged-in user name is displayed in header,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_08,Dashboard,Dashboard,"Verify user dropdown shows About, Support, Change Password, Logout",Positive,"Verify user dropdown shows About, Support, Change Password, Logout",OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_09,Dashboard,Dashboard,Verify sidebar collapse and expand functionality,Positive,Verify sidebar collapse and expand functionality,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_10,Dashboard,Dashboard,Verify Employees on Leave Today widget is displayed,Positive,Verify Employees on Leave Today widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_11,Dashboard,Dashboard,Verify sidebar search filters navigation items,Positive,Verify sidebar search filters navigation items,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_12,Dashboard,Dashboard,Verify dashboard URL contains correct path,Positive,Verify dashboard URL contains correct path,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_13,Dashboard,Dashboard,Verify user profile dropdown image has valid attributes,Positive,Verify user profile dropdown image has valid attributes,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_14,Dashboard,Dashboard,Verify corporate branding logo is visible in sidebar header,Positive,Verify corporate branding logo is visible in sidebar header,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_15,Dashboard,Dashboard,Verify sidebar search input is functional,Positive,Verify sidebar search input is functional,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_16,Dashboard,Dashboard,Verify dashboard widgets have correct card container CSS classes,Positive,Verify dashboard widgets have correct card container CSS classes,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_17,Dashboard,Dashboard,Verify Assign Leave link in Quick Launch redirects properly,Positive,Verify Assign Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_18,Dashboard,Dashboard,Verify Leave List link in Quick Launch redirects properly,Positive,Verify Leave List link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_19,Dashboard,Dashboard,Verify Timesheets link in Quick Launch redirects properly,Positive,Verify Timesheets link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_20,Dashboard,Dashboard,Verify Apply Leave link in Quick Launch redirects properly,Positive,Verify Apply Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_21,Dashboard,Dashboard,Verify My Leave link in Quick Launch redirects properly,Positive,Verify My Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_22,Dashboard,Dashboard,Verify My Timesheet link in Quick Launch redirects properly,Positive,Verify My Timesheet link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_23,Dashboard,Dashboard,Verify Support option opens support page,Positive,Verify Support option opens support page,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_24,Dashboard,Dashboard,Verify About link displays modal pop-up,Positive,Verify About link displays modal pop-up,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
 TC_DASH_25,Dashboard,Dashboard,Verify dashboard topbar has header with correct tags,Positive,Verify dashboard topbar has header with correct tags,OrangeHRM application is accessible,"1. Navigate to page
 2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED

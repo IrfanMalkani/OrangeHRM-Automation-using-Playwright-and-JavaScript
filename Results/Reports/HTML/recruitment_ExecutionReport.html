@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
   <title>OrangeHRM - Recruitment Module</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -269,26 +270,26 @@
       <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
       
       <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>15/7/2026, 12:59:45 pm</strong></div>
+        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
         <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
         <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
       </div>
     </header>
 
     <div class="stats-grid">
-      <div class="stat-card total">
+      <div id="stat-card-total" class="stat-card total">
         <div class="stat-label">Total Executed</div>
         <div class="stat-value">25</div>
       </div>
-      <div class="stat-card passed">
+      <div id="stat-card-passed" class="stat-card passed">
         <div class="stat-label">Passed</div>
         <div class="stat-value">0</div>
       </div>
-      <div class="stat-card failed">
+      <div id="stat-card-failed" class="stat-card failed">
         <div class="stat-label">Failed</div>
-        <div class="stat-value">0</div>
+        <div class="stat-value">1</div>
       </div>
-      <div class="stat-card rate">
+      <div id="stat-card-rate" class="stat-card rate">
         <div class="stat-label">Pass Rate</div>
         <div class="stat-value">0.0%</div>
       </div>
@@ -296,9 +297,9 @@
 
     <div class="table-container">
       <div class="table-header">
-        <h2>Test Case Details</h2>
+        <h2 id="table-title">Test Case Details</h2>
       </div>
-      <table>
+      <table id="execution-results-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -314,11 +315,23 @@
                 <td><strong>TC_REC_01</strong></td>
                 <td>
                   <div>Add candidate details</div>
-                  
+                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Recruitment' })[22m
+[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/recruitment/viewRecruitmentModule&quot;&gt;…&lt;/a&gt;[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+[2m    - click action done[22m
+[2m    - waiting for scheduled navigations to finish[22m
+</div>
                 </td>
                 <td>recruitment.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
+                <td>45.20s</td>
+                <td><span class="status-badge failed">FAILED</span></td>
               </tr>
             
               <tr>
