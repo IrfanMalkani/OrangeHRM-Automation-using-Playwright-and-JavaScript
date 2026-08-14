@@ -131,8 +131,10 @@ test.describe.serial('OrangeHRM Recruitment Module', () => {
   });
 
   test('TC_REC_19: Verify date of application filter inputs are visible', async ({ page }) => {
-    const fromDate = page.locator('.oxd-input-group:has-text("From Date") input');
-    const toDate = page.locator('.oxd-input-group:has-text("To Date") input');
+    // "From Date"/"To Date" are now a single "Date of Application" group with From/To placeholder inputs.
+    const dateGroup = page.locator('.oxd-input-group:has-text("Date of Application")');
+    const fromDate = dateGroup.locator('input[placeholder="From"]');
+    const toDate = dateGroup.locator('input[placeholder="To"]');
     await expect(fromDate).toBeVisible();
     await expect(toDate).toBeVisible();
   });
