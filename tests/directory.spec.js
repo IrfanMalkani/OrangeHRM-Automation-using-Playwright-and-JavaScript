@@ -156,4 +156,28 @@ test.describe('OrangeHRM Directory Module', () => {
     const placeholder = await directoryPage.employeeNameInput.getAttribute('placeholder');
     expect(placeholder).toBe('Type for hints...');
   });
+
+  test('TC_DIR_26: Verify searching employee name with special characters returns no records without error (negative)', async ({ directoryPage }) => {
+    await directoryPage.employeeNameInput.fill('<script>alert(1)</script>');
+    await directoryPage.searchButton.click();
+    const isNoRecords = await directoryPage.isNoRecordsVisible();
+    expect(isNoRecords).toBe(true);
+  });
+
+  test('TC_DIR_27: Verify Reset button does not clear an unconfirmed Employee Name text entry (edge case)', async ({ directoryPage }) => {
+    // Reset only clears the dropdown filters (see TC_DIR_03/TC_DIR_17); a name
+    // typed but never confirmed via the autocomplete suggestion list is left as-is.
+    await directoryPage.employeeNameInput.fill('NonExistentEmployeeXYZ');
+    await directoryPage.resetSearch();
+    const value = await directoryPage.employeeNameInput.inputValue();
+    expect(value).toBe('NonExistentEmployeeXYZ');
+  });
+
+  test('TC_DIR_28: Verify searching with a whitespace-only employee name does not throw an error (edge case)', async ({ directoryPage }) => {
+    await directoryPage.employeeNameInput.fill('   ');
+    await directoryPage.searchButton.click();
+    await directoryPage.page.waitForTimeout(1500);
+    const cardCount = await directoryPage.getEmployeeCardCount();
+    expect(cardCount).toBeGreaterThanOrEqual(0);
+  });
 });

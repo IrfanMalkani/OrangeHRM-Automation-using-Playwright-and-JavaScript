@@ -1,76 +1,39 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_BUZZ_01,Buzz,Buzz,Verify Buzz page loads feed correctly,Positive,Verify Buzz page loads feed correctly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_02,Buzz,Buzz,Verify successful creation of new post,Positive,Verify successful creation of new post,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_03,Buzz,Buzz,Verify feed filtering tabs are functional,Positive,Verify feed filtering tabs are functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_04,Buzz,Buzz,Verify post button is disabled/ignored when post text is empty,Positive,Verify post button is disabled/ignored when post text is empty,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_05,Buzz,Buzz,Verify Share Photos button is visible,Positive,Verify Share Photos button is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_06,Buzz,Buzz,Verify Share Video button is visible,Positive,Verify Share Video button is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_07,Buzz,Buzz,Verify post textarea placeholder is What's on your mind?,Positive,Verify post textarea placeholder is What's on your mind?,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_08,Buzz,Buzz,Verify Most Recent Posts tab is visible by default,Positive,Verify Most Recent Posts tab is visible by default,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_09,Buzz,Buzz,Verify Most Commented Posts tab filters newsfeed,Positive,Verify Most Commented Posts tab filters newsfeed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_10,Buzz,Buzz,Verify newsfeed contains cards with profile avatars,Positive,Verify newsfeed contains cards with profile avatars,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_11,Buzz,Buzz,Verify user profile name link is visible on each post card,Positive,Verify user profile name link is visible on each post card,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_12,Buzz,Buzz,Verify timestamp elapsed duration text exists on post,Positive,Verify timestamp elapsed duration text exists on post,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_13,Buzz,Buzz,Verify clicking Like button toggles like state,Positive,Verify clicking Like button toggles like state,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_14,Buzz,Buzz,Verify Comment icon button exists on feed posts,Positive,Verify Comment icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_15,Buzz,Buzz,Verify Share icon button exists on feed posts,Positive,Verify Share icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_16,Buzz,Buzz,Verify Buzz page URL path is correct,Positive,Verify Buzz page URL path is correct,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_17,Buzz,Buzz,Verify Share Photos button opens dialog pop-up,Positive,Verify Share Photos button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_18,Buzz,Buzz,Verify Share Video button opens dialog pop-up,Positive,Verify Share Video button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_19,Buzz,Buzz,Verify post options dropdown (dot menu) is functional,Positive,Verify post options dropdown (dot menu) is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_20,Buzz,Buzz,Verify feed scroll behavior is responsive,Positive,Verify feed scroll behavior is responsive,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_21,Buzz,Buzz,Verify post content area does not overflow card width,Positive,Verify post content area does not overflow card width,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_22,Buzz,Buzz,Verify video link validation error message when empty video link is posted,Negative,Verify video link validation error message when empty video link is posted,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_23,Buzz,Buzz,Verify profile card elements are visible in left column of Buzz page,Positive,Verify profile card elements are visible in left column of Buzz page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_24,Buzz,Buzz,Verify post textarea accepts special characters and emojis,Positive,Verify post textarea accepts special characters and emojis,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_25,Buzz,Buzz,Verify Buzz title in topbar matches breadcrumb text,Positive,Verify Buzz title in topbar matches breadcrumb text,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_BUZZ_01,Buzz,Buzz,Verify Buzz page loads feed correctly,Positive,Verify Buzz page loads feed correctly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,"- The header should equal 'Buzz'
+- The Buzz feed should be visible",High,PASSED
+TC_BUZZ_02,Buzz,Buzz,Verify successful creation of new post,Positive,Verify successful creation of new post,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Enter post text and submit a new Buzz post,- It should be posted,High,PASSED
+TC_BUZZ_03,Buzz,Buzz,Verify feed filtering tabs are functional,Positive,Verify feed filtering tabs are functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Click the 'Most Liked Posts' tab,"- The 'Most Recent Posts' tab should be visible
+- The 'Most Liked Posts' tab should be visible
+- The 'Most Commented Posts' tab should be visible",High,PASSED
+TC_BUZZ_04,Buzz,Buzz,Verify post button is disabled/ignored when post text is empty,Positive,Verify post button is disabled/ignored when post text is empty,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The final post count should be less than or equal to 'initialPostCount + 1',Medium,PASSED
+TC_BUZZ_05,Buzz,Buzz,Verify Share Photos button is visible,Positive,Verify Share Photos button is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The 'Share Photos' element should be visible,Medium,PASSED
+TC_BUZZ_06,Buzz,Buzz,Verify Share Video button is visible,Positive,Verify Share Video button is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The 'Share Video' element should be visible,Medium,PASSED
+TC_BUZZ_07,Buzz,Buzz,Verify post textarea placeholder is What's on your mind?,Positive,Verify post textarea placeholder is What's on your mind?,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The placeholder should equal 'What's on your mind?',Medium,PASSED
+TC_BUZZ_08,Buzz,Buzz,Verify Most Recent Posts tab is visible by default,Positive,Verify Most Recent Posts tab is visible by default,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The 'Most Recent Posts' tab should be visible,Medium,PASSED
+TC_BUZZ_09,Buzz,Buzz,Verify Most Commented Posts tab filters newsfeed,Positive,Verify Most Commented Posts tab filters newsfeed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Click the 'Most Commented Posts' tab,- The 'Most Commented Posts' tab should be visible,Medium,PASSED
+TC_BUZZ_10,Buzz,Buzz,Verify newsfeed contains cards with profile avatars,Positive,Verify newsfeed contains cards with profile avatars,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The avatar should be present,Medium,PASSED
+TC_BUZZ_11,Buzz,Buzz,Verify user profile name link is visible on each post card,Positive,Verify user profile name link is visible on each post card,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The name link should be present,Medium,PASSED
+TC_BUZZ_12,Buzz,Buzz,Verify timestamp elapsed duration text exists on post,Positive,Verify timestamp elapsed duration text exists on post,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The time text should be present,Medium,PASSED
+TC_BUZZ_13,Buzz,Buzz,Verify clicking Like button toggles like state,Positive,Verify clicking Like button toggles like state,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The like btn should be visible,Medium,PASSED
+TC_BUZZ_14,Buzz,Buzz,Verify Comment icon button exists on feed posts,Positive,Verify Comment icon button exists on feed posts,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The bi chat text fill element should be present,Medium,PASSED
+TC_BUZZ_15,Buzz,Buzz,Verify Share icon button exists on feed posts,Positive,Verify Share icon button exists on feed posts,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The bi share fill element should be present,Medium,PASSED
+TC_BUZZ_16,Buzz,Buzz,Verify Buzz page URL path is correct,Positive,Verify Buzz page URL path is correct,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The page.url() should contain '/buzz/viewBuzz',Medium,PASSED
+TC_BUZZ_17,Buzz,Buzz,Verify Share Photos button opens dialog pop-up,Positive,Verify Share Photos button opens dialog pop-up,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,"1. Click the 'Share Photos' element
+2. Click the oxd dialog close button element","- The modal should be visible
+- The modal should not be visible",Medium,PASSED
+TC_BUZZ_18,Buzz,Buzz,Verify Share Video button opens dialog pop-up,Positive,Verify Share Video button opens dialog pop-up,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,"1. Click the 'Share Video' element
+2. Click the oxd dialog close button element","- The modal should be visible
+- The modal should not be visible",Medium,PASSED
+TC_BUZZ_19,Buzz,Buzz,Verify post options dropdown (dot menu) is functional,Positive,Verify post options dropdown (dot menu) is functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The dot menu should be present,Medium,PASSED
+TC_BUZZ_20,Buzz,Buzz,Verify feed scroll behavior is responsive,Positive,Verify feed scroll behavior is responsive,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The container should be visible,Medium,PASSED
+TC_BUZZ_21,Buzz,Buzz,Verify post content area does not overflow card width,Positive,Verify post content area does not overflow card width,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The post body should be present,Medium,PASSED
+TC_BUZZ_22,Buzz,Buzz,Verify video link validation error message when empty video link is posted,Negative,Verify video link validation error message when empty video link is posted,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,"1. Click the 'Share Video' element
+2. Click the 'Share' element","- The modal should be visible
+- The err should be visible",Medium,PASSED
+TC_BUZZ_23,Buzz,Buzz,Verify profile card elements are visible in left column of Buzz page,Positive,Verify profile card elements are visible in left column of Buzz page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The profile card should be visible,Medium,PASSED
+TC_BUZZ_24,Buzz,Buzz,Verify post textarea accepts special characters and emojis,Positive,Verify post textarea accepts special characters and emojis,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The value should equal 'emojiPost',Medium,PASSED
+TC_BUZZ_25,Buzz,Buzz,Verify Buzz title in topbar matches breadcrumb text,Positive,Verify Buzz title in topbar matches breadcrumb text,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Perform the actions described in the test title,- The title should contain the text 'Buzz',Medium,PASSED
+TC_BUZZ_26,Buzz,Buzz,Verify creating a post with an extremely long text body does not crash the feed,Positive,Verify creating a post with an extremely long text body does not crash the feed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Enter post text and submit a new Buzz post,- It should be posted,Medium,PASSED
+TC_BUZZ_27,Buzz,Buzz,Verify a newly created post appears near the top of the Most Recent Posts feed,Positive,Verify a newly created post appears near the top of the Most Recent Posts feed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Enter post text and submit a new Buzz post,"- It should be posted
+- The found near top should equal 'true'",Medium,PASSED
+TC_BUZZ_28,Buzz,Buzz,Verify a script tag entered in the post textarea is rendered as plain text and not executed,Negative,Verify a script tag entered in the post textarea is rendered as plain text and not executed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Buzz' module.,1. Enter post text and submit a new Buzz post,- The dialog fired should equal 'false',Medium,PASSED

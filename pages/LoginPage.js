@@ -8,14 +8,17 @@ class LoginPage {
     this.page = page;
 
     // ── Login Form Elements ──
-    this.usernameInput = page.locator('input[placeholder="Username"]');
-    this.passwordInput = page.locator('input[placeholder="Password"]');
+    // Uses the name attribute rather than placeholder text: the public demo
+    // instance intermittently serves this page in French, which would break
+    // a placeholder-text-based locator ("Username" -> "Nom d'utilisateur").
+    this.usernameInput = page.locator('input[name="username"]');
+    this.passwordInput = page.locator('input[name="password"]');
     this.loginButton = page.locator('button.orangehrm-login-button');
 
     // ── Error & Validation Elements ──
     this.errorAlert = page.locator('.oxd-alert-content-text');
-    this.usernameRequiredError = page.locator('input[placeholder="Username"]').locator('xpath=ancestor::div[contains(@class,"oxd-input-group")]//span[contains(@class,"oxd-input-group__message")]');
-    this.passwordRequiredError = page.locator('input[placeholder="Password"]').locator('xpath=ancestor::div[contains(@class,"oxd-input-group")]//span[contains(@class,"oxd-input-group__message")]');
+    this.usernameRequiredError = page.locator('input[name="username"]').locator('xpath=ancestor::div[contains(@class,"oxd-input-group")]//span[contains(@class,"oxd-input-group__message")]');
+    this.passwordRequiredError = page.locator('input[name="password"]').locator('xpath=ancestor::div[contains(@class,"oxd-input-group")]//span[contains(@class,"oxd-input-group__message")]');
 
     // ── Page Branding & Links ──
     this.orangeHrmLogo = page.locator('.orangehrm-login-branding img');
@@ -25,7 +28,7 @@ class LoginPage {
     this.copyrightText = page.locator('.orangehrm-copyright-wrapper');
 
     // ── Forgot Password Page Elements ──
-    this.resetUsernameInput = page.locator('input[placeholder="Username"]');
+    this.resetUsernameInput = page.locator('input[name="username"]');
     this.resetButton = page.locator('button[type="submit"]');
     this.cancelButton = page.locator('button.orangehrm-forgot-password-button--cancel');
     this.resetSuccessTitle = page.locator('.orangehrm-forgot-password-wrapper h6');

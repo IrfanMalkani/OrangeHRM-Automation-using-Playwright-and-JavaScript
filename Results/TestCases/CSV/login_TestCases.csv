@@ -1,76 +1,44 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_LOGIN_01,Login,Login,Verify successful login with valid credentials,Positive,Verify successful login with valid credentials,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGIN_02,Login,Login,Verify login with invalid credentials,Negative,Verify login with invalid credentials,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGIN_03,Login,Login,Verify error with valid username and wrong password,Negative,Verify error with valid username and wrong password,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGIN_04,Login,Login,Verify password field masks the input characters,Positive,Verify password field masks the input characters,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_05,Login,Login,Verify login page UI elements are visible,Positive,Verify login page UI elements are visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_06,Login,Login,Verify credential hint box displays default credentials,Positive,Verify credential hint box displays default credentials,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_07,Login,Login,Verify login page title contains OrangeHRM,Positive,Verify login page title contains OrangeHRM,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_08,Login,Login,Verify login page URL contains auth/login,Positive,Verify login page URL contains auth/login,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_09,Login,Login,Verify input placeholders display correct text,Positive,Verify input placeholders display correct text,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_10,Login,Login,Verify username field is focused on page load,Positive,Verify username field is focused on page load,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_11,Login,Login,Verify tab key navigation flows logically from username to password,Positive,Verify tab key navigation flows logically from username to password,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_12,Login,Login,Verify login button is enabled by default,Positive,Verify login button is enabled by default,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_13,Login,Login,Verify brand logo has descriptive alt text,Positive,Verify brand logo has descriptive alt text,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_14,Login,Login,Verify brand logo height and width attributes are positive,Positive,Verify brand logo height and width attributes are positive,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_15,Login,Login,Verify copyright footer contains correct organization name,Positive,Verify copyright footer contains correct organization name,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_16,Login,Login,Verify input fields are empty on default page load,Positive,Verify input fields are empty on default page load,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_17,Login,Login,Verify custom CSS properties on Username label,Positive,Verify custom CSS properties on Username label,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_18,Login,Login,Verify login page layout is responsive under mobile width,Positive,Verify login page layout is responsive under mobile width,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_19,Login,Login,Verify autocomplete tags are present on input fields,Positive,Verify autocomplete tags are present on input fields,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_20,Login,Login,Verify error panel CSS classes contain validation properties,Negative,Verify error panel CSS classes contain validation properties,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_21,Login,Login,Verify login card is visible,Positive,Verify login card is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_22,Login,Login,Verify credential hint box contains header title,Positive,Verify credential hint box contains header title,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_23,Login,Login,Verify forgot password link has pointer cursor on hover,Positive,Verify forgot password link has pointer cursor on hover,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_24,Login,Login,Verify HTML tag has lang attribute set to en,Positive,Verify HTML tag has lang attribute set to en,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGIN_25,Login,Login,Verify connection security protocol is HTTPS,Positive,Verify connection security protocol is HTTPS,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_LOGIN_01,Login,Login,Verify successful login with valid credentials,Positive,Verify successful login with valid credentials,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button","- It should be loaded
+- The header text should equal 'Dashboard'",High,PASSED
+TC_LOGIN_02,Login,Login,Verify login with invalid credentials,Negative,Verify login with invalid credentials,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',High,PASSED
+TC_LOGIN_03,Login,Login,Verify error with valid username and wrong password,Negative,Verify error with valid username and wrong password,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',High,PASSED
+TC_LOGIN_04,Login,Login,Verify password field masks the input characters,Positive,Verify password field masks the input characters,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The password type should equal 'password',Medium,PASSED
+TC_LOGIN_05,Login,Login,Verify login page UI elements are visible,Positive,Verify login page UI elements are visible,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,"- The brand logo should be visible
+- The Login title should display the text 'Login'
+- The 'Forgot your password?' link should be visible
+- The Username field should be visible
+- The Password field should be visible
+- The Login button should be visible
+- The copyright footer text should be visible",Medium,PASSED
+TC_LOGIN_06,Login,Login,Verify credential hint box displays default credentials,Positive,Verify credential hint box displays default credentials,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,"- The hint text should contain 'Admin'
+- The hint text should contain 'admin123'",Medium,PASSED
+TC_LOGIN_07,Login,Login,Verify login page title contains OrangeHRM,Positive,Verify login page title contains OrangeHRM,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The title should contain 'OrangeHRM',Medium,PASSED
+TC_LOGIN_08,Login,Login,Verify login page URL contains auth/login,Positive,Verify login page URL contains auth/login,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The page.url() should contain '/auth/login',Medium,PASSED
+TC_LOGIN_09,Login,Login,Verify input placeholders display non-empty hint text,Positive,Verify input placeholders display non-empty hint text,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The length should be greater than '0',Medium,PASSED
+TC_LOGIN_10,Login,Login,Verify username field is focused on page load,Positive,Verify username field is focused on page load,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The Username field should receive keyboard focus,Medium,PASSED
+TC_LOGIN_11,Login,Login,Verify tab key navigation flows logically from username to password,Positive,Verify tab key navigation flows logically from username to password,The OrangeHRM login page is loaded in the browser.,"1. Focus the Username field
+2. Press the 'Tab' key",- The Password field should receive keyboard focus,Medium,PASSED
+TC_LOGIN_12,Login,Login,Verify login button is enabled by default,Positive,Verify login button is enabled by default,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The Login button should be enabled,Medium,PASSED
+TC_LOGIN_13,Login,Login,Verify brand logo has descriptive alt text,Positive,Verify brand logo has descriptive alt text,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The alt text should equal 'company-branding',Medium,PASSED
+TC_LOGIN_14,Login,Login,Verify brand logo height and width attributes are positive,Positive,Verify brand logo height and width attributes are positive,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,"- The bounding box should not be null
+- The width should be greater than '0'
+- The height should be greater than '0'",Medium,FAILED
+TC_LOGIN_15,Login,Login,Verify copyright footer contains correct organization name,Positive,Verify copyright footer contains correct organization name,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The text should contain 'OrangeHRM',Medium,PASSED
+TC_LOGIN_16,Login,Login,Verify input fields are empty on default page load,Positive,Verify input fields are empty on default page load,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,"- The Username field should have the value ''
+- The Password field should have the value ''",Medium,PASSED
+TC_LOGIN_17,Login,Login,Verify custom CSS properties on Username label,Positive,Verify custom CSS properties on Username label,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The 'Username' element should not be null,Medium,PASSED
+TC_LOGIN_18,Login,Login,Verify login page layout is responsive under mobile width,Positive,Verify login page layout is responsive under mobile width,The OrangeHRM login page is loaded in the browser.,1. Resize the browser viewport to simulate a mobile device,- The is visible should be present,Medium,PASSED
+TC_LOGIN_19,Login,Login,Verify autocomplete tags are present on input fields,Positive,Verify autocomplete tags are present on input fields,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The autocomplete === null || autocomplete === 'off' should equal 'true',Medium,PASSED
+TC_LOGIN_20,Login,Login,Verify error panel CSS classes contain validation properties,Negative,Verify error panel CSS classes contain validation properties,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- It should have class,Medium,PASSED
+TC_LOGIN_21,Login,Login,Verify login card is visible,Positive,Verify login card is visible,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The card should be visible,Medium,PASSED
+TC_LOGIN_22,Login,Login,Verify credential hint box contains header title,Positive,Verify credential hint box contains header title,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The title should display the text 'Login',Medium,PASSED
+TC_LOGIN_23,Login,Login,Verify forgot password link has pointer cursor on hover,Positive,Verify forgot password link has pointer cursor on hover,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The cursor should equal 'pointer',Medium,PASSED
+TC_LOGIN_24,Login,Login,Verify HTML tag has lang attribute set to en,Positive,Verify HTML tag has lang attribute set to en,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The lang === null || lang === 'en' should equal 'true',Medium,PASSED
+TC_LOGIN_25,Login,Login,Verify connection security protocol is HTTPS,Positive,Verify connection security protocol is HTTPS,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The url.starts with('https://') should equal 'true',Medium,PASSED
+TC_LOGIN_26,Login,Login,Verify successful login persists session across page reload,Positive,Verify successful login persists session across page reload,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button
+2. Reload the current page",- The header text should equal 'Dashboard',Medium,PASSED
+TC_LOGIN_27,Login,Login,Verify login fails with a numeric-only username,Negative,Verify login fails with a numeric-only username,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
+TC_LOGIN_28,Login,Login,Verify pressing Enter with username filled but password empty triggers required validation,Negative,Verify pressing Enter with username filled but password empty triggers required validation,The OrangeHRM login page is loaded in the browser.,"1. Enter 'Admin' into the Username field
+2. Press the 'Enter' key while focused on the Password field",- The password error should equal 'Required',Medium,PASSED
+TC_LOGIN_29,Login,Login,Verify login page handles an extremely long password input without crashing,Positive,Verify login page handles an extremely long password input without crashing,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED

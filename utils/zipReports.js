@@ -30,6 +30,393 @@ function deriveFeatureFromTitle(title) {
   return title.replace(/^TC_[A-Z0-9_]+:\s*/i, '');
 }
 
+// Strips the trailing "(positive)" / "(negative)" / "(edge case)" style tag
+// used by some titles to steer the Positive/Negative classifier, so the
+// Description column reads as a clean sentence.
+function cleanDescriptionText(desc) {
+  return desc.replace(/\s*\((positive|negative|edge case|negative\/edge case)\)\s*$/i, '').trim();
+}
+
+// ── Human-readable Pre-condition / Test Steps / Expected Result generation ──
+// Rather than a single hardcoded boilerplate string for every test case, this
+// parses each test's own beforeEach setup and body to produce specifics.
+
+const KNOWN_LOCATOR_LABELS = {
+  usernameInput: 'Username field',
+  passwordInput: 'Password field',
+  loginButton: 'Login button',
+  errorAlert: 'error alert message',
+  forgotPasswordLink: "'Forgot your password?' link",
+  credentialHintBox: 'credential hint box',
+  copyrightText: 'copyright footer text',
+  orangeHrmLogo: 'brand logo',
+  loginTitle: 'Login title',
+  resetUsernameInput: 'username field',
+  resetButton: 'Reset Password button',
+  cancelButton: 'Cancel button',
+  resetSuccessTitle: 'reset success heading',
+  saveButton: 'Save button',
+  searchButton: 'Search button',
+  applyButton: 'Apply button',
+  applyTab: 'Apply tab',
+  myLeaveTab: 'My Leave tab',
+  fromDateInput: 'From Date field',
+  toDateInput: 'To Date field',
+  commentsTextarea: 'Comments field',
+  leaveTypeDropdown: 'Leave Type dropdown',
+  dropdownOption: 'dropdown option',
+  employeeNameInput: 'Employee Name field',
+  jobTitleDropdown: 'Job Title dropdown',
+  locationDropdown: 'Location dropdown',
+  employeeCards: 'employee card list',
+  noRecordsMessage: "'No Records Found' message",
+  autocompleteOption: 'autocomplete suggestion',
+  sidebarToggle: 'sidebar collapse toggle',
+  sidebar: 'sidebar navigation panel',
+  searchInput: 'sidebar search field',
+  widgets: 'dashboard widgets',
+  timeAtWorkWidget: "'Time at Work' widget",
+  myActionsWidget: "'My Actions' widget",
+  quickLaunchWidget: "'Quick Launch' widget",
+  buzzWidget: "'Buzz Latest Posts' widget",
+  employeesOnLeaveWidget: "'Employees on Leave Today' widget",
+  userDropdown: 'user profile dropdown',
+  userDropdownName: 'logged-in user name',
+  logoutLink: 'Logout link',
+  aboutLink: 'About link',
+  supportLink: 'Support link',
+  changePasswordLink: 'Change Password link',
+  headerBreadcrumb: 'page header breadcrumb',
+  buzzFeed: 'Buzz feed',
+  buzzPosts: 'Buzz post list',
+  buzzPostBody: 'Buzz post content',
+  postTextarea: 'post text area',
+  postButton: 'Post button',
+  shareButton: 'Share button',
+  mostRecentPostsTab: "'Most Recent Posts' tab",
+  mostLikedPostsTab: "'Most Liked Posts' tab",
+  mostCommentedPostsTab: "'Most Commented Posts' tab",
+  timesheetsTab: 'Timesheets tab',
+  attendanceTab: 'Attendance tab',
+  reportsTab: 'Reports tab',
+  projectInfoTab: 'Project Info tab',
+  myTimesheetsLink: 'My Timesheets link',
+  employeeTimesheetsLink: 'Employee Timesheets link',
+  myRecordsLink: 'My Records link',
+  punchInOutLink: 'Punch In/Out link',
+  employeeRecordsLink: 'Employee Records link',
+  viewButton: 'View button',
+  firstNameInput: 'First Name field',
+  nickNameInput: 'Nickname field',
+  otherIdInput: 'Other Id field',
+  savePersonalDetailsButton: 'Save button',
+  profileImageContainer: 'profile image container',
+};
+
+function humanizeIdentifier(raw) {
+  if (!raw) return 'target';
+  let name = raw.replace(/[_-]+/g, ' ');
+  name = name.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
+  return name.toLowerCase().trim() || 'target';
+}
+
+// Best-effort label for an ad hoc `page.locator('...')` / `getBy...()` expression,
+// e.g. `.locator('button:has-text("Reset")')` -> "'Reset' element".
+function extractLocatorLabel(exprText) {
+  if (!exprText) return null;
+  let m = exprText.match(/hasText:\s*['"`]([^'"`]+)['"`]/);
+  if (m) return `'${m[1]}' element`;
+  m = exprText.match(/has-text\(["']([^"']+)["']\)/);
+  if (m) return `'${m[1]}' element`;
+  m = exprText.match(/\[placeholder=["']([^"']+)["']\s*\]/);
+  if (m) return `'${m[1]}' field`;
+  m = exprText.match(/input\[name=["']([^"']+)["']\s*\]/);
+  if (m) return `${humanizeIdentifier(m[1])} field`;
+  m = exprText.match(/getByRole\(\s*['"`]([^'"`]+)['"`]/);
+  if (m) return `${m[1]} element`;
+  m = exprText.match(/text=([^'"`)]+)/);
+  if (m) return `'${m[1].trim()}' element`;
+  m = exprText.match(/['"`]([a-zA-Z][a-zA-Z0-9_-]*(?:[.\s][a-zA-Z0-9_-]+)*)['"`]/);
+  if (m) {
+    const tokens = m[1].split(/[.\s]+/).filter(Boolean);
+    const last = tokens[tokens.length - 1].replace(/-/g, ' ');
+    return `${last} element`;
+  }
+  return null;
+}
+
+// Finds `const X = ...locator(...)...` declarations in a test body so that
+// later `X.click()` / `expect(X)...` references resolve to a readable label
+// instead of the bare variable name.
+function buildVarLabelMap(body) {
+  const map = {};
+  const declRegex = /(?:const|let)\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([^\n]+)/g;
+  let m;
+  while ((m = declRegex.exec(body)) !== null) {
+    const rhs = m[2];
+    if (/locator\(|getBy(Text|Role|Label|Placeholder|TestId)\(/.test(rhs)) {
+      const label = extractLocatorLabel(rhs);
+      if (label) map[m[1]] = label;
+    }
+  }
+  return map;
+}
+
+function describeTarget(expr, varLabelMap) {
+  const e = expr.trim();
+  if (/locator\(|getBy(Text|Role|Label|Placeholder|TestId)\(/.test(e)) {
+    return extractLocatorLabel(e) || 'targeted element';
+  }
+  const propMatch = e.match(/([A-Za-z0-9_]+)$/);
+  const propName = propMatch ? propMatch[1] : e;
+  if (varLabelMap && varLabelMap[propName]) return varLabelMap[propName];
+  if (KNOWN_LOCATOR_LABELS[propName]) return KNOWN_LOCATOR_LABELS[propName];
+  return humanizeIdentifier(propName);
+}
+
+const ACTION_VERBS = {
+  click: 'Click',
+  dblclick: 'Double-click',
+  check: 'Check',
+  uncheck: 'Uncheck',
+  hover: 'Hover over',
+  focus: 'Focus',
+  selectOption: 'Select an option in',
+  setInputFiles: 'Upload a file into',
+};
+
+// Maps one line of test-body code to a human step, or null if the line isn't
+// a meaningful user-facing action (e.g. a locator declaration or a wait).
+function describeAction(line, varLabelMap) {
+  const namedSteps = [
+    [/loginPage\.navigate\(/, () => 'Navigate to the OrangeHRM login page'],
+    [/loginPage\.login\(/, () => 'Enter the username and password, then click the Login button'],
+    [/loginPage\.loginWithUsernameOnly\(/, () => 'Enter only the username and click the Login button'],
+    [/loginPage\.loginWithPasswordOnly\(/, () => 'Enter only the password and click the Login button'],
+    [/loginPage\.clickLoginButtonWithoutCredentials\(/, () => 'Click the Login button without entering any credentials'],
+    [/loginPage\.clickForgotPassword\(/, () => "Click the 'Forgot your password?' link"],
+    [/loginPage\.resetPassword\(/, () => 'Enter the username and submit the password reset request'],
+    [/loginPage\.clickCancelOnForgotPassword\(/, () => 'Click the Cancel button on the reset password page'],
+    [/dashboardPage\.navigateToModule\(\s*['"]([^'"]+)['"]/, m => `Navigate to the '${m[1]}' module from the sidebar`],
+    [/dashboardPage\.openUserDropdown\(/, () => 'Open the user profile dropdown menu'],
+    [/dashboardPage\.searchModule\(/, () => 'Type into the sidebar module search box'],
+    [/dashboardPage\.toggleSidebar\(/, () => 'Click the sidebar collapse/expand toggle'],
+    [/dashboardPage\.logout\(/, () => 'Open the user dropdown and click Logout'],
+    [/dashboardPage\.clickChangePassword\(/, () => 'Open the user dropdown and click Change Password'],
+    [/dashboardPage\.clickAbout\(/, () => 'Open the user dropdown and click About'],
+    [/buzzPage\.createPost\(/, () => 'Enter post text and submit a new Buzz post'],
+    [/directoryPage\.searchByJobTitle\(/, () => 'Select a Job Title filter and click Search'],
+    [/directoryPage\.searchByName\(/, () => 'Enter an employee name, select it from the autocomplete suggestions, and click Search'],
+    [/directoryPage\.resetSearch\(/, () => 'Click the Reset button to clear search filters'],
+    [/leavePage\.applyLeave\(/, () => 'Select a leave type, set the From/To dates, enter comments, and submit the Apply Leave form'],
+    [/timePage\.navigateToMyTimesheets\(/, () => 'Navigate to the My Timesheets page'],
+    [/timePage\.navigateToPunchInOut\(/, () => 'Navigate to the Punch In/Out page'],
+    [/timePage\.navigateToAttendanceRecords\(/, () => 'Navigate to the Attendance My Records page'],
+    [/myInfoPage\.updatePersonalDetails\(/, () => 'Update the Personal Details form fields and save'],
+    [/myInfoPage\.uploadProfileImage\(/, () => 'Upload a new profile image file'],
+    [/\.setViewportSize\(/, () => 'Resize the browser viewport to simulate a mobile device'],
+    [/page\.goBack\(/, () => "Navigate back using the browser's back button"],
+    [/page\.reload\(/, () => 'Reload the current page'],
+    [/page\.goto\(\s*['"`]([^'"`]*)['"`]/, m => `Navigate directly to '${m[1]}'`],
+    [/page\.keyboard\.press\(\s*['"`]([^'"`]+)['"`]/, m => `Press the '${m[1]}' key`],
+  ];
+
+  for (const [re, fn] of namedSteps) {
+    const m = line.match(re);
+    if (m) return fn(m);
+  }
+
+  // Lines that are pure setup/inspection rather than a user-facing step.
+  if (/page\.route\(/.test(line)) return null;
+  if (/\.waitFor(Timeout|Selector|LoadState)?\(/.test(line) && !/waitForURL/.test(line)) return null;
+  if (/\.evaluate\(/.test(line)) return null;
+  if (/console\.(log|error)\(/.test(line)) return null;
+
+  let m = line.match(/([A-Za-z0-9_.]+)\.(click|dblclick|check|uncheck|hover|focus|selectOption|setInputFiles)\(/);
+  if (m) return `${ACTION_VERBS[m[2]]} the ${describeTarget(m[1], varLabelMap)}`;
+
+  m = line.match(/([A-Za-z0-9_.]+)\.fill\(\s*(['"`])((?:\\.|(?!\2).)*)\2/);
+  if (m) {
+    const value = m[3];
+    const preview = value.length > 40 ? `${value.slice(0, 40)}…` : value;
+    return `Enter '${preview}' into the ${describeTarget(m[1], varLabelMap)}`;
+  }
+
+  m = line.match(/([A-Za-z0-9_.]+)\.press\(\s*['"`]([^'"`]+)['"`]/);
+  if (m) return `Press the '${m[2]}' key while focused on the ${describeTarget(m[1], varLabelMap)}`;
+
+  return null;
+}
+
+function deriveStepsFromBody(body, varLabelMap) {
+  const lines = body.split('\n').map(l => l.trim()).filter(Boolean);
+  const steps = [];
+  for (const line of lines) {
+    if (/^(const|let|var)\s+\w+\s*=/.test(line) &&
+      !/\.(click|dblclick|check|uncheck|hover|focus|selectOption|setInputFiles|fill|press|reload|goto|goBack)\(/.test(line)) {
+      continue;
+    }
+    if (/^(await\s+)?expect[.(]/.test(line)) continue;
+    if (/^\/\//.test(line)) continue;
+
+    const step = describeAction(line, varLabelMap);
+    if (step && !steps.includes(step)) steps.push(step);
+  }
+  if (steps.length === 0) steps.push('Perform the actions described in the test title');
+  return steps.map((s, i) => `${i + 1}. ${s}`).join('\n');
+}
+
+function extractFirstArg(argsRaw) {
+  if (!argsRaw) return '';
+  let depth = 0;
+  let inStr = null;
+  for (let i = 0; i < argsRaw.length; i++) {
+    const c = argsRaw[i];
+    if (inStr) {
+      if (c === '\\') { i++; continue; }
+      if (c === inStr) inStr = null;
+      continue;
+    }
+    if (c === '"' || c === "'" || c === '`') { inStr = c; continue; }
+    else if (c === '(' || c === '{' || c === '[') depth++;
+    else if (c === ')' || c === '}' || c === ']') depth--;
+    else if (c === ',' && depth === 0) return argsRaw.substring(0, i).trim();
+  }
+  return argsRaw.trim();
+}
+
+function formatAssertionValue(raw) {
+  if (raw == null || raw === '') return 'the expected value';
+  const v = raw.trim();
+  const strMatch = v.match(/^['"`]([\s\S]*)['"`]$/);
+  if (strMatch) return `'${strMatch[1]}'`;
+  const regexMatch = v.match(/^\/(.*)\/[a-z]*$/);
+  if (regexMatch) return `a value matching /${regexMatch[1]}/`;
+  return `'${v}'`;
+}
+
+const MATCHER_TEMPLATES = {
+  toBe: (t, n, v) => `${t} should ${n}equal ${v}`,
+  toEqual: (t, n, v) => `${t} should ${n}equal ${v}`,
+  toContain: (t, n, v) => `${t} should ${n}contain ${v}`,
+  toContainText: (t, n, v) => `${t} should ${n}contain the text ${v}`,
+  toHaveText: (t, n, v) => `${t} should ${n}display the text ${v}`,
+  toHaveValue: (t, n, v) => `${t} should ${n}have the value ${v}`,
+  toHaveClass: (t, n, v) => `${t} should ${n}have a CSS class matching ${v}`,
+  toHaveURL: (t, n, v) => `The browser URL should ${n}match ${v}`,
+  toHaveCount: (t, n, v) => `${t} should have a count of ${v}`,
+  toBeVisible: (t, n) => `${t} should ${n}be visible`,
+  toBeHidden: (t, n) => `${t} should ${n}be hidden`,
+  toBeEnabled: (t, n) => `${t} should ${n}be enabled`,
+  toBeDisabled: (t, n) => `${t} should ${n}be disabled`,
+  toBeFocused: (t) => `${t} should receive keyboard focus`,
+  toBeChecked: (t, n) => `${t} should ${n}be checked`,
+  toBeAttached: (t, n) => `${t} should ${n}be present in the DOM`,
+  toBeDefined: (t) => `${t} should be present`,
+  toBeNull: (t, n) => `${t} should ${n}be null`,
+  toBeTruthy: (t) => `${t} should evaluate to a truthy value`,
+  toBeGreaterThan: (t, n, v) => `${t} should be greater than ${v}`,
+  toBeGreaterThanOrEqual: (t, n, v) => `${t} should be greater than or equal to ${v}`,
+  toBeLessThan: (t, n, v) => `${t} should be less than ${v}`,
+  toBeLessThanOrEqual: (t, n, v) => `${t} should be less than or equal to ${v}`,
+};
+
+function describeExprForAssertion(expr, varLabelMap) {
+  let e = expr.trim().replace(/\.trim\(\)$/, '').replace(/\.toLowerCase\(\)$/, '');
+  if (/locator\(|getBy(Text|Role|Label|Placeholder|TestId)\(/.test(e)) {
+    return `The ${extractLocatorLabel(e) || 'targeted element'}`;
+  }
+  const propMatch = e.match(/([A-Za-z0-9_]+)$/);
+  const propName = propMatch ? propMatch[1] : e;
+  if (varLabelMap && varLabelMap[propName]) return `The ${varLabelMap[propName]}`;
+  if (KNOWN_LOCATOR_LABELS[propName]) return `The ${KNOWN_LOCATOR_LABELS[propName]}`;
+  return `The ${humanizeIdentifier(propName)}`;
+}
+
+// `expect(isLoaded).toBe(true)`-style booleans read badly through the generic
+// "The is loaded should equal 'true'" template; phrase these more naturally.
+function describeBooleanCheck(targetExpr, matcher, rawFirstArg) {
+  if (matcher !== 'toBe' && matcher !== 'toEqual') return null;
+  const literal = rawFirstArg.trim().toLowerCase();
+  if (literal !== 'true' && literal !== 'false') return null;
+  const propMatch = targetExpr.trim().match(/([A-Za-z0-9_]+)$/);
+  const propName = propMatch ? propMatch[1] : '';
+  const prefixMatch = propName.match(/^(is|has)([A-Z][A-Za-z0-9]*)$/);
+  if (!prefixMatch) return null;
+
+  const wantTrue = literal === 'true';
+  const predicate = humanizeIdentifier(prefixMatch[2]);
+  if (predicate.startsWith('no ')) {
+    return wantTrue ? `There should be ${predicate}` : `There should not be ${predicate}`;
+  }
+  if (prefixMatch[1] === 'is') {
+    return wantTrue ? `It should be ${predicate}` : `It should not be ${predicate}`;
+  }
+  return wantTrue ? `It should have ${predicate}` : `It should not have ${predicate}`;
+}
+
+function deriveExpectedResults(body, varLabelMap) {
+  const lines = body.split('\n').map(l => l.trim()).filter(Boolean);
+  const results = [];
+  const exprRegex = /expect\(([^;]+?)\)((?:\s*\.\s*not)?)\s*\.\s*(to[A-Za-z]+)\(([^;]*)\)/;
+  for (const raw of lines) {
+    const m = raw.match(exprRegex);
+    if (!m) continue;
+    const targetExpr = m[1].trim();
+    const negated = !!m[2];
+    const matcher = m[3];
+    const rawFirstArg = extractFirstArg(m[4]);
+    const booleanSentence = describeBooleanCheck(targetExpr, matcher, rawFirstArg);
+    let sentence = booleanSentence;
+    if (!sentence) {
+      const firstArg = formatAssertionValue(rawFirstArg);
+      const target = describeExprForAssertion(targetExpr, varLabelMap);
+      const template = MATCHER_TEMPLATES[matcher];
+      sentence = template
+        ? template(target, negated ? 'not ' : '', firstArg)
+        : `${target} should meet the '${matcher}' condition`;
+    }
+    if (sentence && !results.includes(sentence)) results.push(sentence);
+  }
+  if (results.length === 0) return 'The action completes successfully and the test assertions pass.';
+  return results.map(s => `- ${s}`).join('\n');
+}
+
+// Extracts the `{ ... }` body following the nearest `=>` after `fromIndex`,
+// using brace counting so nested blocks/objects don't break extraction.
+function extractBlockBody(content, fromIndex) {
+  const arrowIdx = content.indexOf('=>', fromIndex);
+  if (arrowIdx === -1) return '';
+  const braceStart = content.indexOf('{', arrowIdx);
+  if (braceStart === -1 || braceStart - arrowIdx > 5) return '';
+  let depth = 0;
+  for (let i = braceStart; i < content.length; i++) {
+    if (content[i] === '{') depth++;
+    else if (content[i] === '}') {
+      depth--;
+      if (depth === 0) return content.substring(braceStart + 1, i);
+    }
+  }
+  return '';
+}
+
+function derivePreconditionFromSetup(content) {
+  const beforeEachIdx = content.search(/test\.beforeEach\(/);
+  const setupBody = beforeEachIdx !== -1 ? extractBlockBody(content, beforeEachIdx) : '';
+
+  if (!/loginPage\.login\(/.test(setupBody)) {
+    return 'The OrangeHRM login page is loaded in the browser.';
+  }
+  let sentence = 'The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.';
+  if (/clickChangePassword\(/.test(setupBody)) {
+    sentence += ' The user has navigated to the Change Password page.';
+  } else {
+    const moduleMatch = setupBody.match(/navigateToModule\(\s*['"]([^'"]+)['"]\s*\)/);
+    if (moduleMatch) sentence += ` The user has navigated to the '${moduleMatch[1]}' module.`;
+  }
+  return sentence;
+}
+
 function loadMasterTestCasesFromSpecs() {
   const tcs = [];
   const testDir = path.resolve(__dirname, '../tests');
@@ -39,24 +426,27 @@ function loadMasterTestCasesFromSpecs() {
   files.forEach(file => {
     if (!file.endsWith('.spec.js')) return;
     const content = fs.readFileSync(path.join(testDir, file), 'utf-8');
-    
+    const preCondition = derivePreconditionFromSetup(content);
+
     const regex = /test\(\s*(['"`])(TC_[A-Z0-9_]+)\s*:\s*((?:\\.|(?!\1).)*)\1/g;
     let match;
     while ((match = regex.exec(content)) !== null) {
       const id = match[2];
-      const desc = match[3].replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\`/g, '`').replace(/\\\\/g, '\\');
+      const rawDesc = match[3].replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\`/g, '`').replace(/\\\\/g, '\\');
       const moduleName = deriveModuleFromFile(file);
-      
+      const testBody = extractBlockBody(content, match.index + match[0].length);
+      const varLabelMap = buildVarLabelMap(testBody);
+
       tcs.push({
         id,
         module: moduleName,
         subtask: moduleName,
-        feature: deriveFeatureFromTitle(desc),
-        testType: desc.toLowerCase().includes('negative') || desc.toLowerCase().includes('error') || desc.toLowerCase().includes('invalid') ? 'Negative' : 'Positive',
-        description: desc,
-        preCondition: 'OrangeHRM application is accessible',
-        testSteps: '1. Navigate to page\n2. Perform test actions\n3. Verify assertions',
-        expectedResult: 'Test executes successfully and all assertions pass',
+        feature: deriveFeatureFromTitle(cleanDescriptionText(rawDesc)),
+        testType: rawDesc.toLowerCase().includes('negative') || rawDesc.toLowerCase().includes('error') || rawDesc.toLowerCase().includes('invalid') ? 'Negative' : 'Positive',
+        description: cleanDescriptionText(rawDesc),
+        preCondition,
+        testSteps: deriveStepsFromBody(testBody, varLabelMap),
+        expectedResult: deriveExpectedResults(testBody, varLabelMap),
         priority: id.endsWith('01') || id.endsWith('02') || id.endsWith('03') ? 'High' : 'Medium',
         specFile: file
       });

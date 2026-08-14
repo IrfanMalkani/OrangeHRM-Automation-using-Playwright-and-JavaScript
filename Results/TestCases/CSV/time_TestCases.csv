@@ -1,76 +1,40 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_TIME_01,Time,Time,Verify Time page loads with sub-navigation headers,Positive,Verify Time page loads with sub-navigation headers,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_TIME_02,Time,Time,Verify access to My Timesheets page,Positive,Verify access to My Timesheets page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
-TC_TIME_03,Time,Time,Verify access to Punch In/Out attendance page,Positive,Verify access to Punch In/Out attendance page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
-TC_TIME_04,Time,Time,Verify search button validation with empty/invalid inputs in employee timesheets,Negative,Verify search button validation with empty/invalid inputs in employee timesheets,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_05,Time,Time,Verify top navigation contains Reports tab,Positive,Verify top navigation contains Reports tab,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_06,Time,Time,Verify top navigation contains Project Info tab,Positive,Verify top navigation contains Project Info tab,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_07,Time,Time,Verify Customers option exists under Project Info,Positive,Verify Customers option exists under Project Info,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_08,Time,Time,Verify Projects option exists under Project Info,Positive,Verify Projects option exists under Project Info,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_09,Time,Time,Verify Activities option exists under Project Info,Positive,Verify Activities option exists under Project Info,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_10,Time,Time,Verify Project Reports option exists under Reports menu,Positive,Verify Project Reports option exists under Reports menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_11,Time,Time,Verify Employee Reports option exists under Reports menu,Positive,Verify Employee Reports option exists under Reports menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_12,Time,Time,Verify Attendance Summary option exists under Reports menu,Positive,Verify Attendance Summary option exists under Reports menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_13,Time,Time,Verify employee name search input field exists on Employee Timesheets page,Positive,Verify employee name search input field exists on Employee Timesheets page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_14,Time,Time,Verify punch page has date input element,Positive,Verify punch page has date input element,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_15,Time,Time,Verify punch page has time input element,Positive,Verify punch page has time input element,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_16,Time,Time,Verify punch page note textarea is functional,Positive,Verify punch page note textarea is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_17,Time,Time,Verify attendance table headers in My Records page,Positive,Verify attendance table headers in My Records page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_18,Time,Time,Verify My Records date picker input elements exist,Positive,Verify My Records date picker input elements exist,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_19,Time,Time,Verify calendar pop-up opens on clicking date input in My Records page,Positive,Verify calendar pop-up opens on clicking date input in My Records page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_20,Time,Time,Verify Reset button clears search filters in My Records page,Positive,Verify Reset button clears search filters in My Records page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_21,Time,Time,Verify view records button text contains View,Positive,Verify view records button text contains View,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_TIME_22,Time,Time,Verify breadcrumb title text details are visible,Positive,Verify breadcrumb title text details are visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_23,Time,Time,Verify Timesheets menu is visible in sub-navigation bar,Positive,Verify Timesheets menu is visible in sub-navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_24,Time,Time,Verify Attendance menu is visible in sub-navigation bar,Positive,Verify Attendance menu is visible in sub-navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_TIME_25,Time,Time,Verify Punch In button exists in Punch page when logged out or punched out,Positive,Verify Punch In button exists in Punch page when logged out or punched out,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
+TC_TIME_01,Time,Time,Verify Time page loads with sub-navigation headers,Positive,Verify Time page loads with sub-navigation headers,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,"- The header should equal 'Time'
+- The tabs visible should equal 'true'",High,PASSED
+TC_TIME_02,Time,Time,Verify access to My Timesheets page,Positive,Verify access to My Timesheets page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the My Timesheets page,- The heading should be visible,High,PASSED
+TC_TIME_03,Time,Time,Verify access to Punch In/Out attendance page,Positive,Verify access to Punch In/Out attendance page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The 'Punch In' element should be visible,High,PASSED
+TC_TIME_04,Time,Time,Verify search button validation with empty/invalid inputs in employee timesheets,Negative,Verify search button validation with empty/invalid inputs in employee timesheets,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
+2. Click the Employee Timesheets link
+3. Click the View button","- The error text should be visible
+- The error text should display the text 'Required'",Medium,PASSED
+TC_TIME_05,Time,Time,Verify top navigation contains Reports tab,Positive,Verify top navigation contains Reports tab,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Reports tab should be visible,Medium,PASSED
+TC_TIME_06,Time,Time,Verify top navigation contains Project Info tab,Positive,Verify top navigation contains Project Info tab,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Project Info tab should be visible,Medium,PASSED
+TC_TIME_07,Time,Time,Verify Customers option exists under Project Info,Positive,Verify Customers option exists under Project Info,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,- The 'Customers' element should be visible,Medium,PASSED
+TC_TIME_08,Time,Time,Verify Projects option exists under Project Info,Positive,Verify Projects option exists under Project Info,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,- The 'Projects' element should be visible,Medium,PASSED
+TC_TIME_09,Time,Time,Verify Project Info menu contains exactly Customers and Projects options,Positive,Verify Project Info menu contains exactly Customers and Projects options,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,"- The items should have a count of '2'
+- The items.nth(0) should display the text 'Customers'
+- The items.nth(1) should display the text 'Projects'",Medium,FAILED
+TC_TIME_10,Time,Time,Verify Project Reports option exists under Reports menu,Positive,Verify Project Reports option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Project Reports' element should be visible,Medium,PASSED
+TC_TIME_11,Time,Time,Verify Employee Reports option exists under Reports menu,Positive,Verify Employee Reports option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Employee Reports' element should be visible,Medium,PASSED
+TC_TIME_12,Time,Time,Verify Attendance Summary option exists under Reports menu,Positive,Verify Attendance Summary option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Attendance Summary' element should be visible,Medium,PASSED
+TC_TIME_13,Time,Time,Verify employee name search input field exists on Employee Timesheets page,Positive,Verify employee name search input field exists on Employee Timesheets page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
+2. Click the Employee Timesheets link",- The Employee Name field should be visible,Medium,PASSED
+TC_TIME_14,Time,Time,Verify punch page has date input element,Positive,Verify punch page has date input element,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The date input should be visible,Medium,PASSED
+TC_TIME_15,Time,Time,Verify punch page has time input element,Positive,Verify punch page has time input element,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The time input should be visible,Medium,PASSED
+TC_TIME_16,Time,Time,Verify punch page note textarea is functional,Positive,Verify punch page note textarea is functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The textarea element should be visible,Medium,PASSED
+TC_TIME_17,Time,Time,Verify attendance table headers in My Records page,Positive,Verify attendance table headers in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The col header should be visible,Medium,PASSED
+TC_TIME_18,Time,Time,Verify My Records date picker input elements exist,Positive,Verify My Records date picker input elements exist,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The await date inputs.count() should be greater than '0',Medium,FAILED
+TC_TIME_19,Time,Time,Verify calendar pop-up opens on clicking date input in My Records page,Positive,Verify calendar pop-up opens on clicking date input in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Navigate to the Attendance My Records page
+2. Click the date input",- The calendar should be visible,Medium,PASSED
+TC_TIME_20,Time,Time,Verify Date filter and View button are present in My Records page,Positive,Verify Date filter and View button are present in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,"- The date input should be visible
+- The 'View' element should be visible",Medium,FAILED
+TC_TIME_21,Time,Time,Verify view records button text contains View,Positive,Verify view records button text contains View,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The submit element should display the text 'View',Medium,PASSED
+TC_TIME_22,Time,Time,Verify breadcrumb title text details are visible,Positive,Verify breadcrumb title text details are visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The breadcrumb should contain the text 'Time',Medium,PASSED
+TC_TIME_23,Time,Time,Verify Timesheets menu is visible in sub-navigation bar,Positive,Verify Timesheets menu is visible in sub-navigation bar,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Timesheets tab should be visible,Medium,PASSED
+TC_TIME_24,Time,Time,Verify Attendance menu is visible in sub-navigation bar,Positive,Verify Attendance menu is visible in sub-navigation bar,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Attendance tab should be visible,Medium,PASSED
+TC_TIME_25,Time,Time,Verify Punch In button exists in Punch page when logged out or punched out,Positive,Verify Punch In button exists in Punch page when logged out or punched out,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The await in btn.count() should be greater than '0',Medium,FAILED
+TC_TIME_26,Time,Time,Verify Employee Records option is visible under Attendance menu,Positive,Verify Employee Records option is visible under Attendance menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Attendance tab,- The Employee Records link should be visible,Medium,PASSED
+TC_TIME_27,Time,Time,Verify Employee Timesheets search with a non-existent employee name shows required validation,Negative,Verify Employee Timesheets search with a non-existent employee name shows required validation,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
+2. Click the Employee Timesheets link
+3. Enter 'NonExistentEmployeeXYZ' into the Employee Name field
+4. Click the View button",- The error text should be visible,Medium,PASSED

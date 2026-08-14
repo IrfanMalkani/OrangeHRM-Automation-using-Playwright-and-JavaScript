@@ -1,76 +1,35 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_MYINFO_01,Myinfo,Myinfo,Update personal details,Positive,Update personal details,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_MYINFO_02,Myinfo,Myinfo,Upload profile image,Positive,Upload profile image,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
-TC_MYINFO_03,Myinfo,Myinfo,Verify first name field is pre-populated,Positive,Verify first name field is pre-populated,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_MYINFO_04,Myinfo,Myinfo,Verify My Info page heading displays Personal Details,Positive,Verify My Info page heading displays Personal Details,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_05,Myinfo,Myinfo,Verify Contact Details sub-tab is visible,Positive,Verify Contact Details sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_06,Myinfo,Myinfo,Verify Emergency Contacts sub-tab is visible,Positive,Verify Emergency Contacts sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_07,Myinfo,Myinfo,Verify Dependents sub-tab is visible,Positive,Verify Dependents sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_08,Myinfo,Myinfo,Verify Immigration sub-tab is visible,Positive,Verify Immigration sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_09,Myinfo,Myinfo,Verify Job sub-tab is visible,Positive,Verify Job sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_10,Myinfo,Myinfo,Verify Salary sub-tab is visible,Positive,Verify Salary sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_11,Myinfo,Myinfo,Verify Tax Exemptions sub-tab is visible,Positive,Verify Tax Exemptions sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_MYINFO_12,Myinfo,Myinfo,Verify Report-to sub-tab is visible,Positive,Verify Report-to sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_13,Myinfo,Myinfo,Verify Qualifications sub-tab is visible,Positive,Verify Qualifications sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_14,Myinfo,Myinfo,Verify Memberships sub-tab is visible,Positive,Verify Memberships sub-tab is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_15,Myinfo,Myinfo,Verify middle name field is visible,Positive,Verify middle name field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_16,Myinfo,Myinfo,Verify last name field is visible,Positive,Verify last name field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_17,Myinfo,Myinfo,Verify Employee ID field is visible,Positive,Verify Employee ID field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_18,Myinfo,Myinfo,Verify Driver's License Number field is visible,Positive,Verify Driver's License Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_MYINFO_19,Myinfo,Myinfo,Verify SSN Number field is visible,Positive,Verify SSN Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_20,Myinfo,Myinfo,Verify SIN Number field is visible,Positive,Verify SIN Number field is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_21,Myinfo,Myinfo,Verify Nationality dropdown is visible,Positive,Verify Nationality dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_22,Myinfo,Myinfo,Verify Marital Status dropdown is visible,Positive,Verify Marital Status dropdown is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_23,Myinfo,Myinfo,Verify Gender radio buttons exist,Positive,Verify Gender radio buttons exist,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_24,Myinfo,Myinfo,Verify Custom Fields heading is visible,Positive,Verify Custom Fields heading is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_MYINFO_25,Myinfo,Myinfo,Verify Attachments Add button is visible,Positive,Verify Attachments Add button is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_MYINFO_01,Myinfo,Myinfo,Update personal details,Positive,Update personal details,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,"1. Update the Personal Details form fields and save
+2. Reload the current page","- The First Name field should not have the value ''
+- The nickname value should equal 'updatedNickname'
+- The other id value should equal 'randomOtherId'",High,PASSED
+TC_MYINFO_02,Myinfo,Myinfo,Upload profile image,Positive,Upload profile image,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Upload a new profile image file,- The profile image container should be visible,High,PASSED
+TC_MYINFO_03,Myinfo,Myinfo,Verify first name field is pre-populated,Positive,Verify first name field is pre-populated,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The length should be greater than '0',High,PASSED
+TC_MYINFO_04,Myinfo,Myinfo,Verify My Info page heading displays Personal Details,Positive,Verify My Info page heading displays Personal Details,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The orangehrm main title element should display the text 'Personal Details',Medium,PASSED
+TC_MYINFO_05,Myinfo,Myinfo,Verify Contact Details sub-tab is visible,Positive,Verify Contact Details sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Contact Details' element should be visible,Medium,PASSED
+TC_MYINFO_06,Myinfo,Myinfo,Verify Emergency Contacts sub-tab is visible,Positive,Verify Emergency Contacts sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Emergency Contacts' element should be visible,Medium,PASSED
+TC_MYINFO_07,Myinfo,Myinfo,Verify Dependents sub-tab is visible,Positive,Verify Dependents sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Dependents' element should be visible,Medium,PASSED
+TC_MYINFO_08,Myinfo,Myinfo,Verify Immigration sub-tab is visible,Positive,Verify Immigration sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Immigration' element should be visible,Medium,PASSED
+TC_MYINFO_09,Myinfo,Myinfo,Verify Job sub-tab is visible,Positive,Verify Job sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Job' element should be visible,Medium,PASSED
+TC_MYINFO_10,Myinfo,Myinfo,Verify Salary sub-tab is visible,Positive,Verify Salary sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Salary' element should be visible,Medium,PASSED
+TC_MYINFO_11,Myinfo,Myinfo,Verify Tax Exemptions sub-tab is visible,Positive,Verify Tax Exemptions sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Tax Exemptions' element should be visible,Medium,FAILED
+TC_MYINFO_12,Myinfo,Myinfo,Verify Report-to sub-tab is visible,Positive,Verify Report-to sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Report-to' element should be visible,Medium,PASSED
+TC_MYINFO_13,Myinfo,Myinfo,Verify Qualifications sub-tab is visible,Positive,Verify Qualifications sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Qualifications' element should be visible,Medium,PASSED
+TC_MYINFO_14,Myinfo,Myinfo,Verify Memberships sub-tab is visible,Positive,Verify Memberships sub-tab is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Memberships' element should be visible,Medium,PASSED
+TC_MYINFO_15,Myinfo,Myinfo,Verify middle name field is visible,Positive,Verify middle name field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The middle name field should be visible,Medium,PASSED
+TC_MYINFO_16,Myinfo,Myinfo,Verify last name field is visible,Positive,Verify last name field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The last name field should be visible,Medium,PASSED
+TC_MYINFO_17,Myinfo,Myinfo,Verify Employee ID field is visible,Positive,Verify Employee ID field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Employee Id' element should be visible,Medium,PASSED
+TC_MYINFO_18,Myinfo,Myinfo,Verify Driver's License Number field is visible,Positive,Verify Driver's License Number field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The Number element should be visible,Medium,PASSED
+TC_MYINFO_19,Myinfo,Myinfo,Verify SSN Number field is visible,Positive,Verify SSN Number field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'SSN Number' element should be present,Medium,PASSED
+TC_MYINFO_20,Myinfo,Myinfo,Verify SIN Number field is visible,Positive,Verify SIN Number field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'SIN Number' element should be present,Medium,PASSED
+TC_MYINFO_21,Myinfo,Myinfo,Verify Nationality dropdown is visible,Positive,Verify Nationality dropdown is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Nationality' element should be visible,Medium,PASSED
+TC_MYINFO_22,Myinfo,Myinfo,Verify Marital Status dropdown is visible,Positive,Verify Marital Status dropdown is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Marital Status' element should be visible,Medium,PASSED
+TC_MYINFO_23,Myinfo,Myinfo,Verify Gender radio buttons exist,Positive,Verify Gender radio buttons exist,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,"- The 'Female' element should be present
+- The 'Male' element should be present",Medium,PASSED
+TC_MYINFO_24,Myinfo,Myinfo,Verify Custom Fields heading is visible,Positive,Verify Custom Fields heading is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Custom Fields' element should be present,Medium,PASSED
+TC_MYINFO_25,Myinfo,Myinfo,Verify Attachments Add button is visible,Positive,Verify Attachments Add button is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The 'Add' element should be visible,Medium,PASSED
+TC_MYINFO_26,Myinfo,Myinfo,Verify My Info page URL points to Personal Details view by default,Positive,Verify My Info page URL points to Personal Details view by default,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,- The page.url() should contain 'viewPersonalDetails',Medium,PASSED
+TC_MYINFO_27,Myinfo,Myinfo,Verify an overly long nickname value is accepted without crashing the Personal Details form,Positive,Verify an overly long nickname value is accepted without crashing the Personal Details form,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,"1. Click the Save button
+2. Reload the current page",- The First Name field should not have the value '',Medium,SKIPPED
+TC_MYINFO_28,Myinfo,Myinfo,Verify Employee Id field displays a non-empty value,Positive,Verify Employee Id field displays a non-empty value,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'My Info' module.,1. Perform the actions described in the test title,"- The 'Employee Id' element should be visible
+- The length should be greater than '0'",Medium,PASSED

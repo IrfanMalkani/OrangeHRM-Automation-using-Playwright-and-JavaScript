@@ -1,76 +1,45 @@
 Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_DASH_01,Dashboard,Dashboard,Verify dashboard page loads after login,Positive,Verify dashboard page loads after login,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_DASH_02,Dashboard,Dashboard,Verify dashboard widgets are visible,Positive,Verify dashboard widgets are visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_DASH_03,Dashboard,Dashboard,Verify Time at Work widget is displayed,Positive,Verify Time at Work widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_DASH_04,Dashboard,Dashboard,Verify My Actions widget is displayed,Positive,Verify My Actions widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_05,Dashboard,Dashboard,Verify Quick Launch widget is displayed,Positive,Verify Quick Launch widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_06,Dashboard,Dashboard,Verify sidebar contains all main navigation items,Positive,Verify sidebar contains all main navigation items,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_07,Dashboard,Dashboard,Verify logged-in user name is displayed in header,Positive,Verify logged-in user name is displayed in header,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_08,Dashboard,Dashboard,"Verify user dropdown shows About, Support, Change Password, Logout",Positive,"Verify user dropdown shows About, Support, Change Password, Logout",OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_09,Dashboard,Dashboard,Verify sidebar collapse and expand functionality,Positive,Verify sidebar collapse and expand functionality,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_10,Dashboard,Dashboard,Verify Employees on Leave Today widget is displayed,Positive,Verify Employees on Leave Today widget is displayed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_11,Dashboard,Dashboard,Verify sidebar search filters navigation items,Positive,Verify sidebar search filters navigation items,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_12,Dashboard,Dashboard,Verify dashboard URL contains correct path,Positive,Verify dashboard URL contains correct path,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_13,Dashboard,Dashboard,Verify user profile dropdown image has valid attributes,Positive,Verify user profile dropdown image has valid attributes,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_14,Dashboard,Dashboard,Verify corporate branding logo is visible in sidebar header,Positive,Verify corporate branding logo is visible in sidebar header,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_15,Dashboard,Dashboard,Verify sidebar search input is functional,Positive,Verify sidebar search input is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_16,Dashboard,Dashboard,Verify dashboard widgets have correct card container CSS classes,Positive,Verify dashboard widgets have correct card container CSS classes,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_17,Dashboard,Dashboard,Verify Assign Leave link in Quick Launch redirects properly,Positive,Verify Assign Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_18,Dashboard,Dashboard,Verify Leave List link in Quick Launch redirects properly,Positive,Verify Leave List link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_19,Dashboard,Dashboard,Verify Timesheets link in Quick Launch redirects properly,Positive,Verify Timesheets link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_20,Dashboard,Dashboard,Verify Apply Leave link in Quick Launch redirects properly,Positive,Verify Apply Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_21,Dashboard,Dashboard,Verify My Leave link in Quick Launch redirects properly,Positive,Verify My Leave link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_22,Dashboard,Dashboard,Verify My Timesheet link in Quick Launch redirects properly,Positive,Verify My Timesheet link in Quick Launch redirects properly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_23,Dashboard,Dashboard,Verify Support option opens support page,Positive,Verify Support option opens support page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_24,Dashboard,Dashboard,Verify About link displays modal pop-up,Positive,Verify About link displays modal pop-up,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_DASH_25,Dashboard,Dashboard,Verify dashboard topbar has header with correct tags,Positive,Verify dashboard topbar has header with correct tags,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+TC_DASH_01,Dashboard,Dashboard,Verify dashboard page loads after login,Positive,Verify dashboard page loads after login,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The header text should equal 'Dashboard',High,PASSED
+TC_DASH_02,Dashboard,Dashboard,Verify dashboard widgets are visible,Positive,Verify dashboard widgets are visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The widget count should be greater than '0'
+- The visible should equal 'true'",High,PASSED
+TC_DASH_03,Dashboard,Dashboard,Verify Time at Work widget is displayed,Positive,Verify Time at Work widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Time at Work' widget should be visible,High,PASSED
+TC_DASH_04,Dashboard,Dashboard,Verify My Actions widget is displayed,Positive,Verify My Actions widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'My Actions' widget should be visible,Medium,PASSED
+TC_DASH_05,Dashboard,Dashboard,Verify Quick Launch widget is displayed,Positive,Verify Quick Launch widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Quick Launch' widget should be visible,Medium,PASSED
+TC_DASH_06,Dashboard,Dashboard,Verify sidebar contains all main navigation items,Positive,Verify sidebar contains all main navigation items,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The dashboard page.sidebar link(module name) should be visible,Medium,PASSED
+TC_DASH_07,Dashboard,Dashboard,Verify logged-in user name is displayed in header,Positive,Verify logged-in user name is displayed in header,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The length should be greater than '0',Medium,PASSED
+TC_DASH_08,Dashboard,Dashboard,"Verify user dropdown shows About, Support, Change Password, Logout",Positive,"Verify user dropdown shows About, Support, Change Password, Logout",The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Open the user profile dropdown menu,"- The About link should be visible
+- The Support link should be visible
+- The Change Password link should be visible
+- The Logout link should be visible",Medium,PASSED
+TC_DASH_09,Dashboard,Dashboard,Verify sidebar collapse and expand functionality,Positive,Verify sidebar collapse and expand functionality,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the sidebar collapse toggle,"- The sidebar navigation panel should be visible
+- The sidebar navigation panel should have a CSS class matching a value matching /toggled/
+- The sidebar navigation panel should not have a CSS class matching a value matching /toggled/",Medium,PASSED
+TC_DASH_10,Dashboard,Dashboard,Verify Employees on Leave Today widget is displayed,Positive,Verify Employees on Leave Today widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Employees on Leave Today' widget should be visible,Medium,PASSED
+TC_DASH_11,Dashboard,Dashboard,Verify sidebar search filters navigation items,Positive,Verify sidebar search filters navigation items,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Type into the sidebar module search box,- The dashboard page.sidebar link('admin') should be visible,Medium,PASSED
+TC_DASH_12,Dashboard,Dashboard,Verify dashboard URL contains correct path,Positive,Verify dashboard URL contains correct path,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The dashboard page.page.url() should contain '/dashboard/index',Medium,PASSED
+TC_DASH_13,Dashboard,Dashboard,Verify user profile dropdown image has valid attributes,Positive,Verify user profile dropdown image has valid attributes,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The img should be visible
+- The src should not be null
+- The length should be greater than '0'
+- The width should be greater than '0'
+- The height should be greater than '0'",Medium,PASSED
+TC_DASH_14,Dashboard,Dashboard,Verify corporate branding logo is visible in sidebar header,Positive,Verify corporate branding logo is visible in sidebar header,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The brand should be visible,Medium,PASSED
+TC_DASH_15,Dashboard,Dashboard,Verify sidebar search input is functional,Positive,Verify sidebar search input is functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The sidebar search field should be visible
+- The placeholder should equal 'Search'",Medium,PASSED
+TC_DASH_16,Dashboard,Dashboard,Verify dashboard widgets have correct card container CSS classes,Positive,Verify dashboard widgets have correct card container CSS classes,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The first widget should have a CSS class matching a value matching /orangehrm-dashboard-widget/,Medium,PASSED
+TC_DASH_17,Dashboard,Dashboard,Verify Assign Leave link in Quick Launch redirects properly,Positive,Verify Assign Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Assign Leave' element,- The page.url() should contain '/leave/assignLeave',Medium,PASSED
+TC_DASH_18,Dashboard,Dashboard,Verify Leave List link in Quick Launch redirects properly,Positive,Verify Leave List link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Leave List' element,- The page.url() should contain '/leave/viewLeaveList',Medium,PASSED
+TC_DASH_19,Dashboard,Dashboard,Verify Timesheets link in Quick Launch redirects properly,Positive,Verify Timesheets link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Timesheets' element,- The page.url() should contain '/time/viewEmployeeTimesheet',Medium,PASSED
+TC_DASH_20,Dashboard,Dashboard,Verify Apply Leave link in Quick Launch redirects properly,Positive,Verify Apply Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Apply Leave' element,- The page.url() should contain '/leave/applyLeave',Medium,PASSED
+TC_DASH_21,Dashboard,Dashboard,Verify My Leave link in Quick Launch redirects properly,Positive,Verify My Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'My Leave' element,- The page.url() should contain '/leave/viewMyLeaveList',Medium,PASSED
+TC_DASH_22,Dashboard,Dashboard,Verify My Timesheet link in Quick Launch redirects properly,Positive,Verify My Timesheet link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'My Timesheet' element,- The page.url() should contain '/time/viewMyTimesheet',Medium,PASSED
+TC_DASH_23,Dashboard,Dashboard,Verify Support option opens support page,Positive,Verify Support option opens support page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,"1. Open the user profile dropdown menu
+2. Click the Support link",- The page.url() should contain '/help/support',Medium,PASSED
+TC_DASH_24,Dashboard,Dashboard,Verify About link displays modal pop-up,Positive,Verify About link displays modal pop-up,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,"1. Open the user profile dropdown menu
+2. Click the About link
+3. Click the oxd dialog close button element","- The modal should be visible
+- The modal should not be visible",Medium,PASSED
+TC_DASH_25,Dashboard,Dashboard,Verify dashboard topbar has header with correct tags,Positive,Verify dashboard topbar has header with correct tags,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The title should be visible,Medium,PASSED
+TC_DASH_26,Dashboard,Dashboard,Verify Buzz Latest Posts widget is displayed on dashboard,Positive,Verify Buzz Latest Posts widget is displayed on dashboard,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Buzz Latest Posts' widget should be visible,Medium,PASSED
+TC_DASH_27,Dashboard,Dashboard,Verify sidebar search with a non-existent module name shows no matching navigation link,Negative,Verify sidebar search with a non-existent module name shows no matching navigation link,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Type into the sidebar module search box,- The oxd main menu item element should equal '0',Medium,PASSED
+TC_DASH_28,Dashboard,Dashboard,Verify user dropdown menu closes after selecting Escape or clicking elsewhere,Positive,Verify user dropdown menu closes after selecting Escape or clicking elsewhere,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Open the user profile dropdown menu,"- The Logout link should be visible
+- The Logout link should not be visible",Medium,PASSED

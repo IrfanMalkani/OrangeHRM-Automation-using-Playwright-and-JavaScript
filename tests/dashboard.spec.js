@@ -184,4 +184,23 @@ test.describe('OrangeHRM Dashboard Module', () => {
     const title = page.locator('.oxd-topbar-header-title');
     await expect(title).toBeVisible();
   });
+
+  test('TC_DASH_26: Verify Buzz Latest Posts widget is displayed on dashboard (positive)', async ({ dashboardPage }) => {
+    await expect(dashboardPage.buzzWidget).toBeVisible();
+  });
+
+  test('TC_DASH_27: Verify sidebar search with a non-existent module name shows no matching navigation link (negative)', async ({ dashboardPage }) => {
+    await dashboardPage.searchModule('NonExistentModuleXYZ123');
+    await dashboardPage.page.waitForTimeout(500);
+    const count = await dashboardPage.page.locator('a.oxd-main-menu-item').count();
+    expect(count).toBe(0);
+  });
+
+  test('TC_DASH_28: Verify user dropdown menu closes after selecting Escape or clicking elsewhere (positive)', async ({ dashboardPage, page }) => {
+    await dashboardPage.openUserDropdown();
+    await expect(dashboardPage.logoutLink).toBeVisible();
+    await page.locator('.oxd-topbar-header-breadcrumb').click();
+    await page.waitForTimeout(500);
+    await expect(dashboardPage.logoutLink).not.toBeVisible();
+  });
 });

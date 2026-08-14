@@ -32,7 +32,7 @@ test.describe('OrangeHRM Time Module', () => {
   });
 
   test('TC_TIME_04: Verify search button validation with empty/invalid inputs in employee timesheets', async ({ timePage }) => {
-    await timePage.timesheetsTab.hover();
+    await timePage.timesheetsTab.click();
     await timePage.employeeTimesheetsLink.click();
     await timePage.page.waitForLoadState('domcontentloaded');
     await timePage.viewButton.click();
@@ -61,10 +61,13 @@ test.describe('OrangeHRM Time Module', () => {
     await expect(item).toBeVisible();
   });
 
-  test('TC_TIME_09: Verify Activities option exists under Project Info', async ({ timePage, page }) => {
+  test('TC_TIME_09: Verify Project Info menu contains exactly Customers and Projects options', async ({ timePage, page }) => {
+    // The Project Info menu no longer includes a separate "Activities" option.
     await timePage.projectInfoTab.click();
-    const item = page.locator('.oxd-dropdown-menu a', { hasText: 'Activities' });
-    await expect(item).toBeVisible();
+    const items = page.locator('.oxd-dropdown-menu a');
+    await expect(items).toHaveCount(2);
+    await expect(items.nth(0)).toHaveText('Customers');
+    await expect(items.nth(1)).toHaveText('Projects');
   });
 
   test('TC_TIME_10: Verify Project Reports option exists under Reports menu', async ({ timePage, page }) => {
@@ -86,7 +89,7 @@ test.describe('OrangeHRM Time Module', () => {
   });
 
   test('TC_TIME_13: Verify employee name search input field exists on Employee Timesheets page', async ({ timePage }) => {
-    await timePage.timesheetsTab.hover();
+    await timePage.timesheetsTab.click();
     await timePage.employeeTimesheetsLink.click();
     await expect(timePage.employeeNameInput).toBeVisible();
   });
@@ -129,10 +132,14 @@ test.describe('OrangeHRM Time Module', () => {
     await expect(calendar).toBeVisible();
   });
 
-  test('TC_TIME_20: Verify Reset button clears search filters in My Records page', async ({ timePage, page }) => {
+  test('TC_TIME_20: Verify Date filter and View button are present in My Records page', async ({ timePage, page }) => {
+    // The My Records page now filters by a single Date field with a View
+    // button; there is no separate Reset button on this page anymore.
     await timePage.navigateToAttendanceRecords();
-    const reset = page.locator('button', { hasText: 'Reset' });
-    await expect(reset).toBeVisible();
+    const dateInput = page.locator('.oxd-date-input input').first();
+    const viewButton = page.locator('button[type="submit"]', { hasText: 'View' });
+    await expect(dateInput).toBeVisible();
+    await expect(viewButton).toBeVisible();
   });
 
   test('TC_TIME_21: Verify view records button text contains View', async ({ timePage, page }) => {
@@ -158,5 +165,20 @@ test.describe('OrangeHRM Time Module', () => {
     await timePage.navigateToPunchInOut();
     const inBtn = page.locator('button:has-text("In"), button:has-text("Out")');
     expect(await inBtn.count()).toBeGreaterThan(0);
+  });
+
+  test('TC_TIME_26: Verify Employee Records option is visible under Attendance menu (positive)', async ({ timePage }) => {
+    await timePage.attendanceTab.click();
+    await expect(timePage.employeeRecordsLink).toBeVisible();
+  });
+
+  test('TC_TIME_27: Verify Employee Timesheets search with a non-existent employee name shows required validation (negative)', async ({ timePage, page }) => {
+    await timePage.timesheetsTab.click();
+    await timePage.employeeTimesheetsLink.click();
+    await timePage.page.waitForLoadState('domcontentloaded');
+    await timePage.employeeNameInput.fill('NonExistentEmployeeXYZ');
+    await timePage.viewButton.click();
+    const errorText = page.locator('.oxd-input-group__message').first();
+    await expect(errorText).toBeVisible({ timeout: 5000 });
   });
 });
