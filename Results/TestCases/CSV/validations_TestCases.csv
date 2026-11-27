@@ -1,32 +1,114 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_VALID_01,Validations,Validations,Verify required field validations for empty fields,Positive,Verify required field validations for empty fields,The OrangeHRM login page is loaded in the browser.,1. Click the Login button without entering any credentials,"- The username error should equal 'Required'
-- The password error should equal 'Required'",High,PASSED
-TC_VALID_02,Validations,Validations,Verify validation when only password is entered,Positive,Verify validation when only password is entered,The OrangeHRM login page is loaded in the browser.,1. Enter only the password and click the Login button,- The username error should equal 'Required',High,PASSED
-TC_VALID_03,Validations,Validations,Verify validation when only username is entered,Positive,Verify validation when only username is entered,The OrangeHRM login page is loaded in the browser.,1. Enter only the username and click the Login button,- The password error should equal 'Required',High,PASSED
-TC_VALID_04,Validations,Validations,Verify login fails with special characters in credentials,Positive,Verify login fails with special characters in credentials,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
-TC_VALID_05,Validations,Validations,Verify validation error message when username has only spaces,Negative,Verify validation error message when username has only spaces,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text || 'invalid credentials' should be present,Medium,PASSED
-TC_VALID_06,Validations,Validations,Verify validation error message when password has only spaces,Negative,Verify validation error message when password has only spaces,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text || 'invalid credentials' should be present,Medium,PASSED
-TC_VALID_07,Validations,Validations,Verify login fails with SQL Injection payload in username,Positive,Verify login fails with SQL Injection payload in username,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
-TC_VALID_08,Validations,Validations,Verify login fails with SQL Injection payload in password,Positive,Verify login fails with SQL Injection payload in password,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
-TC_VALID_09,Validations,Validations,Verify error validation text elements have correct text color (red),Negative,Verify error validation text elements have correct text color (red),The OrangeHRM login page is loaded in the browser.,1. Click the Login button without entering any credentials,"- The color should contain 'rgb(235, 9, 16)'",Medium,PASSED
-TC_VALID_10,Validations,Validations,Verify username field does not exceed max length limit of HTML standards,Positive,Verify username field does not exceed max length limit of HTML standards,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The maxlen should be null,Medium,PASSED
-TC_VALID_11,Validations,Validations,Verify password field does not exceed max length limit of HTML standards,Positive,Verify password field does not exceed max length limit of HTML standards,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The maxlen should be null,Medium,PASSED
-TC_VALID_12,Validations,Validations,Verify error message font weight is responsive,Negative,Verify error message font weight is responsive,The OrangeHRM login page is loaded in the browser.,1. Click the Login button without entering any credentials,- The weight should be present,Medium,PASSED
-TC_VALID_13,Validations,Validations,Verify input error borders are styled on required error trigger,Negative,Verify input error borders are styled on required error trigger,The OrangeHRM login page is loaded in the browser.,1. Click the Login button without entering any credentials,- The border should be present,Medium,PASSED
-TC_VALID_14,Validations,Validations,Verify form submits only when all validation requirements are met,Positive,Verify form submits only when all validation requirements are met,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The form element should be present,Medium,PASSED
-TC_VALID_15,Validations,Validations,Verify username input case-sensitivity,Positive,Verify username input case-sensitivity,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text || 'invalid credentials' should be present,Medium,PASSED
-TC_VALID_16,Validations,Validations,Verify password input case-sensitivity,Positive,Verify password input case-sensitivity,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
-TC_VALID_17,Validations,Validations,Verify error alert has company icon or style container,Negative,Verify error alert has company icon or style container,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error alert message should be visible,Medium,PASSED
-TC_VALID_18,Validations,Validations,Verify login page form submission tag exists,Positive,Verify login page form submission tag exists,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The oxd form element should be visible,Medium,PASSED
-TC_VALID_19,Validations,Validations,Verify login button is of type submit,Positive,Verify login button is of type submit,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The type should equal 'submit',Medium,PASSED
-TC_VALID_20,Validations,Validations,Verify field label tags are capitalized,Positive,Verify field label tags are capitalized,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The 'Username' element should be visible,Medium,PASSED
-TC_VALID_21,Validations,Validations,Verify password input field has password autocomplete settings,Positive,Verify password input field has password autocomplete settings,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The type should equal 'password',Medium,PASSED
-TC_VALID_22,Validations,Validations,Verify spacing styles around form input groupings,Positive,Verify spacing styles around form input groupings,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The group should be visible,Medium,PASSED
-TC_VALID_23,Validations,Validations,Verify login button displays hover class transitions,Positive,Verify login button displays hover class transitions,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The cursor should equal 'pointer',Medium,PASSED
-TC_VALID_24,Validations,Validations,Verify HTML lang details exist on login viewport,Positive,Verify HTML lang details exist on login viewport,The OrangeHRM login page is loaded in the browser.,1. Perform the actions described in the test title,- The lang === null || lang === 'en' should equal 'true',Medium,PASSED
-TC_VALID_25,Validations,Validations,Verify validation on long username does not crash backend,Positive,Verify validation on long username does not crash backend,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
-TC_VALID_26,Validations,Validations,Verify login fails safely with an XSS script payload in the password field,Negative,Verify login fails safely with an XSS script payload in the password field,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button","- The error text should equal 'Invalid credentials'
-- The dialog fired should equal 'false'",Medium,PASSED
-TC_VALID_27,Validations,Validations,Verify login fails with unicode and emoji characters in the username,Negative,Verify login fails with unicode and emoji characters in the username,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button","- The ['invalid credentials', 'unexpected error occurred'] should contain 'errorText'",Medium,PASSED
-TC_VALID_28,Validations,Validations,Verify login fails when username contains only control/whitespace characters,Positive,Verify login fails when username contains only control/whitespace characters,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text || 'invalid credentials' should be present,Medium,PASSED
-TC_VALID_29,Validations,Validations,Verify login fails with an extremely long password without a server error,Negative,Verify login fails with an extremely long password without a server error,The OrangeHRM login page is loaded in the browser.,"1. Enter the username and password, then click the Login button",- The error text should equal 'Invalid credentials',Medium,PASSED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_VALID_01,Negative / Validation,Verify required field validations for empty fields,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Click Login without entering any credentials
+3. Read the username validation text
+4. Read the password validation text
+5. Verify the expected result",Not applicable (UI check only),"- The username validation text should equal 'Required'
+- The password validation text should equal 'Required'",User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_VALID_02,Negative / Validation,Verify validation when only password is entered,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter only the password and click Login
+3. Read the username validation text
+4. Verify the expected result",Login with password only input: admin123,- The username validation text should equal 'Required',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_03,Negative / Validation,Verify validation when only username is entered,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter only the username and click Login
+3. Read the password validation text
+4. Verify the expected result",Login with username only input: Admin,- The password validation text should equal 'Required',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_04,Edge Case / Boundary,Verify login fails with special characters in credentials,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username '<script>alert(1)</script>' and password '!@#$%^&*()'
+3. Read the error alert text
+4. Verify the expected result","Login input: <script>alert(1)</script>
+Login input: !@#$%^&*()",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_05,Negative / Validation,Verify validation error message when username has only spaces,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username '    ' and password 'admin123'
+3. Read the error alert text
+4. Verify the expected result","Login input:     
+Login input: admin123",- Validation error message when username has only spaces.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_06,Negative / Validation,Verify validation error message when password has only spaces,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'Admin' and password '    '
+3. Read the error alert text
+4. Verify the expected result","Login input: Admin
+Login input:     ",- Validation error message when password has only spaces.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_07,Security / Session,Verify login fails with SQL Injection payload in username,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Read the error alert text
+4. Verify the expected result","Login input: ' OR '1'='1
+Login input: admin123",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_08,Security / Session,Verify login fails with SQL Injection payload in password,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'Admin' and password ""'
+3. Read the error alert text
+4. Verify the expected result","Login input: Admin
+Login input: ' OR '1'='1",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_09,Negative / Validation,Verify error validation text elements have correct text color (red),The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Click Login without entering any credentials
+3. Verify the expected result",Not applicable (UI check only),- Error validation text elements have correct text color (red).,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_10,Edge Case / Boundary,Verify username field does not exceed max length limit of HTML standards,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Read the 'maxlength' attribute of the Username field
+3. Verify the expected result",Not applicable (UI check only),- The 'maxlength' attribute of the Username field should be empty,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_11,Edge Case / Boundary,Verify password field does not exceed max length limit of HTML standards,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Read the 'maxlength' attribute of the Password field
+3. Verify the expected result",Not applicable (UI check only),- The 'maxlength' attribute of the Password field should be empty,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_12,Responsive Layout,Verify error message font weight is responsive,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Click Login without entering any credentials
+3. Verify the expected result",Not applicable (UI check only),- Error message font weight is responsive.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_13,Negative / Validation,Verify input error borders are styled on required error trigger,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Click Login without entering any credentials
+3. Verify the expected result",Not applicable (UI check only),- Input error borders are styled on required error trigger.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_14,Negative / Validation,Verify form submits only when all validation requirements are met,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Verify the expected result",Not applicable (UI check only),- Form submits only when all validation requirements are met.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_15,UI Verification,Verify username input case-sensitivity,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'ADMIN' and password 'admin123'
+3. Read the error alert text
+4. Verify the expected result","Login input: ADMIN
+Login input: admin123",- Username input case-sensitivity.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_16,UI Verification,Verify password input case-sensitivity,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'Admin' and password 'ADMIN123'
+3. Read the error alert text
+4. Verify the expected result","Login input: Admin
+Login input: ADMIN123",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_17,Negative / Validation,Verify error alert has company icon or style container,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'invalidUser' and password 'invalidPass'
+3. Verify the expected result","Login input: invalidUser
+Login input: invalidPass",- The error alert message should be visible,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_18,UI Verification,Verify login page form submission tag exists,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Verify the expected result",Not applicable (UI check only),- The form element should be visible,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_19,Positive Functional,Verify login button is of type submit,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Read the 'type' attribute of the Login button
+3. Verify the expected result",Not applicable (UI check only),- The 'type' attribute of the Login button should equal 'submit',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_20,UI Verification,Verify field label tags are capitalized,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Verify the expected result",Not applicable (UI check only),- The 'Username' element should be visible,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_21,UI Verification,Verify password input field has password autocomplete settings,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Read the 'type' attribute of the Password field
+3. Verify the expected result",Not applicable (UI check only),- The 'type' attribute of the Password field should equal 'password',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_22,UI Verification,Verify spacing styles around form input groupings,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Verify the expected result",Not applicable (UI check only),- The form row element should be visible,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_23,UI Verification,Verify login button displays hover class transitions,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Verify the expected result",Not applicable (UI check only),- Login button displays hover class transitions.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_24,Responsive Layout,Verify HTML lang details exist on login viewport,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Read the 'lang' attribute of the html element
+3. Verify the expected result",Not applicable (UI check only),- HTML lang details exist on login viewport.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_25,Edge Case / Boundary,Verify validation on long username does not crash backend,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Read the error alert text
+4. Verify the expected result","Long username: 'a' repeated 100 times
+Login input: admin123",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_26,Negative / Validation,Verify login fails safely with an XSS script payload in the password field,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username 'Admin' and password ""<script>alert('
+3. Read the error alert text
+4. Verify the expected result","Login input: Admin
+Login input: <script>alert('xss')</script>","- The error alert text should equal 'Invalid credentials'
+- The dialog fired should equal false",User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_VALID_27,Negative / Validation,Verify login fails with unicode and emoji characters in the username,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username '用户😀Test' and password 'admin123'
+3. Read the error alert text
+4. Verify the expected result","Login input: 用户😀Test
+Login input: admin123","- The ['invalid credentials', 'unexpected error occurred'] should contain (error text)",User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_VALID_28,Edge Case / Boundary,Verify login fails when username contains only control/whitespace characters,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Log in with username '\t\n' and password 'admin123'
+3. Read the error alert text
+4. Verify the expected result","Login input: \t\n
+Login input: admin123",- Login fails when username contains only control/whitespace characters.,User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_VALID_29,Negative / Validation,Verify login fails with an extremely long password without a server error,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Read the error alert text
+4. Verify the expected result","Long password: 'P@ssw0rd' repeated 50 times
+Login input: Admin",- The error alert text should equal 'Invalid credentials',User is not logged in; the login page stays open.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS

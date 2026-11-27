@@ -1,42 +1,242 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_LEAVE_01,Leave,Leave,Apply leave request flow,Positive,Apply leave request flow,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Select a leave type, set the From/To dates, enter comments, and submit the Apply Leave form","- The status should not be null
-- The matches any should evaluate to a truthy value",High,FAILED
-TC_LEAVE_02,Leave,Leave,Verify leave type of applied leave request,Positive,Verify leave type of applied leave request,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The leave type should not be null,High,SKIPPED
-TC_LEAVE_03,Leave,Leave,Verify Top Navigation Tab Apply is visible,Positive,Verify Top Navigation Tab Apply is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The Apply tab should be visible,High,SKIPPED
-TC_LEAVE_04,Leave,Leave,Verify Top Navigation Tab My Leave is visible,Positive,Verify Top Navigation Tab My Leave is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The My Leave tab should be visible,Medium,SKIPPED
-TC_LEAVE_05,Leave,Leave,Verify Top Navigation Tab Entitlements dropdown is visible,Positive,Verify Top Navigation Tab Entitlements dropdown is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The 'Entitlements' element should be visible,Medium,SKIPPED
-TC_LEAVE_06,Leave,Leave,Verify Top Navigation Tab Reports dropdown is visible,Positive,Verify Top Navigation Tab Reports dropdown is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The 'Reports' element should be visible,Medium,SKIPPED
-TC_LEAVE_07,Leave,Leave,Verify Top Navigation Tab Configure dropdown is visible,Positive,Verify Top Navigation Tab Configure dropdown is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The 'Configure' element should be visible,Medium,SKIPPED
-TC_LEAVE_08,Leave,Leave,Verify Top Navigation Tab Leave List is visible,Positive,Verify Top Navigation Tab Leave List is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The 'Leave List' element should be visible,Medium,SKIPPED
-TC_LEAVE_09,Leave,Leave,Verify Top Navigation Tab Assign Leave is visible,Positive,Verify Top Navigation Tab Assign Leave is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The 'Assign Leave' element should be visible,Medium,SKIPPED
-TC_LEAVE_10,Leave,Leave,Verify validation error on empty Leave Type in Apply form,Negative,Verify validation error on empty Leave Type in Apply form,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the Apply tab
-2. Click the Apply button",- The 'Leave Type' element should display the text 'Required',Medium,SKIPPED
-TC_LEAVE_11,Leave,Leave,Verify From Date input field is visible,Positive,Verify From Date input field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The From Date field should be visible,Medium,SKIPPED
-TC_LEAVE_12,Leave,Leave,Verify To Date input field is visible,Positive,Verify To Date input field is visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The To Date field should be visible,Medium,SKIPPED
-TC_LEAVE_13,Leave,Leave,Verify comments textarea has correct maximum character details,Positive,Verify comments textarea has correct maximum character details,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the Apply tab,- The Comments field should be visible,Medium,SKIPPED
-TC_LEAVE_14,Leave,Leave,Verify calendar icon buttons exist next to date input fields,Positive,Verify calendar icon buttons exist next to date input fields,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The icons.first() should be visible,Medium,SKIPPED
-TC_LEAVE_15,Leave,Leave,Verify Show with Status multiselect chips exist in My Leave list filters,Positive,Verify Show with Status multiselect chips exist in My Leave list filters,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the My Leave tab,- The status chips should be visible,Medium,SKIPPED
-TC_LEAVE_16,Leave,Leave,Verify Leave Type dropdown filter is present in My Leave tab,Positive,Verify Leave Type dropdown filter is present in My Leave tab,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the My Leave tab,- The 'Leave Type' element should be visible,Medium,SKIPPED
-TC_LEAVE_17,Leave,Leave,Verify Reset button clears date inputs in My Leave filters,Positive,Verify Reset button clears date inputs in My Leave filters,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the My Leave tab
-2. Enter '2026-05-01' into the From Date field
-3. Click the 'Reset' element",- The val should not equal '2026-05-01',Medium,SKIPPED
-TC_LEAVE_18,Leave,Leave,Verify table headers in My Leave results page,Positive,Verify table headers in My Leave results page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the My Leave tab,- The header row should be visible,Medium,SKIPPED
-TC_LEAVE_19,Leave,Leave,Verify date validation error message if To Date is before From Date,Negative,Verify date validation error message if To Date is before From Date,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the Apply tab
-2. Click the From Date field
-3. Press the 'Control+A' key
-4. Press the 'Backspace' key
-5. Enter '2026-10-10' into the From Date field
-6. Press the 'Tab' key
-7. Click the To Date field
-8. Enter '2026-05-10' into the To Date field",- The 'To Date' element should display the text 'To date should be after from date',Medium,SKIPPED
-TC_LEAVE_20,Leave,Leave,Verify calendar widget opens when From Date input is clicked,Positive,Verify calendar widget opens when From Date input is clicked,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the Apply tab
-2. Click the From Date field",- The calendar widget should be visible,Medium,SKIPPED
-TC_LEAVE_21,Leave,Leave,Verify calendar widget opens when To Date input is clicked,Positive,Verify calendar widget opens when To Date input is clicked,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the Apply tab
-2. Click the To Date field",- The calendar widget should be visible,Medium,SKIPPED
-TC_LEAVE_22,Leave,Leave,Verify Leave page header title displays Leave,Positive,Verify Leave page header title displays Leave,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Perform the actions described in the test title,- The title should contain the text 'Leave',Medium,SKIPPED
-TC_LEAVE_23,Leave,Leave,Verify Leave Balance card is shown for specific leave types,Positive,Verify Leave Balance card is shown for specific leave types,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,"1. Click the Apply tab
-2. Click the Leave Type dropdown",- The balance should be present,Medium,SKIPPED
-TC_LEAVE_24,Leave,Leave,Verify My Leave list table rows can be scrolled and are visible,Positive,Verify My Leave list table rows can be scrolled and are visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the My Leave tab,- The table should be visible,Medium,SKIPPED
-TC_LEAVE_25,Leave,Leave,Verify search button on My Leave filters page has correct CSS layout,Positive,Verify search button on My Leave filters page has correct CSS layout,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the My Leave tab,- The submit element should be visible,Medium,SKIPPED
-TC_LEAVE_26,Leave,Leave,Verify Leave Type dropdown displays default placeholder text before selection,Positive,Verify Leave Type dropdown displays default placeholder text before selection,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the Apply tab,- The text should contain '-- Select --',Medium,SKIPPED
-TC_LEAVE_27,Leave,Leave,Verify Comments textarea accepts multi-line text input,Positive,Verify Comments textarea accepts multi-line text input,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Leave' module.,1. Click the Apply tab,- The value should equal 'multiline',Medium,SKIPPED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_LEAVE_01,Positive Functional,Apply leave request flow,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Apply leave (<start date>, <end date>, 'Vacation and personal time off request.')
+6. Read the latest leave status
+7. Verify the expected result","Login: Admin / admin123
+Comments: Vacation and personal time off request.
+Start date: calculated at run time
+End date: calculated at run time","- The latest leave status should be shown (not empty)
+- The leave status should be one of: Pending Approval, Scheduled, Taken, Cancelled",The leave request is submitted and listed in My Leave. User remains logged in as Admin.,"Chromium – PASS: As expected – all 2 checks passed.
+Firefox – PASS: As expected – all 2 checks passed.
+WebKit – FAIL: Attempt 1 failed: the click on .oxd-input-group:has-text(""Leave Type"") .oxd-select-text did not complete within 15 s although the element was visible, enabled and stable (application did not respond in time). Attempt 2 failed: check failed – expected not null, but got null.",FAIL
+TC_LEAVE_02,UI Verification,Verify leave type of applied leave request,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Read the latest leave type
+6. Verify the expected result","Login: Admin / admin123
+Start date: calculated at run time
+End date: calculated at run time",- The latest leave type should be shown (not empty),No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_03,UI Verification,Verify Top Navigation Tab Apply is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The Apply tab should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_04,UI Verification,Verify Top Navigation Tab My Leave is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The My Leave tab should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_05,UI Verification,Verify Top Navigation Tab Entitlements dropdown is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Entitlements' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_06,UI Verification,Verify Top Navigation Tab Reports dropdown is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Reports' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_07,UI Verification,Verify Top Navigation Tab Configure dropdown is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Configure' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_08,UI Verification,Verify Top Navigation Tab Leave List is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Leave List' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_09,UI Verification,Verify Top Navigation Tab Assign Leave is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Assign Leave' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_10,Negative / Validation,Verify validation error on empty Leave Type in Apply form,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Click the Apply button
+7. Verify the expected result",Login: Admin / admin123,- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_11,UI Verification,Verify From Date input field is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The From Date field should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_12,UI Verification,Verify To Date input field is visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The To Date field should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_13,Edge Case / Boundary,Verify comments textarea has correct maximum character details,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Verify the expected result",Login: Admin / admin123,- The Comments field should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_14,UI Verification,Verify calendar icon buttons exist next to date input fields,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result","Login: Admin / admin123
+Date: new Date() (generated at run time)",- The bi calendar element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_15,UI Verification,Verify Show with Status multiselect chips exist in My Leave list filters,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Verify the expected result",Login: Admin / admin123,- The multiselect chips area element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_16,UI Verification,Verify Leave Type dropdown filter is present in My Leave tab,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Verify the expected result",Login: Admin / admin123,- The 'Leave Type' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_17,Positive Functional,Verify Reset button clears date inputs in My Leave filters,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Enter '2026-05-01' into the From Date field
+7. Click the 'Reset' element
+8. Read the text of the From Date field
+9. Verify the expected result","Login: Admin / admin123
+Input: 2026-05-01",- The value of the From Date field should not equal '2026-05-01',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_18,UI Verification,Verify table headers in My Leave results page,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Verify the expected result",Login: Admin / admin123,- The table header element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_19,Negative / Validation,Verify date validation error message if To Date is before From Date,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Click the From Date field
+7. Press the 'Control+A' key
+8. Press the 'Backspace' key
+9. Enter '2026-10-10' into the From Date field
+10. Press the 'Tab' key
+11. Click the To Date field
+12. Press the 'Control+A' key
+13. Press the 'Backspace' key
+14. Enter '2026-05-10' into the To Date field
+15. Press the 'Tab' key
+16. Verify the expected result","Login: Admin / admin123
+Input: 2026-10-10
+Input: 2026-05-10
+Date: new Date() (generated at run time)",- The field validation message should show the text 'To date should be after from date',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_20,Positive Functional,Verify calendar widget opens when From Date input is clicked,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Click the From Date field
+7. Verify the expected result","Login: Admin / admin123
+Date: new Date() (generated at run time)",- The date input calendar element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_21,Positive Functional,Verify calendar widget opens when To Date input is clicked,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Click the To Date field
+7. Verify the expected result","Login: Admin / admin123
+Date: new Date() (generated at run time)",- The date input calendar element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_22,UI Verification,Verify Leave page header title displays Leave,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'Leave',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_23,UI Verification,Verify Leave Balance card is shown for specific leave types,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Click the Leave Type dropdown
+7. Click the dropdown option
+8. Verify the expected result",Login: Admin / admin123,- Leave Balance card is shown for specific leave types.,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.
+Firefox – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_24,UI Verification,Verify My Leave list table rows can be scrolled and are visible,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Verify the expected result",Login: Admin / admin123,- The table element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_25,UI Verification,Verify search button on My Leave filters page has correct CSS layout,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the My Leave tab
+6. Verify the expected result",Login: Admin / admin123,- The submit (Save/Login) button should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_26,Positive Functional,Verify Leave Type dropdown displays default placeholder text before selection,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Read the text of the Leave Type dropdown
+7. Verify the expected result",Login: Admin / admin123,- The text of the Leave Type dropdown should contain '-- Select --',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED
+TC_LEAVE_27,Positive Functional,Verify Comments textarea accepts multi-line text input,User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Leave' module from the side menu
+5. Click the Apply tab
+6. Enter 'Line one\nLine two\nLine three' into the Comments field
+7. Read the text of the Comments field
+8. Verify the expected result","Login: Admin / admin123
+Multiline: Line one\nLine two\nLine three",- The value of the Comments field should equal 'Line one\nLine two\nLine three',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.",BLOCKED

@@ -1,45 +1,160 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_DASH_01,Dashboard,Dashboard,Verify dashboard page loads after login,Positive,Verify dashboard page loads after login,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The header text should equal 'Dashboard',High,PASSED
-TC_DASH_02,Dashboard,Dashboard,Verify dashboard widgets are visible,Positive,Verify dashboard widgets are visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The widget count should be greater than '0'
-- The visible should equal 'true'",High,FAILED
-TC_DASH_03,Dashboard,Dashboard,Verify Time at Work widget is displayed,Positive,Verify Time at Work widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Time at Work' widget should be visible,High,FAILED
-TC_DASH_04,Dashboard,Dashboard,Verify My Actions widget is displayed,Positive,Verify My Actions widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'My Actions' widget should be visible,Medium,PASSED
-TC_DASH_05,Dashboard,Dashboard,Verify Quick Launch widget is displayed,Positive,Verify Quick Launch widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Quick Launch' widget should be visible,Medium,PASSED
-TC_DASH_06,Dashboard,Dashboard,Verify sidebar contains all main navigation items,Positive,Verify sidebar contains all main navigation items,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The dashboard page.sidebar link(module name) should be visible,Medium,PASSED
-TC_DASH_07,Dashboard,Dashboard,Verify logged-in user name is displayed in header,Positive,Verify logged-in user name is displayed in header,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The length should be greater than '0',Medium,PASSED
-TC_DASH_08,Dashboard,Dashboard,"Verify user dropdown shows About, Support, Change Password, Logout",Positive,"Verify user dropdown shows About, Support, Change Password, Logout",The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Open the user profile dropdown menu,"- The About link should be visible
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_DASH_01,Positive Functional,Verify dashboard page loads after login,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Read the header text
+5. Verify the expected result",Login: Admin / admin123,- The header text should equal 'Dashboard',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_02,UI Verification,Verify dashboard widgets are visible,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Read the widgets count
+5. Are widgets visible
+6. Verify the expected result",Login: Admin / admin123,"- The widgets count should be greater than 0
+- The visible should equal true",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_DASH_03,UI Verification,Verify Time at Work widget is displayed,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The 'Time at Work' widget should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_04,UI Verification,Verify My Actions widget is displayed,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The 'My Actions' widget should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_05,UI Verification,Verify Quick Launch widget is displayed,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The 'Quick Launch' widget should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_06,UI Verification,Verify sidebar contains all main navigation items,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The dashboard page.sidebar link(module name) should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_07,UI Verification,Verify logged-in user name is displayed in header,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Read the logged in user name
+5. Verify the expected result",Login: Admin / admin123,- The number of logged in user name should be greater than 0,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_08,UI Verification,"Verify user dropdown shows About, Support, Change Password, Logout",User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Verify the expected result",Login: Admin / admin123,"- The About link should be visible
 - The Support link should be visible
 - The Change Password link should be visible
-- The Logout link should be visible",Medium,PASSED
-TC_DASH_09,Dashboard,Dashboard,Verify sidebar collapse and expand functionality,Positive,Verify sidebar collapse and expand functionality,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the sidebar collapse toggle,"- The sidebar navigation panel should be visible
-- The sidebar navigation panel should have a CSS class matching a value matching /toggled/
-- The sidebar navigation panel should not have a CSS class matching a value matching /toggled/",Medium,PASSED
-TC_DASH_10,Dashboard,Dashboard,Verify Employees on Leave Today widget is displayed,Positive,Verify Employees on Leave Today widget is displayed,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Employees on Leave Today' widget should be visible,Medium,PASSED
-TC_DASH_11,Dashboard,Dashboard,Verify sidebar search filters navigation items,Positive,Verify sidebar search filters navigation items,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Type into the sidebar module search box,- The dashboard page.sidebar link('admin') should be visible,Medium,PASSED
-TC_DASH_12,Dashboard,Dashboard,Verify dashboard URL contains correct path,Positive,Verify dashboard URL contains correct path,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The dashboard page.page.url() should contain '/dashboard/index',Medium,PASSED
-TC_DASH_13,Dashboard,Dashboard,Verify user profile dropdown image has valid attributes,Positive,Verify user profile dropdown image has valid attributes,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The img should be visible
-- The src should not be null
-- The length should be greater than '0'
-- The width should be greater than '0'
-- The height should be greater than '0'",Medium,PASSED
-TC_DASH_14,Dashboard,Dashboard,Verify corporate branding logo is visible in sidebar header,Positive,Verify corporate branding logo is visible in sidebar header,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The brand should be visible,Medium,PASSED
-TC_DASH_15,Dashboard,Dashboard,Verify sidebar search input is functional,Positive,Verify sidebar search input is functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,"- The sidebar search field should be visible
-- The placeholder should equal 'Search'",Medium,PASSED
-TC_DASH_16,Dashboard,Dashboard,Verify dashboard widgets have correct card container CSS classes,Positive,Verify dashboard widgets have correct card container CSS classes,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The first widget should have a CSS class matching a value matching /orangehrm-dashboard-widget/,Medium,PASSED
-TC_DASH_17,Dashboard,Dashboard,Verify Assign Leave link in Quick Launch redirects properly,Positive,Verify Assign Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Assign Leave' element,- The page.url() should contain '/leave/assignLeave',Medium,PASSED
-TC_DASH_18,Dashboard,Dashboard,Verify Leave List link in Quick Launch redirects properly,Positive,Verify Leave List link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Leave List' element,- The page.url() should contain '/leave/viewLeaveList',Medium,PASSED
-TC_DASH_19,Dashboard,Dashboard,Verify Timesheets link in Quick Launch redirects properly,Positive,Verify Timesheets link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Timesheets' element,- The page.url() should contain '/time/viewEmployeeTimesheet',Medium,PASSED
-TC_DASH_20,Dashboard,Dashboard,Verify Apply Leave link in Quick Launch redirects properly,Positive,Verify Apply Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'Apply Leave' element,- The page.url() should contain '/leave/applyLeave',Medium,PASSED
-TC_DASH_21,Dashboard,Dashboard,Verify My Leave link in Quick Launch redirects properly,Positive,Verify My Leave link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'My Leave' element,- The page.url() should contain '/leave/viewMyLeaveList',Medium,PASSED
-TC_DASH_22,Dashboard,Dashboard,Verify My Timesheet link in Quick Launch redirects properly,Positive,Verify My Timesheet link in Quick Launch redirects properly,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Click the 'My Timesheet' element,- The page.url() should contain '/time/viewMyTimesheet',Medium,PASSED
-TC_DASH_23,Dashboard,Dashboard,Verify Support option opens support page,Positive,Verify Support option opens support page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,"1. Open the user profile dropdown menu
-2. Click the Support link",- The page.url() should contain '/help/support',Medium,PASSED
-TC_DASH_24,Dashboard,Dashboard,Verify About link displays modal pop-up,Positive,Verify About link displays modal pop-up,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,"1. Open the user profile dropdown menu
-2. Click the About link
-3. Click the oxd dialog close button element","- The modal should be visible
-- The modal should not be visible",Medium,PASSED
-TC_DASH_25,Dashboard,Dashboard,Verify dashboard topbar has header with correct tags,Positive,Verify dashboard topbar has header with correct tags,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The title should be visible,Medium,PASSED
-TC_DASH_26,Dashboard,Dashboard,Verify Buzz Latest Posts widget is displayed on dashboard,Positive,Verify Buzz Latest Posts widget is displayed on dashboard,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Perform the actions described in the test title,- The 'Buzz Latest Posts' widget should be visible,Medium,PASSED
-TC_DASH_27,Dashboard,Dashboard,Verify sidebar search with a non-existent module name shows no matching navigation link,Negative,Verify sidebar search with a non-existent module name shows no matching navigation link,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Type into the sidebar module search box,- The oxd main menu item element should equal '0',Medium,PASSED
-TC_DASH_28,Dashboard,Dashboard,Verify user dropdown menu closes after selecting Escape or clicking elsewhere,Positive,Verify user dropdown menu closes after selecting Escape or clicking elsewhere,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded.,1. Open the user profile dropdown menu,"- The Logout link should be visible
-- The Logout link should not be visible",Medium,PASSED
+- The Logout link should be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 4 checks passed.",PASS
+TC_DASH_09,UI Verification,Verify sidebar collapse and expand functionality,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the sidebar collapse toggle
+5. Click the sidebar collapse toggle
+6. Verify the expected result",Login: Admin / admin123,"- The sidebar navigation panel should be visible
+- The sidebar navigation panel should have a CSS class matching /toggled/
+- The sidebar navigation panel should not have a CSS class matching /toggled/",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 3 checks passed.",PASS
+TC_DASH_10,UI Verification,Verify Employees on Leave Today widget is displayed,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The 'Employees on Leave Today' widget should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_11,Positive Functional,Verify sidebar search filters navigation items,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Type 'Admin' into the side-menu search box
+5. Verify the expected result","Login: Admin / admin123
+Search module input: Admin",- The dashboard page.sidebar link('admin') should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_12,UI Verification,Verify dashboard URL contains correct path,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The dashboard page.page.url() should contain '/dashboard/index',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_13,UI Verification,Verify user profile dropdown image has valid attributes,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Read the 'src' attribute of the userdropdown img element
+5. Verify the expected result",Login: Admin / admin123,"- The userdropdown img element should be visible
+- The 'src' attribute of the userdropdown img element should be shown (not empty)
+- The number of 'src' attribute of the userdropdown img element should be greater than 0
+- The width should be greater than 0
+- The height should be greater than 0",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 5 checks passed.",PASS
+TC_DASH_14,UI Verification,Verify corporate branding logo is visible in sidebar header,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The brand banner element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_15,Positive Functional,Verify sidebar search input is functional,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Read the 'placeholder' attribute of the sidebar search field
+5. Verify the expected result",Login: Admin / admin123,"- The sidebar search field should be visible
+- The 'placeholder' attribute of the sidebar search field should equal 'Search'",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_DASH_16,UI Verification,Verify dashboard widgets have correct card container CSS classes,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The dashboard widget element should have a CSS class matching /orangehrm-dashboard-widget/,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_17,UI Verification,Verify Assign Leave link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'Assign Leave' element (only if the condition in the test is met)
+5. Wait for navigation to **/leave/assignLeave (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/leave/assignLeave',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_18,UI Verification,Verify Leave List link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'Leave List' element (only if the condition in the test is met)
+5. Wait for navigation to **/leave/viewLeaveList (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/leave/viewLeaveList',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_19,UI Verification,Verify Timesheets link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'Timesheets' element (only if the condition in the test is met)
+5. Wait for navigation to **/time/viewEmployeeTimesheet (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/time/viewEmployeeTimesheet',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_20,Positive Functional,Verify Apply Leave link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'Apply Leave' element (only if the condition in the test is met)
+5. Wait for navigation to **/leave/applyLeave (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/leave/applyLeave',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_21,UI Verification,Verify My Leave link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'My Leave' element (only if the condition in the test is met)
+5. Wait for navigation to **/leave/viewMyLeaveList (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/leave/viewMyLeaveList',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_22,UI Verification,Verify My Timesheet link in Quick Launch redirects properly,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Click the 'My Timesheet' element (only if the condition in the test is met)
+5. Wait for navigation to **/time/viewMyTimesheet (only if the condition in the test is met)
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/time/viewMyTimesheet',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_DASH_23,Positive Functional,Verify Support option opens support page,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Click the Support link
+6. Wait for navigation to **/help/support
+7. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/help/support',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_24,UI Verification,Verify About link displays modal pop-up,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Click the About link
+6. Click the dialog close button element
+7. Verify the expected result",Login: Admin / admin123,"- The dialog sheet element should be visible
+- The dialog sheet element should not be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_DASH_25,UI Verification,Verify dashboard topbar has header with correct tags,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The topbar header title element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_26,Positive Functional,Verify Buzz Latest Posts widget is displayed on dashboard,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result",Login: Admin / admin123,- The 'Buzz Latest Posts' widget should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_27,Negative / Validation,Verify sidebar search with a non-existent module name shows no matching navigation link,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Type 'NonExistentModuleXYZ123' into the side-menu search box
+5. Count the main menu item elements
+6. Verify the expected result","Login: Admin / admin123
+Search module input: NonExistentModuleXYZ123",- The number of main menu item elements should equal 0,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_DASH_28,Positive Functional,Verify user dropdown menu closes after selecting Escape or clicking elsewhere,User is logged in as Admin.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Click the page header breadcrumb
+6. Verify the expected result",Login: Admin / admin123,"- The Logout link should be visible
+- The Logout link should not be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS

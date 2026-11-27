@@ -1,40 +1,199 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_TIME_01,Time,Time,Verify Time page loads with sub-navigation headers,Positive,Verify Time page loads with sub-navigation headers,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,"- The header should equal 'Time'
-- The tabs visible should equal 'true'",High,PASSED
-TC_TIME_02,Time,Time,Verify access to My Timesheets page,Positive,Verify access to My Timesheets page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the My Timesheets page,- The heading should be visible,High,PASSED
-TC_TIME_03,Time,Time,Verify access to Punch In/Out attendance page,Positive,Verify access to Punch In/Out attendance page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The 'Punch In' element should be visible,High,PASSED
-TC_TIME_04,Time,Time,Verify search button validation with empty/invalid inputs in employee timesheets,Negative,Verify search button validation with empty/invalid inputs in employee timesheets,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
-2. Click the Employee Timesheets link
-3. Click the View button","- The error text should be visible
-- The error text should display the text 'Required'",Medium,PASSED
-TC_TIME_05,Time,Time,Verify top navigation contains Reports tab,Positive,Verify top navigation contains Reports tab,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Reports tab should be visible,Medium,PASSED
-TC_TIME_06,Time,Time,Verify top navigation contains Project Info tab,Positive,Verify top navigation contains Project Info tab,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Project Info tab should be visible,Medium,PASSED
-TC_TIME_07,Time,Time,Verify Customers option exists under Project Info,Positive,Verify Customers option exists under Project Info,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,- The 'Customers' element should be visible,Medium,PASSED
-TC_TIME_08,Time,Time,Verify Projects option exists under Project Info,Positive,Verify Projects option exists under Project Info,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,- The 'Projects' element should be visible,Medium,PASSED
-TC_TIME_09,Time,Time,Verify Project Info menu contains exactly Customers and Projects options,Positive,Verify Project Info menu contains exactly Customers and Projects options,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Project Info tab,"- The items should have a count of '2'
-- The items.nth(0) should display the text 'Customers'
-- The items.nth(1) should display the text 'Projects'",Medium,PASSED
-TC_TIME_10,Time,Time,Verify Project Reports option exists under Reports menu,Positive,Verify Project Reports option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Project Reports' element should be visible,Medium,PASSED
-TC_TIME_11,Time,Time,Verify Employee Reports option exists under Reports menu,Positive,Verify Employee Reports option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Employee Reports' element should be visible,Medium,PASSED
-TC_TIME_12,Time,Time,Verify Attendance Summary option exists under Reports menu,Positive,Verify Attendance Summary option exists under Reports menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Reports tab,- The 'Attendance Summary' element should be visible,Medium,PASSED
-TC_TIME_13,Time,Time,Verify employee name search input field exists on Employee Timesheets page,Positive,Verify employee name search input field exists on Employee Timesheets page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
-2. Click the Employee Timesheets link",- The Employee Name field should be visible,Medium,PASSED
-TC_TIME_14,Time,Time,Verify punch page has date input element,Positive,Verify punch page has date input element,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The date input should be visible,Medium,PASSED
-TC_TIME_15,Time,Time,Verify punch page has time input element,Positive,Verify punch page has time input element,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The time input should be visible,Medium,PASSED
-TC_TIME_16,Time,Time,Verify punch page note textarea is functional,Positive,Verify punch page note textarea is functional,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The textarea element should be visible,Medium,PASSED
-TC_TIME_17,Time,Time,Verify attendance table headers in My Records page,Positive,Verify attendance table headers in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The col header should be visible,Medium,PASSED
-TC_TIME_18,Time,Time,Verify My Records date picker input elements exist,Positive,Verify My Records date picker input elements exist,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The await date inputs.count() should be greater than '0',Medium,PASSED
-TC_TIME_19,Time,Time,Verify calendar pop-up opens on clicking date input in My Records page,Positive,Verify calendar pop-up opens on clicking date input in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Navigate to the Attendance My Records page
-2. Click the date input",- The calendar should be visible,Medium,PASSED
-TC_TIME_20,Time,Time,Verify Date filter and View button are present in My Records page,Positive,Verify Date filter and View button are present in My Records page,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,"- The date input should be visible
-- The 'View' element should be visible",Medium,PASSED
-TC_TIME_21,Time,Time,Verify view records button text contains View,Positive,Verify view records button text contains View,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Attendance My Records page,- The submit element should display the text 'View',Medium,PASSED
-TC_TIME_22,Time,Time,Verify breadcrumb title text details are visible,Positive,Verify breadcrumb title text details are visible,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The breadcrumb should contain the text 'Time',Medium,PASSED
-TC_TIME_23,Time,Time,Verify Timesheets menu is visible in sub-navigation bar,Positive,Verify Timesheets menu is visible in sub-navigation bar,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Timesheets tab should be visible,Medium,PASSED
-TC_TIME_24,Time,Time,Verify Attendance menu is visible in sub-navigation bar,Positive,Verify Attendance menu is visible in sub-navigation bar,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Perform the actions described in the test title,- The Attendance tab should be visible,Medium,PASSED
-TC_TIME_25,Time,Time,Verify Punch In button exists in Punch page when logged out or punched out,Positive,Verify Punch In button exists in Punch page when logged out or punched out,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Navigate to the Punch In/Out page,- The await in btn.count() should be greater than '0',Medium,PASSED
-TC_TIME_26,Time,Time,Verify Employee Records option is visible under Attendance menu,Positive,Verify Employee Records option is visible under Attendance menu,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,1. Click the Attendance tab,- The Employee Records link should be visible,Medium,PASSED
-TC_TIME_27,Time,Time,Verify Employee Timesheets search with a non-existent employee name shows required validation,Negative,Verify Employee Timesheets search with a non-existent employee name shows required validation,The user is logged in to OrangeHRM with valid credentials and the Dashboard has loaded. The user has navigated to the 'Time' module.,"1. Click the Timesheets tab
-2. Click the Employee Timesheets link
-3. Enter 'NonExistentEmployeeXYZ' into the Employee Name field
-4. Click the View button",- The error text should be visible,Medium,PASSED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_TIME_01,UI Verification,Verify Time page loads with sub-navigation headers,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Read the header text
+7. Are all tabs visible
+8. Verify the expected result",Login: Admin / admin123,"- The header text should equal 'Time'
+- The tabs visible should equal true",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_TIME_02,UI Verification,Verify access to My Timesheets page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to my timesheets
+7. Verify the expected result",Login: Admin / admin123,- The main title element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_03,UI Verification,Verify access to Punch In/Out attendance page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to punch in out
+7. Verify the expected result",Login: Admin / admin123,- The 'Punch In' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_04,Negative / Validation,Verify search button validation with empty/invalid inputs in employee timesheets,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the timesheets tab
+7. Click the employee timesheets link
+8. Click the view button
+9. Verify the expected result",Login: Admin / admin123,"- The field validation message should be visible
+- The field validation message should show the text 'Required'",No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_TIME_05,UI Verification,Verify top navigation contains Reports tab,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Verify the expected result",Login: Admin / admin123,- The reports tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_06,UI Verification,Verify top navigation contains Project Info tab,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Verify the expected result",Login: Admin / admin123,- The project info tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_07,UI Verification,Verify Customers option exists under Project Info,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the project info tab
+7. Verify the expected result",Login: Admin / admin123,- The 'Customers' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_08,UI Verification,Verify Projects option exists under Project Info,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the project info tab
+7. Verify the expected result",Login: Admin / admin123,- The 'Projects' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_09,UI Verification,Verify Project Info menu contains exactly Customers and Projects options,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the project info tab
+7. Verify the expected result",Login: Admin / admin123,"- The dropdown menu element should appear exactly 2 times
+- The dropdown menu element should show the text 'Customers'
+- The dropdown menu element should show the text 'Projects'",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 3 checks passed.",PASS
+TC_TIME_10,UI Verification,Verify Project Reports option exists under Reports menu,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the reports tab
+7. Verify the expected result",Login: Admin / admin123,- The 'Project Reports' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_11,UI Verification,Verify Employee Reports option exists under Reports menu,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the reports tab
+7. Verify the expected result",Login: Admin / admin123,- The 'Employee Reports' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_12,UI Verification,Verify Attendance Summary option exists under Reports menu,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the reports tab
+7. Verify the expected result",Login: Admin / admin123,- The 'Attendance Summary' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_13,UI Verification,Verify employee name search input field exists on Employee Timesheets page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the timesheets tab
+7. Click the employee timesheets link
+8. Verify the expected result",Login: Admin / admin123,- The Employee Name field should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_14,UI Verification,Verify punch page has date input element,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to punch in out
+7. Verify the expected result",Login: Admin / admin123,- The date input element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_15,UI Verification,Verify punch page has time input element,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to punch in out
+7. Verify the expected result",Login: Admin / admin123,- The time input element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_16,UI Verification,Verify punch page note textarea is functional,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to punch in out
+7. Verify the expected result",Login: Admin / admin123,- The textarea element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_17,UI Verification,Verify attendance table headers in My Records page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to attendance records
+7. Verify the expected result",Login: Admin / admin123,- The table header element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_18,UI Verification,Verify My Records date picker input elements exist,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to attendance records
+7. Verify the expected result",Login: Admin / admin123,- The number of date input elements should be greater than 0,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_19,Positive Functional,Verify calendar pop-up opens on clicking date input in My Records page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to attendance records
+7. Click the date input element
+8. Verify the expected result",Login: Admin / admin123,- The date input calendar element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_20,Positive Functional,Verify Date filter and View button are present in My Records page,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to attendance records
+7. Verify the expected result",Login: Admin / admin123,"- The date input element should be visible
+- The 'View' element should be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_TIME_21,UI Verification,Verify view records button text contains View,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to attendance records
+7. Verify the expected result",Login: Admin / admin123,- The submit (Save/Login) button should show the text 'View',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_22,UI Verification,Verify breadcrumb title text details are visible,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'Time',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_23,UI Verification,Verify Timesheets menu is visible in sub-navigation bar,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Verify the expected result",Login: Admin / admin123,- The timesheets tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_24,UI Verification,Verify Attendance menu is visible in sub-navigation bar,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Verify the expected result",Login: Admin / admin123,- The attendance tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_25,UI Verification,Verify Punch In button exists in Punch page when logged out or punched out,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Navigate to punch in out
+7. Verify the expected result",Login: Admin / admin123,- The number of 'In' elements should be greater than 0,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_26,Positive Functional,Verify Employee Records option is visible under Attendance menu,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the attendance tab
+7. Verify the expected result",Login: Admin / admin123,- The employee records link should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_TIME_27,Negative / Validation,Verify Employee Timesheets search with a non-existent employee name shows required validation,User is logged in as Admin and the Time module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Time' module from the side menu
+5. Wait for the time page to load
+6. Click the timesheets tab
+7. Click the employee timesheets link
+8. Enter 'NonExistentEmployeeXYZ' into the Employee Name field
+9. Click the view button
+10. Verify the expected result","Login: Admin / admin123
+Input: NonExistentEmployeeXYZ",- The field validation message should be visible,No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS

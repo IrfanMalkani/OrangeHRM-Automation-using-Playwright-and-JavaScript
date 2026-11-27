@@ -1,642 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - Validations Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – Validations Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – Validations Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>Validations</b></div><div><span>Total Test Cases</span><b>29</b></div><div><span>Report Generated</span><b>2026-11-27 12:28:20 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">29</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">29</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">0</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">0</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">0</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">100.0%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">0.0%</div></div>
+</div>
+<h2>Key Observations</h2><div class="panel text"><ul><li>All executed test cases passed.</li><li>7 passed test cases are marked &quot;Not Verified&quot;: their check cannot fail, so the behaviour was not actually confirmed. These tests need stronger checks.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>Validations</td><td>29</td><td>29</td><td>0</td><td>0</td><td>0</td><td>100.0%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (29)</button><button data-f="PASS">Passed (29)</button><button data-f="FAIL">Failed (0)</button><button data-f="SKIPPED">Skipped (0)</button><button data-f="BLOCKED">Blocked (0)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
+</div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_01</td><td>Validations</td><td>Verify required field validations for empty fields</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The username validation text should equal 'Required'<br>- The password validation text should equal 'Required'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Click Login without entering any credentials<br>3. Read the username validation text<br>4. Read the password validation text<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:54 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_02</td><td>Validations</td><td>Verify validation when only password is entered</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The username validation text should equal 'Required'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter only the password and click Login<br>3. Read the username validation text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login with password only input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:54 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_03</td><td>Validations</td><td>Verify validation when only username is entered</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The password validation text should equal 'Required'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter only the username and click Login<br>3. Read the password validation text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login with username only input: Admin</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:58 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_04</td><td>Validations</td><td>Verify login fails with special characters in credentials</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username '&lt;script&gt;alert(1)&lt;/script&gt;' and password '!@#$%^&amp;*()'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: &lt;script&gt;alert(1)&lt;/script&gt;<br>Login input: !@#$%^&amp;*()</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:59 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_05</td><td>Validations</td><td>Verify validation error message when username has only spaces</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Validation error message when username has only spaces.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username '    ' and password 'admin123'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input:     <br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:03 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_06</td><td>Validations</td><td>Verify validation error message when password has only spaces</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Validation error message when password has only spaces.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'Admin' and password '    '<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: Admin<br>Login input:     </dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:03 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_07</td><td>Validations</td><td>Verify login fails with SQL Injection payload in username</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Security / Session</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: ' OR '1'='1<br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:04 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_08</td><td>Validations</td><td>Verify login fails with SQL Injection payload in password</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Security / Session</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'Admin' and password &quot;'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: Admin<br>Login input: ' OR '1'='1</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:11 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_09</td><td>Validations</td><td>Verify error validation text elements have correct text color (red)</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Error validation text elements have correct text color (red).</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Click Login without entering any credentials<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:17 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_10</td><td>Validations</td><td>Verify username field does not exceed max length limit of HTML standards</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'maxlength' attribute of the Username field should be empty</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Read the 'maxlength' attribute of the Username field<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:21 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_11</td><td>Validations</td><td>Verify password field does not exceed max length limit of HTML standards</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'maxlength' attribute of the Password field should be empty</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Read the 'maxlength' attribute of the Password field<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:22 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_12</td><td>Validations</td><td>Verify error message font weight is responsive</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Error message font weight is responsive.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Responsive Layout</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Click Login without entering any credentials<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:23 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_13</td><td>Validations</td><td>Verify input error borders are styled on required error trigger</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Input error borders are styled on required error trigger.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Click Login without entering any credentials<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:25 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_14</td><td>Validations</td><td>Verify form submits only when all validation requirements are met</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Form submits only when all validation requirements are met.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:27 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_15</td><td>Validations</td><td>Verify username input case-sensitivity</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Username input case-sensitivity.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'ADMIN' and password 'admin123'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: ADMIN<br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:27 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_16</td><td>Validations</td><td>Verify password input case-sensitivity</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'Admin' and password 'ADMIN123'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: Admin<br>Login input: ADMIN123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:29 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_17</td><td>Validations</td><td>Verify error alert has company icon or style container</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert message should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'invalidUser' and password 'invalidPass'<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: invalidUser<br>Login input: invalidPass</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:31 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_18</td><td>Validations</td><td>Verify login page form submission tag exists</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The form element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:31 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_19</td><td>Validations</td><td>Verify login button is of type submit</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'type' attribute of the Login button should equal 'submit'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Read the 'type' attribute of the Login button<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:34 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_20</td><td>Validations</td><td>Verify field label tags are capitalized</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Username' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:36 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_21</td><td>Validations</td><td>Verify password input field has password autocomplete settings</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'type' attribute of the Password field should equal 'password'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Read the 'type' attribute of the Password field<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:37 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_22</td><td>Validations</td><td>Verify spacing styles around form input groupings</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The form row element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:37 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_23</td><td>Validations</td><td>Verify login button displays hover class transitions</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Login button displays hover class transitions.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:39 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_24</td><td>Validations</td><td>Verify HTML lang details exist on login viewport</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- HTML lang details exist on login viewport.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Responsive Layout</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Read the 'lang' attribute of the html element<br>3. Verify the expected result</dd><dt>Test Data</dt><dd>Not applicable (UI check only)</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:39 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_25</td><td>Validations</td><td>Verify validation on long username does not crash backend</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Long username: 'a' repeated 100 times<br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:41 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_26</td><td>Validations</td><td>Verify login fails safely with an XSS script payload in the password field</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'<br>- The dialog fired should equal false</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username 'Admin' and password &quot;&lt;script&gt;alert('<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: Admin<br>Login input: &lt;script&gt;alert('xss')&lt;/script&gt;</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:41 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_27</td><td>Validations</td><td>Verify login fails with unicode and emoji characters in the username</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The ['invalid credentials', 'unexpected error occurred'] should contain (error text)</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username '用户😀Test' and password 'admin123'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: 用户😀Test<br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:42 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_28</td><td>Validations</td><td>Verify login fails when username contains only control/whitespace characters</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Login fails when username contains only control/whitespace characters.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Log in with username '\t\n' and password 'admin123'<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Login input: \t\n<br>Login input: admin123</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:43 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Validations">
+<td class="id">TC_VALID_29</td><td>Validations</td><td>Verify login fails with an extremely long password without a server error</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The error alert text should equal 'Invalid credentials'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>The login page is open (user not logged in).</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Read the error alert text<br>4. Verify the expected result</dd><dt>Test Data</dt><dd>Long password: 'P@ssw0rd' repeated 50 times<br>Login input: Admin</dd><dt>Post Condition</dt><dd>User is not logged in; the login page stays open.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:45 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr></tbody></table></div>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - Validations Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>14/8/2026, 6:06:11 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">29</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">29</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">0</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">100.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_VALID_01</strong></td>
-                <td>
-                  <div>Verify required field validations for empty fields</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>8.16s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_02</strong></td>
-                <td>
-                  <div>Verify validation when only password is entered</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>8.76s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_03</strong></td>
-                <td>
-                  <div>Verify validation when only username is entered</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>10.37s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_04</strong></td>
-                <td>
-                  <div>Verify login fails with special characters in credentials</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>17.01s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_05</strong></td>
-                <td>
-                  <div>Verify validation error message when username has only spaces</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>23.42s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_06</strong></td>
-                <td>
-                  <div>Verify validation error message when password has only spaces</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>25.29s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_07</strong></td>
-                <td>
-                  <div>Verify login fails with SQL Injection payload in username</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>16.54s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_08</strong></td>
-                <td>
-                  <div>Verify login fails with SQL Injection payload in password</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>20.09s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_09</strong></td>
-                <td>
-                  <div>Verify error validation text elements have correct text color (red)</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>10.52s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_10</strong></td>
-                <td>
-                  <div>Verify username field does not exceed max length limit of HTML standards</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>11.52s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_11</strong></td>
-                <td>
-                  <div>Verify password field does not exceed max length limit of HTML standards</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>9.81s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_12</strong></td>
-                <td>
-                  <div>Verify error message font weight is responsive</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>9.34s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_13</strong></td>
-                <td>
-                  <div>Verify input error borders are styled on required error trigger</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>9.29s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_14</strong></td>
-                <td>
-                  <div>Verify form submits only when all validation requirements are met</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>11.70s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_15</strong></td>
-                <td>
-                  <div>Verify username input case-sensitivity</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>28.22s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_16</strong></td>
-                <td>
-                  <div>Verify password input case-sensitivity</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>20.14s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_17</strong></td>
-                <td>
-                  <div>Verify error alert has company icon or style container</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>17.36s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_18</strong></td>
-                <td>
-                  <div>Verify login page form submission tag exists</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>8.10s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_19</strong></td>
-                <td>
-                  <div>Verify login button is of type submit</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>8.59s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_20</strong></td>
-                <td>
-                  <div>Verify field label tags are capitalized</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>6.91s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_21</strong></td>
-                <td>
-                  <div>Verify password input field has password autocomplete settings</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>6.97s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_22</strong></td>
-                <td>
-                  <div>Verify spacing styles around form input groupings</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>5.89s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_23</strong></td>
-                <td>
-                  <div>Verify login button displays hover class transitions</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>6.47s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_24</strong></td>
-                <td>
-                  <div>Verify HTML lang details exist on login viewport</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>7.96s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_25</strong></td>
-                <td>
-                  <div>Verify validation on long username does not crash backend</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>14.59s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_26</strong></td>
-                <td>
-                  <div>Verify login fails safely with an XSS script payload in the password field</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>11.79s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_27</strong></td>
-                <td>
-                  <div>Verify login fails with unicode and emoji characters in the username</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>17.13s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_28</strong></td>
-                <td>
-                  <div>Verify login fails when username contains only control/whitespace characters</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>24.41s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_VALID_29</strong></td>
-                <td>
-                  <div>Verify login fails with an extremely long password without a server error</div>
-                  
-                </td>
-                <td>validations.spec.js</td>
-                <td>15.93s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
-
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:28:20 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>

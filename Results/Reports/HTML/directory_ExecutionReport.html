@@ -1,631 +1,285 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - Directory Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – Directory Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – Directory Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>Directory</b></div><div><span>Total Test Cases</span><b>28</b></div><div><span>Report Generated</span><b>2026-11-27 12:28:20 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">28</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">27</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">1</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">0</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">0</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">96.4%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">3.6%</div></div>
+</div>
+<h2>Key Observations</h2><div class="panel text"><ul><li>1 test case failed because the application did not behave as expected and need investigation: TC_DIR_04 (Verify searching with invalid employee name returns no records).</li><li>9 passed test cases are marked &quot;Not Verified&quot;: their check cannot fail, so the behaviour was not actually confirmed. These tests need stronger checks.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>Directory</td><td>28</td><td>27</td><td>1</td><td>0</td><td>0</td><td>96.4%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (28)</button><button data-f="PASS">Passed (27)</button><button data-f="FAIL">Failed (1)</button><button data-f="SKIPPED">Skipped (0)</button><button data-f="BLOCKED">Blocked (0)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
+</div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_01</td><td>Directory</td><td>Verify Directory page load and header breadcrumb</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The header text should equal 'Directory'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Read the header text<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:08:51 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_02</td><td>Directory</td><td>Verify search functionality by Job Title</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The directory page.is no records visible() should equal true<br>- The employee card count should be greater than 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Search by job title ('Account Assistant')<br>7. Read the employee card count<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Search by job title input: Account Assistant</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:08:52 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_03</td><td>Directory</td><td>Verify reset button clears search parameters</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The text of the Job Title dropdown should contain '-- Select --'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Click the Job Title dropdown<br>7. Click the directory page.select option('account assistant')<br>8. Reset search<br>9. Read the text of the Job Title dropdown<br>10. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Option: Account Assistant</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:08:55 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="FAIL" data-module="Directory">
+<td class="id">TC_DIR_04</td><td>Directory</td><td>Verify searching with invalid employee name returns no records</td>
+<td><span class="st FAIL">FAIL</span></td>
+<td>- Searching with invalid employee name returns no records.</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – FAIL: Failed on all 2 attempts: check failed – expected true, but got false.</td><td>WebKit: Application behaviour did not match: check failed – expected true, but got false.</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Enter 'NonExistentEmployeeXYZ' into the Employee Name field<br>7. Click the Search button<br>8. Check that the 'no records' message is shown on the directory page<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: NonExistentEmployeeXYZ</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:08:59 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Screenshot (attempt 1): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit/test-failed-1.png<br>Video (attempt 1): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit/video.webm<br>Trace (attempt 1): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit/trace.zip<br>Screenshot (attempt 2): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit-retry1/test-failed-1.png<br>Video (attempt 2): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit-retry1/video.webm<br>Trace (attempt 2): Results/Evidence/directory-OrangeHRM-Direct-dcb49-yee-name-returns-no-records-webkit-retry1/trace.zip</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_05</td><td>Directory</td><td>Verify Location dropdown filter is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Location dropdown should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:02 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_06</td><td>Directory</td><td>Verify Job Title dropdown filter is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Job Title dropdown should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:06 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_07</td><td>Directory</td><td>Verify Employee Name input field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Employee Name field should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:12 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_08</td><td>Directory</td><td>Verify Search button is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Search button should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:13 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_09</td><td>Directory</td><td>Verify Reset button is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Reset Password button should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:16 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_10</td><td>Directory</td><td>Verify card grid container is visible in search results</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The container element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:18 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_11</td><td>Directory</td><td>Verify employee card has image element</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Employee card has image element.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:23 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_12</td><td>Directory</td><td>Verify employee card has name header link</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Employee card has name header link.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:29 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_13</td><td>Directory</td><td>Verify employee card job title text block exists</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Employee card job title text block exists.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:30 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_14</td><td>Directory</td><td>Verify employee card location text block exists</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Employee card location text block exists.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:33 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_15</td><td>Directory</td><td>Verify autocomplete options container is hidden on page load</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The autocomplete suggestion should not be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:37 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_16</td><td>Directory</td><td>Verify search by Location filter option functionality</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Search by Location filter option functionality.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Click the Location dropdown<br>7. Read the text of the select option element (only if the condition in the test is met)<br>8. Click the select option element (only if the condition in the test is met)<br>9. Click the Search button (only if the condition in the test is met)<br>10. Read the employee card count (only if the condition in the test is met)<br>11. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:41 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_17</td><td>Directory</td><td>Verify Location dropdown is reset to -- Select -- on Reset click</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The text of the Location dropdown should contain '-- Select --'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Click the Location dropdown<br>7. Click the select option element (only if the condition in the test is met)<br>8. Reset search (only if the condition in the test is met)<br>9. Read the text of the Location dropdown (only if the condition in the test is met)<br>10. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:47 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_18</td><td>Directory</td><td>Verify Search button has type submit attribute</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'type' attribute of the Search button should equal 'submit'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Read the 'type' attribute of the Search button<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:48 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_19</td><td>Directory</td><td>Verify search cards count text matches results length</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Search cards count text matches results length.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Read the employee card count<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:52 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_20</td><td>Directory</td><td>Verify employee name input accepts keyboard tab navigation</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Job Title' element should have keyboard focus</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Focus the Employee Name field<br>7. Press the 'Tab' key<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:54 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_21</td><td>Directory</td><td>Verify directory layout contains search parameters fold collapsible element</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The table filter element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:57 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_22</td><td>Directory</td><td>Verify search panel title is Directory</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The topbar header title element should contain the text 'Directory'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:09:59 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_23</td><td>Directory</td><td>Verify employee list is scrollable</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The container element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:00 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_24</td><td>Directory</td><td>Verify reset button hover styling properties</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Reset button hover styling properties.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:03 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_25</td><td>Directory</td><td>Verify search input field placeholder matches default text hint</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'placeholder' attribute of the Employee Name field should equal 'Type for hints...'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Read the 'placeholder' attribute of the Employee Name field<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:04 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_26</td><td>Directory</td><td>Verify searching employee name with special characters returns no records without error</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Searching employee name with special characters returns no records without error.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Enter '&lt;script&gt;alert(1)&lt;/script&gt;' into the Employee Name field<br>7. Click the Search button<br>8. Check that the 'no records' message is shown on the directory page<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: &lt;script&gt;alert(1)&lt;/script&gt;</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:06 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_27</td><td>Directory</td><td>Verify Reset button does not clear an unconfirmed Employee Name text entry</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The value of the Employee Name field should equal 'NonExistentEmployeeXYZ'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Enter 'NonExistentEmployeeXYZ' into the Employee Name field<br>7. Reset search<br>8. Read the text of the Employee Name field<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: NonExistentEmployeeXYZ</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:10 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Directory">
+<td class="id">TC_DIR_28</td><td>Directory</td><td>Verify searching with a whitespace-only employee name does not throw an error</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The employee card count should be at least 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (a count of 0 or more is always true). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Directory module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Directory' module from the side menu<br>5. Wait for the directory page to load<br>6. Enter '   ' into the Employee Name field<br>7. Click the Search button<br>8. Read the employee card count<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input:    </dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:10 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr></tbody></table></div>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - Directory Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>14/8/2026, 6:06:11 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">28</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">28</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">0</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">100.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_DIR_01</strong></td>
-                <td>
-                  <div>Verify Directory page load and header breadcrumb</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>23.17s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_02</strong></td>
-                <td>
-                  <div>Verify search functionality by Job Title</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>23.90s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_03</strong></td>
-                <td>
-                  <div>Verify reset button clears search parameters</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.65s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_04</strong></td>
-                <td>
-                  <div>Verify searching with invalid employee name returns no records</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>21.46s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_05</strong></td>
-                <td>
-                  <div>Verify Location dropdown filter is visible</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.51s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_06</strong></td>
-                <td>
-                  <div>Verify Job Title dropdown filter is visible</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.92s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_07</strong></td>
-                <td>
-                  <div>Verify Employee Name input field is visible</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>18.86s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_08</strong></td>
-                <td>
-                  <div>Verify Search button is visible</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.37s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_09</strong></td>
-                <td>
-                  <div>Verify Reset button is visible</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>21.11s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_10</strong></td>
-                <td>
-                  <div>Verify card grid container is visible in search results</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>20.81s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_11</strong></td>
-                <td>
-                  <div>Verify employee card has image element</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.95s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_12</strong></td>
-                <td>
-                  <div>Verify employee card has name header link</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>20.54s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_13</strong></td>
-                <td>
-                  <div>Verify employee card job title text block exists</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>25.78s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_14</strong></td>
-                <td>
-                  <div>Verify employee card location text block exists</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>29.24s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_15</strong></td>
-                <td>
-                  <div>Verify autocomplete options container is hidden on page load</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>28.43s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_16</strong></td>
-                <td>
-                  <div>Verify search by Location filter option functionality</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>26.32s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_17</strong></td>
-                <td>
-                  <div>Verify Location dropdown is reset to -- Select -- on Reset click</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>23.92s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_18</strong></td>
-                <td>
-                  <div>Verify Search button has type submit attribute</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>19.48s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_19</strong></td>
-                <td>
-                  <div>Verify search cards count text matches results length</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>24.84s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_20</strong></td>
-                <td>
-                  <div>Verify employee name input accepts keyboard tab navigation</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>18.05s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_21</strong></td>
-                <td>
-                  <div>Verify directory layout contains search parameters fold collapsible element</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>21.82s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_22</strong></td>
-                <td>
-                  <div>Verify search panel title is Directory</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.56s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_23</strong></td>
-                <td>
-                  <div>Verify employee list is scrollable</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.61s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_24</strong></td>
-                <td>
-                  <div>Verify reset button hover styling properties</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>24.79s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_25</strong></td>
-                <td>
-                  <div>Verify search input field placeholder matches default text hint</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>18.53s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_26</strong></td>
-                <td>
-                  <div>Verify searching employee name with special characters returns no records without error</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>18.56s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_27</strong></td>
-                <td>
-                  <div>Verify Reset button does not clear an unconfirmed Employee Name text entry</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>18.20s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_DIR_28</strong></td>
-                <td>
-                  <div>Verify searching with a whitespace-only employee name does not throw an error</div>
-                  
-                </td>
-                <td>directory.spec.js</td>
-                <td>22.09s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
-
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:28:20 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>
