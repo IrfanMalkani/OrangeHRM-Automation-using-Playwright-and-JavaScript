@@ -15,16 +15,16 @@
  * A PASS whose assertions cannot fail (e.g. expect(locator).toBeDefined()) or are
  * conditional is reported with Actual Result "Not Verified".
  *
- * It UPDATES the existing report files in place (same folders, same file names, same
- * first sheet name, all original columns kept; new columns/sheets are only added):
+ * It UPDATES the existing report files in place (same folders, same file names):
  *   Results/TestCases/CSV/<module>_TestCases.csv   + OrangeHRM_TestCases.csv
  *   Results/TestCases/XLSX/<module>_TestCases.xlsx + OrangeHRM_TestCases.xlsx
  *   Results/Reports/HTML/<module>_ExecutionReport.html + ExecutionReport.html
- *   Results/Reports/HTML/Report.zip (same layout as utils/zipReports.js)
+ *   Results/Reports/HTML/Report.zip – only with --zip (off by default: the bundle can exceed
+ *   GitHub's 100 MB file limit)
  * Tests, page objects and config are never modified. No file is deleted.
  *
- * Run it AFTER `npx playwright test` has finished (results.json must be final).
- * Usage:  node utils/generateQAReport.js [--json <results.json>] [--out <Results dir>] [--old-xlsx <file>] [--no-zip]
+ * Runs automatically after `npx playwright test` (utils/qaReportReporter.js), or manually.
+ * Usage:  node utils/generateQAReport.js [--json <results.json>] [--out <Results dir>] [--old-xlsx <file>] [--zip]
  */
 const fs = require('fs');
 const path = require('path');
@@ -41,7 +41,7 @@ const RESULTS_DIR = argVal('--out', path.join(ROOT, 'Results'));
 const CSV_DIR = path.join(RESULTS_DIR, 'TestCases/CSV');
 const XLSX_DIR = path.join(RESULTS_DIR, 'TestCases/XLSX');
 const HTML_DIR = path.join(RESULTS_DIR, 'Reports/HTML');
-const MAKE_ZIP = !argv.includes('--no-zip');
+const MAKE_ZIP = argv.includes('--zip');
 const OLD_XLSX = argVal('--old-xlsx', path.join(XLSX_DIR, 'OrangeHRM_TestCases.xlsx'));
 const TEST_DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-data/testData.json'), 'utf8'));
 const BASE_URL = 'https://opensource-demo.orangehrmlive.com';
