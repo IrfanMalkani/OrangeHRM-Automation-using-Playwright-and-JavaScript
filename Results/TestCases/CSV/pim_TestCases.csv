@@ -1,76 +1,220 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_PIM_01,Pim,Pim,Add new employee,Positive,Add new employee,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_PIM_02,Pim,Pim,Search employee details,Positive,Search employee details,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
-TC_PIM_03,Pim,Pim,Update employee information,Positive,Update employee information,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
-TC_PIM_04,Pim,Pim,Delete employee records,Positive,Delete employee records,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_05,Pim,Pim,Verify PIM search with non-existent employee ID returns no records,Positive,Verify PIM search with non-existent employee ID returns no records,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_06,Pim,Pim,Verify PIM Employee List tab loads correctly,Positive,Verify PIM Employee List tab loads correctly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_07,Pim,Pim,Verify PIM top menu has Configuration tab,Positive,Verify PIM top menu has Configuration tab,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_08,Pim,Pim,Verify PIM top menu has Reports tab,Positive,Verify PIM top menu has Reports tab,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_09,Pim,Pim,Verify PIM top menu has Optional Fields menu,Positive,Verify PIM top menu has Optional Fields menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_10,Pim,Pim,Verify PIM top menu has Custom Fields menu,Positive,Verify PIM top menu has Custom Fields menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_11,Pim,Pim,Verify PIM top menu has Data Import menu,Positive,Verify PIM top menu has Data Import menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_12,Pim,Pim,Verify PIM top menu has Reporting Methods menu,Positive,Verify PIM top menu has Reporting Methods menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_13,Pim,Pim,Verify PIM top menu has Termination Reasons menu,Positive,Verify PIM top menu has Termination Reasons menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_14,Pim,Pim,Verify validation error on empty First Name input,Negative,Verify validation error on empty First Name input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_15,Pim,Pim,Verify validation error on empty Last Name input,Negative,Verify validation error on empty Last Name input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_16,Pim,Pim,Verify Create Login Details switch toggle is visible,Positive,Verify Create Login Details switch toggle is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_17,Pim,Pim,Verify Cancel button on Add Employee form returns to employee list,Positive,Verify Cancel button on Add Employee form returns to employee list,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_18,Pim,Pim,Verify table checkboxes exist for employee rows,Positive,Verify table checkboxes exist for employee rows,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_19,Pim,Pim,Verify reset button clears Employee Id search field,Positive,Verify reset button clears Employee Id search field,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_20,Pim,Pim,Verify PIM breadcrumb title contains PIM,Positive,Verify PIM breadcrumb title contains PIM,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_21,Pim,Pim,Verify job title dropdown is functional in search form,Positive,Verify job title dropdown is functional in search form,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_22,Pim,Pim,Verify sub unit dropdown is functional in search form,Positive,Verify sub unit dropdown is functional in search form,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_23,Pim,Pim,Verify employment status dropdown is functional in search form,Positive,Verify employment status dropdown is functional in search form,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_24,Pim,Pim,Verify supervisor name input autocomplete has autocomplete attributes,Positive,Verify supervisor name input autocomplete has autocomplete attributes,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_PIM_25,Pim,Pim,Verify add employee photoupload element has file type input attribute,Positive,Verify add employee photoupload element has file type input attribute,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_PIM_01,Positive Functional,Add new employee,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Add employee (<emp first name>, <emp last name>, <test employee id>)
+6. Search employee (<test employee id>)
+7. Verify the expected result","Login: Admin / admin123
+Test employee id: <random number> (generated at run time)
+Emp first name: Alex<random number> (generated at run time)
+Emp last name: Hunter<random number> (generated at run time)",- The first row id should show the generated employee id (uniqueId),The new employee record is saved and listed in PIM > Employee List. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed. Passed on attempt 1; the automatic re-run then failed: the table card element was not as expected (expected: ""163103"") – actual: ""EMP91474"".
+WebKit – PASS: As expected – the check passed.",PASS
+TC_PIM_02,Positive Functional,Search employee details,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Search employee (<test employee id>)
+6. Verify the expected result","Login: Admin / admin123
+Test employee id: <random number> (generated at run time)",- The first row id should show the generated employee id (uniqueId),No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – FAIL: Failed on attempt 1: the table card element was not as expected (expected: ""546977"") – actual: ""EMP91474"".
+WebKit – PASS: As expected – the check passed.",FAIL
+TC_PIM_03,Positive Functional,Update employee information,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Update employee nickname (<test employee id>, <test nickname>)
+6. Search employee (<test employee id>)
+7. Click the Edit button
+8. Verify the expected result","Login: Admin / admin123
+Test employee id: <random number> (generated at run time)
+Test nickname: Nick<random number> (generated at run time)","- The first row id should show the generated employee id (uniqueId)
+- The employee id input should have the value the generated employee id (uniqueId)
+- The nick name input should have the value the generated nickname (Nick<random number>)
+- The other id input should have the value the generated nickname (Nick<random number>)",The employee's updated information is saved. User remains logged in as Admin.,"Chromium – FAIL: Attempt 1 failed: the table card element was not as expected (expected: ""267217"") – actual: ""EMP91474"". Attempt 2 failed: the table card element was not as expected (expected: ""325768"") – actual: ""EMP91474"".
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – all 4 checks passed.",FAIL
+TC_PIM_04,Positive Functional,Delete employee records,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Delete employee (<test employee id>)
+6. Search employee (<test employee id>)
+7. Verify the expected result","Login: Admin / admin123
+Test employee id: <random number> (generated at run time)",- The table rows should not be shown,The test employee record is deleted from PIM. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_05,Negative / Validation,Verify PIM search with non-existent employee ID returns no records,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Search employee ('999999')
+6. Verify the expected result","Login: Admin / admin123
+Fake id: 999999",- The 'No Records Found' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_06,UI Verification,Verify PIM Employee List tab loads correctly,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the employee list tab
+6. Verify the expected result",Login: Admin / admin123,"- The search employee id input should be visible
+- The Search button should be visible
+- The Reset Password button should be visible",No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – all 3 checks passed.",BLOCKED
+TC_PIM_07,UI Verification,Verify PIM top menu has Configuration tab,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Configuration' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_08,UI Verification,Verify PIM top menu has Reports tab,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Reports' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_09,UI Verification,Verify PIM top menu has Optional Fields menu,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the 'Configuration' element
+6. Verify the expected result",Login: Admin / admin123,- The 'Optional Fields' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_10,UI Verification,Verify PIM top menu has Custom Fields menu,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the 'Configuration' element
+6. Verify the expected result",Login: Admin / admin123,- The 'Custom Fields' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_11,UI Verification,Verify PIM top menu has Data Import menu,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the 'Configuration' element
+6. Verify the expected result",Login: Admin / admin123,- The 'Data Import' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_12,UI Verification,Verify PIM top menu has Reporting Methods menu,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the 'Configuration' element
+6. Verify the expected result",Login: Admin / admin123,- The 'Reporting Methods' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_13,UI Verification,Verify PIM top menu has Termination Reasons menu,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the 'Configuration' element
+6. Verify the expected result",Login: Admin / admin123,- The 'Termination Reasons' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_14,Negative / Validation,Verify validation error on empty First Name input,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the add employee tab
+6. Click the Save button
+7. Verify the expected result",Login: Admin / admin123,- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_15,Negative / Validation,Verify validation error on empty Last Name input,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the add employee tab
+6. Enter 'TestFirst' into the first name input
+7. Click the Save button
+8. Verify the expected result","Login: Admin / admin123
+Input: TestFirst",- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_16,UI Verification,Verify Create Login Details switch toggle is visible,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the add employee tab
+6. Verify the expected result",Login: Admin / admin123,- The switch wrapper element should be present in the page,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_17,Positive Functional,Verify Cancel button on Add Employee form returns to employee list,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the add employee tab
+6. Click the secondary (ghost-style) button
+7. Wait for navigation to **/pim/viewEmployeeList
+8. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/pim/viewEmployeeList',No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_18,UI Verification,Verify table checkboxes exist for employee rows,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the employee list tab
+6. Verify the expected result",Login: Admin / admin123,- Table checkboxes exist for employee rows.,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",BLOCKED
+TC_PIM_19,Positive Functional,Verify reset button clears Employee Id search field,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the employee list tab
+6. Enter '12345' into the search employee id input
+7. Click the Reset Password button
+8. Verify the expected result","Login: Admin / admin123
+Input: 12345",- The search employee id input should have the value '',No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_20,UI Verification,Verify PIM breadcrumb title contains PIM,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'PIM',No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_21,UI Verification,Verify job title dropdown is functional in search form,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Job Title' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_22,Positive Functional,Verify sub unit dropdown is functional in search form,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Sub Unit' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_23,Positive Functional,Verify employment status dropdown is functional in search form,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Employment Status' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_24,UI Verification,Verify supervisor name input autocomplete has autocomplete attributes,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Supervisor Name' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_PIM_25,UI Verification,Verify add employee photoupload element has file type input attribute,User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Click the add employee tab
+6. Verify the expected result",Login: Admin / admin123,- The file input should be present in the page,No application data is changed. User remains logged in as Admin.,"Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.
+Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED

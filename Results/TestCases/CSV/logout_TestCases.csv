@@ -1,76 +1,170 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_LOGOUT_01,Logout,Logout,Verify logout functionality redirects to login page,Positive,Verify logout functionality redirects to login page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGOUT_02,Logout,Logout,Verify dashboard is not accessible after logout,Positive,Verify dashboard is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGOUT_03,Logout,Logout,Verify browser back button does not access dashboard after logout,Positive,Verify browser back button does not access dashboard after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_LOGOUT_04,Logout,Logout,Verify user dropdown is collapsed by default,Positive,Verify user dropdown is collapsed by default,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_05,Logout,Logout,Verify user dropdown lists Logout link on click,Positive,Verify user dropdown lists Logout link on click,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_06,Logout,Logout,Verify clicking outside user dropdown closes the dropdown menu,Positive,Verify clicking outside user dropdown closes the dropdown menu,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_07,Logout,Logout,Verify Logout dropdown item tag is anchor link,Positive,Verify Logout dropdown item tag is anchor link,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_08,Logout,Logout,Verify cookies are cleared or altered after logout,Positive,Verify cookies are cleared or altered after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_09,Logout,Logout,Verify Admin page is not accessible after logout,Positive,Verify Admin page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_10,Logout,Logout,Verify PIM page is not accessible after logout,Positive,Verify PIM page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_11,Logout,Logout,Verify Leave page is not accessible after logout,Positive,Verify Leave page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_12,Logout,Logout,Verify Time page is not accessible after logout,Positive,Verify Time page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_13,Logout,Logout,Verify Recruitment page is not accessible after logout,Positive,Verify Recruitment page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_14,Logout,Logout,Verify My Info page is not accessible after logout,Positive,Verify My Info page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_15,Logout,Logout,Verify Buzz page is not accessible after logout,Positive,Verify Buzz page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_16,Logout,Logout,Verify Directory page is not accessible after logout,Positive,Verify Directory page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_17,Logout,Logout,Verify Performance page is not accessible after logout,Positive,Verify Performance page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_18,Logout,Logout,Verify Maintenance page is not accessible after logout,Positive,Verify Maintenance page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_19,Logout,Logout,Verify Claim page is not accessible after logout,Positive,Verify Claim page is not accessible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_20,Logout,Logout,Verify browser forward button does not re-authenticate user after logout,Positive,Verify browser forward button does not re-authenticate user after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,FAILED
-TC_LOGOUT_21,Logout,Logout,Verify session storage is cleared on logout,Positive,Verify session storage is cleared on logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_22,Logout,Logout,Verify localStorage does not contain sensitive tokens after logout,Positive,Verify localStorage does not contain sensitive tokens after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_23,Logout,Logout,Verify logout link text matches exact text Logout,Positive,Verify logout link text matches exact text Logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_24,Logout,Logout,Verify user profile details container elements are not visible after logout,Positive,Verify user profile details container elements are not visible after logout,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_LOGOUT_25,Logout,Logout,Verify logout cursor is a pointer,Positive,Verify logout cursor is a pointer,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_LOGOUT_01,UI Verification,Verify logout functionality redirects to login page,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_02,UI Verification,Verify dashboard is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_03,Security / Session,Verify browser back button does not access dashboard after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Click the browser Back button
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_LOGOUT_04,UI Verification,Verify user dropdown is collapsed by default,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Verify the expected result","Username: Admin
+Password: admin123",- The Logout link should not be visible,User is logged in as Admin and the Dashboard is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_05,UI Verification,Verify user dropdown lists Logout link on click,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Verify the expected result","Username: Admin
+Password: admin123",- The Logout link should be visible,User is logged in as Admin and the Dashboard is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_06,Positive Functional,Verify clicking outside user dropdown closes the dropdown menu,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Click the page
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Logout link should not be visible,User is logged in as Admin and the Dashboard is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_07,UI Verification,Verify Logout dropdown item tag is anchor link,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Verify the expected result","Username: Admin
+Password: admin123",- Logout dropdown item tag is anchor link.,User is logged in as Admin and the Dashboard is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_08,Security / Session,Verify cookies are cleared or altered after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Verify the expected result","Username: Admin
+Password: admin123","- Cookies are cleared or altered after logout.
+- The number of cookies before should be greater than 0",User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed. (1 of these check cannot fail and do not confirm the behaviour.)",PASS
+TC_LOGOUT_09,Edge Case / Boundary,Verify Admin page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_10,UI Verification,Verify PIM page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_11,UI Verification,Verify Leave page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/leave/viewLeaveList
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_12,UI Verification,Verify Time page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/time/viewEmployeeTimesheet
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_13,UI Verification,Verify Recruitment page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_14,UI Verification,Verify My Info page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/7
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_15,UI Verification,Verify Buzz page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/buzz/viewBuzz
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_16,UI Verification,Verify Directory page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/directory/viewDirectory
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_17,UI Verification,Verify Performance page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/performance/searchEvaluatePerformanceReview
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_18,UI Verification,Verify Maintenance page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/maintenance/purgeEmployee
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_19,UI Verification,Verify Claim page is not accessible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Navigate directly to https://opensource-demo.orangehrmlive.com/web/index.php/claim/viewAssignClaim
+6. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_20,UI Verification,Verify browser forward button does not re-authenticate user after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Click the browser Back button
+6. Click the browser Forward button
+7. Verify the expected result","Username: Admin
+Password: admin123",- The Login button should be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_21,Security / Session,Verify session storage is cleared on logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Verify the expected result","Username: Admin
+Password: admin123",- Session storage is cleared on logout.,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_22,UI Verification,Verify localStorage does not contain sensitive tokens after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Verify the expected result","Username: Admin
+Password: admin123",- LocalStorage does not contain sensitive tokens after logout.,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_23,UI Verification,Verify logout link text matches exact text Logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Read the text of the Logout link
+6. Verify the expected result","Username: Admin
+Password: admin123",- The text of the Logout link should equal 'Logout',User is logged in as Admin and the Dashboard is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_24,UI Verification,Verify user profile details container elements are not visible after logout,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user dropdown and click Logout
+5. Verify the expected result","Username: Admin
+Password: admin123",- The topbar header userarea element should not be visible,User is logged out and the login page is displayed.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_LOGOUT_25,UI Verification,Verify logout cursor is a pointer,The login page is open (user not logged in).,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the user profile dropdown
+5. Verify the expected result","Username: Admin
+Password: admin123",- Logout cursor is a pointer.,User is logged in as Admin and the Dashboard is displayed.,"Chromium – PASS: As expected – the check passed.
+Firefox – PASS: As expected – the check passed.
+WebKit – FAIL: Failed on all 2 attempts: check failed – expected ""pointer"", but got ""auto"".",FAIL

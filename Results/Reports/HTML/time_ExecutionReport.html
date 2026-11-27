@@ -1,730 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - Time Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - Time Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">25</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">8</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">17</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">32.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_TIME_01</strong></td>
-                <td>
-                  <div>Verify Time page loads with sub-navigation headers</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>41.27s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_02</strong></td>
-                <td>
-                  <div>Verify access to My Timesheets page</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – Time Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – Time Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>Time</b></div><div><span>Total Test Cases</span><b>27</b></div><div><span>Report Generated</span><b>2026-11-27 12:32:47 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">27</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">27</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">0</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">0</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">0</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">100.0%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">0.0%</div></div>
 </div>
-                </td>
-                <td>time.spec.js</td>
-                <td>50.56s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_03</strong></td>
-                <td>
-                  <div>Verify access to Punch In/Out attendance page</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'Punch In/Out' }) to be visible[22m
+<h2>Key Observations</h2><div class="panel text"><ul><li>All executed test cases passed.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>Time</td><td>27</td><td>27</td><td>0</td><td>0</td><td>0</td><td>100.0%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (27)</button><button data-f="PASS">Passed (27)</button><button data-f="FAIL">Failed (0)</button><button data-f="SKIPPED">Skipped (0)</button><button data-f="BLOCKED">Blocked (0)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
 </div>
-                </td>
-                <td>time.spec.js</td>
-                <td>50.15s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_04</strong></td>
-                <td>
-                  <div>Verify search button validation with empty/invalid inputs in employee timesheets</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>52.67s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_05</strong></td>
-                <td>
-                  <div>Verify top navigation contains Reports tab</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>47.80s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_06</strong></td>
-                <td>
-                  <div>Verify top navigation contains Project Info tab</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>47.16s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_07</strong></td>
-                <td>
-                  <div>Verify Customers option exists under Project Info</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>47.14s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_08</strong></td>
-                <td>
-                  <div>Verify Projects option exists under Project Info</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>63.60s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_09</strong></td>
-                <td>
-                  <div>Verify Activities option exists under Project Info</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>58.41s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_10</strong></td>
-                <td>
-                  <div>Verify Project Reports option exists under Reports menu</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>53.16s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_11</strong></td>
-                <td>
-                  <div>Verify Employee Reports option exists under Reports menu</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>60.66s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_12</strong></td>
-                <td>
-                  <div>Verify Attendance Summary option exists under Reports menu</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>63.34s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_13</strong></td>
-                <td>
-                  <div>Verify employee name search input field exists on Employee Timesheets page</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'Employee Timesheets' })[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>68.33s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_14</strong></td>
-                <td>
-                  <div>Verify punch page has date input element</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>49.89s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_15</strong></td>
-                <td>
-                  <div>Verify punch page has time input element</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'Punch In/Out' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>52.56s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_16</strong></td>
-                <td>
-                  <div>Verify punch page note textarea is functional</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'Punch In/Out' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>61.92s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_17</strong></td>
-                <td>
-                  <div>Verify attendance table headers in My Records page</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'My Records' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>55.81s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_18</strong></td>
-                <td>
-                  <div>Verify My Records date picker input elements exist</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>52.48s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_19</strong></td>
-                <td>
-                  <div>Verify calendar pop-up opens on clicking date input in My Records page</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'My Records' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>61.38s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_20</strong></td>
-                <td>
-                  <div>Verify Reset button clears search filters in My Records page</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Time' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/time/viewTimeModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>55.95s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_21</strong></td>
-                <td>
-                  <div>Verify view records button text contains View</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'My Records' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>50.52s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_22</strong></td>
-                <td>
-                  <div>Verify breadcrumb title text details are visible</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>51.77s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_23</strong></td>
-                <td>
-                  <div>Verify Timesheets menu is visible in sub-navigation bar</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>47.64s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_24</strong></td>
-                <td>
-                  <div>Verify Attendance menu is visible in sub-navigation bar</div>
-                  
-                </td>
-                <td>time.spec.js</td>
-                <td>47.15s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_TIME_25</strong></td>
-                <td>
-                  <div>Verify Punch In button exists in Punch page when logged out or punched out</div>
-                  <div class="error-log">TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-topbar-body-nav-tab-link').filter({ hasText: 'Punch In/Out' }) to be visible[22m
-</div>
-                </td>
-                <td>time.spec.js</td>
-                <td>37.96s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_01</td><td>Time</td><td>Verify Time page loads with sub-navigation headers</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The header text should equal 'Time'<br>- The tabs visible should equal true</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Read the header text<br>7. Are all tabs visible<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:02 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_02</td><td>Time</td><td>Verify access to My Timesheets page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The main title element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to my timesheets<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:06 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_03</td><td>Time</td><td>Verify access to Punch In/Out attendance page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Punch In' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to punch in out<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:13 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_04</td><td>Time</td><td>Verify search button validation with empty/invalid inputs in employee timesheets</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The field validation message should be visible<br>- The field validation message should show the text 'Required'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the timesheets tab<br>7. Click the employee timesheets link<br>8. Click the view button<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:21 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_05</td><td>Time</td><td>Verify top navigation contains Reports tab</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The reports tab should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:26 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_06</td><td>Time</td><td>Verify top navigation contains Project Info tab</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The project info tab should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:32 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_07</td><td>Time</td><td>Verify Customers option exists under Project Info</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Customers' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the project info tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:34 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_08</td><td>Time</td><td>Verify Projects option exists under Project Info</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Projects' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the project info tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:38 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_09</td><td>Time</td><td>Verify Project Info menu contains exactly Customers and Projects options</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The dropdown menu element should appear exactly 2 times<br>- The dropdown menu element should show the text 'Customers'<br>- The dropdown menu element should show the text 'Projects'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 3 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the project info tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:43 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_10</td><td>Time</td><td>Verify Project Reports option exists under Reports menu</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Project Reports' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the reports tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:44 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_11</td><td>Time</td><td>Verify Employee Reports option exists under Reports menu</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Employee Reports' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the reports tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:48 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_12</td><td>Time</td><td>Verify Attendance Summary option exists under Reports menu</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Attendance Summary' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the reports tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:56 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_13</td><td>Time</td><td>Verify employee name search input field exists on Employee Timesheets page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The Employee Name field should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the timesheets tab<br>7. Click the employee timesheets link<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:58 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_14</td><td>Time</td><td>Verify punch page has date input element</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The date input element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to punch in out<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:01 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_15</td><td>Time</td><td>Verify punch page has time input element</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The time input element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to punch in out<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:08 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_16</td><td>Time</td><td>Verify punch page note textarea is functional</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The textarea element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to punch in out<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:09 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_17</td><td>Time</td><td>Verify attendance table headers in My Records page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The table header element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to attendance records<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:11 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_18</td><td>Time</td><td>Verify My Records date picker input elements exist</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The number of date input elements should be greater than 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to attendance records<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:18 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_19</td><td>Time</td><td>Verify calendar pop-up opens on clicking date input in My Records page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The date input calendar element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to attendance records<br>7. Click the date input element<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:19 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_20</td><td>Time</td><td>Verify Date filter and View button are present in My Records page</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The date input element should be visible<br>- The 'View' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to attendance records<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:21 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_21</td><td>Time</td><td>Verify view records button text contains View</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The submit (Save/Login) button should show the text 'View'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to attendance records<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:27 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_22</td><td>Time</td><td>Verify breadcrumb title text details are visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The topbar header title element should contain the text 'Time'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:29 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_23</td><td>Time</td><td>Verify Timesheets menu is visible in sub-navigation bar</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The timesheets tab should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:32 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_24</td><td>Time</td><td>Verify Attendance menu is visible in sub-navigation bar</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The attendance tab should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:40 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_25</td><td>Time</td><td>Verify Punch In button exists in Punch page when logged out or punched out</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The number of 'In' elements should be greater than 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Navigate to punch in out<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:40 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_26</td><td>Time</td><td>Verify Employee Records option is visible under Attendance menu</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The employee records link should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the attendance tab<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:42 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="Time">
+<td class="id">TC_TIME_27</td><td>Time</td><td>Verify Employee Timesheets search with a non-existent employee name shows required validation</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The field validation message should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Time module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Time' module from the side menu<br>5. Wait for the time page to load<br>6. Click the timesheets tab<br>7. Click the employee timesheets link<br>8. Enter 'NonExistentEmployeeXYZ' into the Employee Name field<br>9. Click the view button<br>10. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: NonExistentEmployeeXYZ</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:50 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr></tbody></table></div>
 
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:32:47 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>

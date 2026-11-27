@@ -91,8 +91,10 @@ test.describe('OrangeHRM Change Password Module', () => {
     const newPasswordInput = page.locator('input[type="password"]').nth(1);
     const saveButton = page.locator('button[type="submit"]');
     await newPasswordInput.fill('123');
+    await newPasswordInput.press('Tab');
     await saveButton.click();
-    const err = page.locator('.oxd-input-group').filter({ has: newPasswordInput }).locator('.oxd-input-group__message');
+    // Field order on this form is: Username, Current Password, Password (new), Confirm Password.
+    const err = page.locator('.oxd-input-group').nth(2).locator('.oxd-input-group__message');
     await expect(err).toHaveText(/Should have at least/i);
   });
 
@@ -182,5 +184,37 @@ test.describe('OrangeHRM Change Password Module', () => {
   test('TC_PASSWORD_25: Verify Username input or label exists in userarea', async ({ page }) => {
     const userarea = page.locator('.oxd-topbar-header-userarea');
     await expect(userarea).toBeVisible();
+  });
+
+  test('TC_PASSWORD_26: Verify Required validation is shown when Current Password is left empty (negative)', async ({ page }) => {
+    const newPasswordInput = page.locator('input[type="password"]').nth(1);
+    const confirmPasswordInput = page.locator('input[type="password"]').nth(2);
+    const saveButton = page.locator('button[type="submit"]');
+
+    await newPasswordInput.fill('NewPass123!');
+    await confirmPasswordInput.fill('NewPass123!');
+    await saveButton.click();
+
+    // Field order on this form is: Username, Current Password, Password (new), Confirm Password.
+    const err = page.locator('.oxd-input-group').nth(1).locator('.oxd-input-group__message');
+    await expect(err).toHaveText('Required');
+  });
+
+  test('TC_PASSWORD_27: Verify a new password just below the minimum length boundary is rejected (negative/edge case)', async ({ page }) => {
+    const newPasswordInput = page.locator('input[type="password"]').nth(1);
+    const saveButton = page.locator('button[type="submit"]');
+    await newPasswordInput.fill('Ab1@56');
+    await newPasswordInput.press('Tab');
+    await saveButton.click();
+    const err = page.locator('.oxd-input-group').nth(2).locator('.oxd-input-group__message');
+    await expect(err).toHaveText(/Should have at least/i);
+  });
+
+  test('TC_PASSWORD_28: Verify New Password field correctly accepts and displays typed characters (positive)', async ({ page }) => {
+    const newPasswordInput = page.locator('input[type="password"]').nth(1);
+    await newPasswordInput.fill('TempCheck123!');
+    const value = await newPasswordInput.inputValue();
+    expect(value).toBe('TempCheck123!');
+    expect(value.length).toBe(13);
   });
 });

@@ -252,4 +252,18 @@ test.describe.serial('OrangeHRM Leave Module', () => {
     const searchBtn = page.locator('button[type="submit"]');
     await expect(searchBtn).toBeVisible();
   });
+
+  test('TC_LEAVE_26: Verify Leave Type dropdown displays default placeholder text before selection (positive)', async ({ leavePage }) => {
+    await leavePage.applyTab.click();
+    const text = await leavePage.leaveTypeDropdown.textContent();
+    expect(text).toContain('-- Select --');
+  });
+
+  test('TC_LEAVE_27: Verify Comments textarea accepts multi-line text input (positive)', async ({ leavePage }) => {
+    await leavePage.applyTab.click();
+    const multiline = 'Line one\nLine two\nLine three';
+    await leavePage.commentsTextarea.fill(multiline);
+    const value = await leavePage.commentsTextarea.inputValue();
+    expect(value).toBe(multiline);
+  });
 });

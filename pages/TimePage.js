@@ -56,25 +56,31 @@ class TimePage {
   }
 
   // ── Navigation ──
+  // `domcontentloaded` fires before this Vue app finishes client-side rendering
+  // its content (tables, date pickers), so each navigation also waits for a
+  // stable element specific to the destination page.
   async navigateToMyTimesheets() {
-    await this.timesheetsTab.hover();
+    await this.timesheetsTab.click();
     await this.myTimesheetsLink.waitFor({ state: 'visible', timeout: 5000 });
     await this.myTimesheetsLink.click();
     await this.page.waitForLoadState('domcontentloaded');
+    await this.page.locator('h6.orangehrm-main-title, h6.oxd-text').first().waitFor({ state: 'visible', timeout: 15000 });
   }
 
   async navigateToAttendanceRecords() {
-    await this.attendanceTab.hover();
+    await this.attendanceTab.click();
     await this.myRecordsLink.waitFor({ state: 'visible', timeout: 5000 });
     await this.myRecordsLink.click();
     await this.page.waitForLoadState('domcontentloaded');
+    await this.page.locator('.oxd-date-input input').first().waitFor({ state: 'visible', timeout: 15000 });
   }
 
   async navigateToPunchInOut() {
-    await this.attendanceTab.hover();
+    await this.attendanceTab.click();
     await this.punchInOutLink.waitFor({ state: 'visible', timeout: 5000 });
     await this.punchInOutLink.click();
     await this.page.waitForLoadState('domcontentloaded');
+    await this.page.locator('h6:has-text("Punch In"), h6:has-text("Punch Out")').first().waitFor({ state: 'visible', timeout: 15000 });
   }
 
   // ── Tab Visibility ──

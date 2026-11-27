@@ -1,610 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - PIM Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - PIM Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">25</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">1</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">1</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">4.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_PIM_01</strong></td>
-                <td>
-                  <div>Add new employee</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>102.38s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_02</strong></td>
-                <td>
-                  <div>Search employee details</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'PIM' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/pim/viewPimModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – PIM Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – PIM Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>PIM</b></div><div><span>Total Test Cases</span><b>25</b></div><div><span>Report Generated</span><b>2026-11-27 12:32:47 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">25</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">1</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">2</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">0</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">22</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">4.0%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">8.0%</div></div>
 </div>
-                </td>
-                <td>pim.spec.js</td>
-                <td>50.58s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_03</strong></td>
-                <td>
-                  <div>Update employee information</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_04</strong></td>
-                <td>
-                  <div>Delete employee records</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_05</strong></td>
-                <td>
-                  <div>Verify PIM search with non-existent employee ID returns no records</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_06</strong></td>
-                <td>
-                  <div>Verify PIM Employee List tab loads correctly</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_07</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Configuration tab</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_08</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Reports tab</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_09</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Optional Fields menu</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_10</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Custom Fields menu</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_11</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Data Import menu</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_12</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Reporting Methods menu</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_13</strong></td>
-                <td>
-                  <div>Verify PIM top menu has Termination Reasons menu</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_14</strong></td>
-                <td>
-                  <div>Verify validation error on empty First Name input</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_15</strong></td>
-                <td>
-                  <div>Verify validation error on empty Last Name input</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_16</strong></td>
-                <td>
-                  <div>Verify Create Login Details switch toggle is visible</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_17</strong></td>
-                <td>
-                  <div>Verify Cancel button on Add Employee form returns to employee list</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_18</strong></td>
-                <td>
-                  <div>Verify table checkboxes exist for employee rows</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_19</strong></td>
-                <td>
-                  <div>Verify reset button clears Employee Id search field</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_20</strong></td>
-                <td>
-                  <div>Verify PIM breadcrumb title contains PIM</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_21</strong></td>
-                <td>
-                  <div>Verify job title dropdown is functional in search form</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_22</strong></td>
-                <td>
-                  <div>Verify sub unit dropdown is functional in search form</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_23</strong></td>
-                <td>
-                  <div>Verify employment status dropdown is functional in search form</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_24</strong></td>
-                <td>
-                  <div>Verify supervisor name input autocomplete has autocomplete attributes</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_PIM_25</strong></td>
-                <td>
-                  <div>Verify add employee photoupload element has file type input attribute</div>
-                  
-                </td>
-                <td>pim.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
+<h2>Key Observations</h2><div class="panel text"><ul><li>2 test cases failed because the application did not behave as expected and need investigation: TC_PIM_02 (Search employee details); TC_PIM_03 (Update employee information).</li><li>23 PIM test cases were not executed on Firefox (Blocked) because TC_PIM_02 failed first on that browser; these tests run in sequence.</li><li>22 PIM test cases were not executed on Chromium (Blocked) because TC_PIM_03 failed first on that browser; these tests run in sequence.</li><li>1 test case failed on the first attempt and passed on the automatic re-run (on at least one browser): TC_PIM_01.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>PIM</td><td>25</td><td>1</td><td>2</td><td>0</td><td>22</td><td>4.0%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (25)</button><button data-f="PASS">Passed (1)</button><button data-f="FAIL">Failed (2)</button><button data-f="SKIPPED">Skipped (0)</button><button data-f="BLOCKED">Blocked (22)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
+</div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="PASS" data-module="PIM">
+<td class="id">TC_PIM_01</td><td>PIM</td><td>Add new employee</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The first row id should show the generated employee id (uniqueId)</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed. Passed on attempt 1; the automatic re-run then failed: the table card element was not as expected (expected: &quot;163103&quot;) – actual: &quot;EMP91474&quot;.<br>WebKit – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Add employee (&lt;emp first name&gt;, &lt;emp last name&gt;, &lt;test employee id&gt;)<br>6. Search employee (&lt;test employee id&gt;)<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Test employee id: &lt;random number&gt; (generated at run time)<br>Emp first name: Alex&lt;random number&gt; (generated at run time)<br>Emp last name: Hunter&lt;random number&gt; (generated at run time)</dd><dt>Post Condition</dt><dd>The new employee record is saved and listed in PIM &gt; Employee List. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:58 IST</dd><dt>Evidence</dt><dd class="small">Firefox:<br>Screenshot (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-01-Add-new-employee-firefox-retry1/test-failed-1.png<br>Video (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-01-Add-new-employee-firefox-retry1/video.webm<br>Trace (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-01-Add-new-employee-firefox-retry1/trace.zip</dd></dl></details></td></tr>
+<tr data-status="FAIL" data-module="PIM">
+<td class="id">TC_PIM_02</td><td>PIM</td><td>Search employee details</td>
+<td><span class="st FAIL">FAIL</span></td>
+<td>- The first row id should show the generated employee id (uniqueId)</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – FAIL: Failed on attempt 1: the table card element was not as expected (expected: &quot;546977&quot;) – actual: &quot;EMP91474&quot;.<br>WebKit – PASS: As expected – the check passed.</td><td>Firefox: Application behaviour did not match: the table card element was not as expected (expected: &quot;546977&quot;) – actual: &quot;EMP91474&quot;.</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Search employee (&lt;test employee id&gt;)<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Test employee id: &lt;random number&gt; (generated at run time)</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:26 IST</dd><dt>Evidence</dt><dd class="small">Firefox:<br>Screenshot (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-02-Search-employee-details-firefox/test-failed-1.png<br>Video (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-02-Search-employee-details-firefox/video.webm<br>Trace (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-TC-PIM-02-Search-employee-details-firefox/trace.zip</dd></dl></details></td></tr>
+<tr data-status="FAIL" data-module="PIM">
+<td class="id">TC_PIM_03</td><td>PIM</td><td>Update employee information</td>
+<td><span class="st FAIL">FAIL</span></td>
+<td>- The first row id should show the generated employee id (uniqueId)<br>- The employee id input should have the value the generated employee id (uniqueId)<br>- The nick name input should have the value the generated nickname (Nick&lt;random number&gt;)<br>- The other id input should have the value the generated nickname (Nick&lt;random number&gt;)</td><td>Chromium – FAIL: Attempt 1 failed: the table card element was not as expected (expected: &quot;267217&quot;) – actual: &quot;EMP91474&quot;. Attempt 2 failed: the table card element was not as expected (expected: &quot;325768&quot;) – actual: &quot;EMP91474&quot;.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – all 4 checks passed.</td><td>Chromium: Application behaviour did not match: the table card element was not as expected (expected: &quot;325768&quot;) – actual: &quot;EMP91474&quot;.<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Update employee nickname (&lt;test employee id&gt;, &lt;test nickname&gt;)<br>6. Search employee (&lt;test employee id&gt;)<br>7. Click the Edit button<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Test employee id: &lt;random number&gt; (generated at run time)<br>Test nickname: Nick&lt;random number&gt; (generated at run time)</dd><dt>Post Condition</dt><dd>The employee's updated information is saved. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:42 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Screenshot (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium/test-failed-1.png<br>Video (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium/video.webm<br>Trace (attempt 1): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium/trace.zip<br>Screenshot (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium-retry1/test-failed-1.png<br>Video (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium-retry1/video.webm<br>Trace (attempt 2): Results/Evidence/pim-OrangeHRM-PIM-Module-T-4a6dd-Update-employee-information-chromium-retry1/trace.zip<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_04</td><td>PIM</td><td>Delete employee records</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The table rows should not be shown</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Delete employee (&lt;test employee id&gt;)<br>6. Search employee (&lt;test employee id&gt;)<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Test employee id: &lt;random number&gt; (generated at run time)</dd><dt>Post Condition</dt><dd>The test employee record is deleted from PIM. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:35:03 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_05</td><td>PIM</td><td>Verify PIM search with non-existent employee ID returns no records</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'No Records Found' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Search employee ('999999')<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Fake id: 999999</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:35:34 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_06</td><td>PIM</td><td>Verify PIM Employee List tab loads correctly</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The search employee id input should be visible<br>- The Search button should be visible<br>- The Reset Password button should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – all 3 checks passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the employee list tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:35:53 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_07</td><td>PIM</td><td>Verify PIM top menu has Configuration tab</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Configuration' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:36:04 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_08</td><td>PIM</td><td>Verify PIM top menu has Reports tab</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Reports' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:36:17 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_09</td><td>PIM</td><td>Verify PIM top menu has Optional Fields menu</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Optional Fields' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the 'Configuration' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:36:28 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_10</td><td>PIM</td><td>Verify PIM top menu has Custom Fields menu</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Custom Fields' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the 'Configuration' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:36:37 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_11</td><td>PIM</td><td>Verify PIM top menu has Data Import menu</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Data Import' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the 'Configuration' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:36:50 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_12</td><td>PIM</td><td>Verify PIM top menu has Reporting Methods menu</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Reporting Methods' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the 'Configuration' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:37:05 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_13</td><td>PIM</td><td>Verify PIM top menu has Termination Reasons menu</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Termination Reasons' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the 'Configuration' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:37:14 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_14</td><td>PIM</td><td>Verify validation error on empty First Name input</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The field validation message should show the text 'Required'</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the add employee tab<br>6. Click the Save button<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:37:27 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_15</td><td>PIM</td><td>Verify validation error on empty Last Name input</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The field validation message should show the text 'Required'</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the add employee tab<br>6. Enter 'TestFirst' into the first name input<br>7. Click the Save button<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: TestFirst</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:37:41 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_16</td><td>PIM</td><td>Verify Create Login Details switch toggle is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The switch wrapper element should be present in the page</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the add employee tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:37:56 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_17</td><td>PIM</td><td>Verify Cancel button on Add Employee form returns to employee list</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The page URL should contain '/pim/viewEmployeeList'</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the add employee tab<br>6. Click the secondary (ghost-style) button<br>7. Wait for navigation to **/pim/viewEmployeeList<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:38:08 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_18</td><td>PIM</td><td>Verify table checkboxes exist for employee rows</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- Table checkboxes exist for employee rows.</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the employee list tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:38:19 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_19</td><td>PIM</td><td>Verify reset button clears Employee Id search field</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The search employee id input should have the value ''</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the employee list tab<br>6. Enter '12345' into the search employee id input<br>7. Click the Reset Password button<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: 12345</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:38:29 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_20</td><td>PIM</td><td>Verify PIM breadcrumb title contains PIM</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The topbar header title element should contain the text 'PIM'</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:38:42 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_21</td><td>PIM</td><td>Verify job title dropdown is functional in search form</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Job Title' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:39:01 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_22</td><td>PIM</td><td>Verify sub unit dropdown is functional in search form</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Sub Unit' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:39:23 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_23</td><td>PIM</td><td>Verify employment status dropdown is functional in search form</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Employment Status' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:39:50 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_24</td><td>PIM</td><td>Verify supervisor name input autocomplete has autocomplete attributes</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Supervisor Name' element should be visible</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:40:16 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="PIM">
+<td class="id">TC_PIM_25</td><td>PIM</td><td>Verify add employee photoupload element has file type input attribute</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The file input should be present in the page</td><td>Chromium – BLOCKED: Not executed – blocked because TC_PIM_03 failed earlier in the same test sequence.<br>Firefox – BLOCKED: Not executed – blocked because TC_PIM_02 failed earlier in the same test sequence.<br>WebKit – PASS: As expected – the check passed.</td><td>Chromium: Blocked by TC_PIM_03 (tests in this module run in sequence).<br>Firefox: Blocked by TC_PIM_02 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the PIM module is open. Runs in sequence: the earlier PIM tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'PIM' module from the side menu<br>5. Click the add employee tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:40:29 IST</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.</dd></dl></details></td></tr></tbody></table></div>
 
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:32:47 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>

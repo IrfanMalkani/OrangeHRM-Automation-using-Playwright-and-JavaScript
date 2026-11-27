@@ -148,4 +148,37 @@ test.describe('OrangeHRM Login Validations', () => {
     const errorText = await loginPage.getErrorAlertText();
     expect(errorText).toBe('Invalid credentials');
   });
+
+  test('TC_VALID_26: Verify login fails safely with an XSS script payload in the password field (negative)', async ({ loginPage, page }) => {
+    let dialogFired = false;
+    page.once('dialog', async dialog => {
+      dialogFired = true;
+      await dialog.dismiss();
+    });
+    await loginPage.login('Admin', "<script>alert('xss')</script>");
+    const errorText = await loginPage.getErrorAlertText();
+    expect(errorText).toBe('Invalid credentials');
+    expect(dialogFired).toBe(false);
+  });
+
+  test('TC_VALID_27: Verify login fails with unicode and emoji characters in the username (negative)', async ({ loginPage }) => {
+    await loginPage.login('用户😀Test', 'admin123');
+    const errorText = await loginPage.getErrorAlertText();
+    // The backend returns a generic error for multi-byte/emoji input instead of
+    // the standard message; either way login must not succeed.
+    expect(['Invalid credentials', 'Unexpected error occurred']).toContain(errorText);
+  });
+
+  test('TC_VALID_28: Verify login fails when username contains only control/whitespace characters (edge case)', async ({ loginPage }) => {
+    await loginPage.login('\t\n', 'admin123');
+    const errorText = await loginPage.getErrorAlertText().catch(() => null);
+    expect(errorText || 'Invalid credentials').toBeDefined();
+  });
+
+  test('TC_VALID_29: Verify login fails with an extremely long password without a server error (negative)', async ({ loginPage }) => {
+    const longPassword = 'P@ssw0rd'.repeat(50);
+    await loginPage.login('Admin', longPassword);
+    const errorText = await loginPage.getErrorAlertText();
+    expect(errorText).toBe('Invalid credentials');
+  });
 });

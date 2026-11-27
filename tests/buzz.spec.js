@@ -169,4 +169,43 @@ test.describe('OrangeHRM Buzz Module', () => {
     const title = page.locator('.oxd-topbar-header-title');
     await expect(title).toContainText('Buzz');
   });
+
+  test('TC_BUZZ_26: Verify creating a post with an extremely long text body does not crash the feed (edge case)', async ({ buzzPage }) => {
+    const marker = `Automation Long Post ${Date.now()}`;
+    const longText = `${marker} ` + 'Lorem ipsum dolor sit amet. '.repeat(50);
+    await buzzPage.createPost(longText);
+    const isPosted = await buzzPage.isPostVisible(marker);
+    expect(isPosted).toBe(true);
+  });
+
+  test('TC_BUZZ_27: Verify a newly created post appears near the top of the Most Recent Posts feed (positive)', async ({ buzzPage }) => {
+    const postText = `Top Feed Check - ${Date.now()}`;
+    await buzzPage.createPost(postText);
+    const isPosted = await buzzPage.isPostVisible(postText);
+    expect(isPosted).toBe(true);
+
+    // This is a shared public demo instance where other users may post
+    // concurrently, so check the top few posts rather than strictly the first.
+    const sampleSize = Math.min(await buzzPage.buzzPostBody.count(), 5);
+    let foundNearTop = false;
+    for (let i = 0; i < sampleSize; i++) {
+      const text = await buzzPage.buzzPostBody.nth(i).textContent();
+      if (text && text.includes(postText)) {
+        foundNearTop = true;
+        break;
+      }
+    }
+    expect(foundNearTop).toBe(true);
+  });
+
+  test('TC_BUZZ_28: Verify a script tag entered in the post textarea is rendered as plain text and not executed (negative)', async ({ buzzPage, page }) => {
+    let dialogFired = false;
+    page.once('dialog', async dialog => {
+      dialogFired = true;
+      await dialog.dismiss();
+    });
+    const payload = `<script>alert('xss')</script> SafePost-${Date.now()}`;
+    await buzzPage.createPost(payload);
+    expect(dialogFired).toBe(false);
+  });
 });

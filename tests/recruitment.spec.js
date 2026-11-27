@@ -71,7 +71,8 @@ test.describe.serial('OrangeHRM Recruitment Module', () => {
   test('TC_REC_11: Verify validation error on empty First Name input', async ({ recruitmentPage, page }) => {
     await recruitmentPage.addButton.click();
     await recruitmentPage.saveButton.click();
-    const err = page.locator('.oxd-input-group:has-text("Candidate Full Name") .oxd-input-group__message').first();
+    // The Add Candidate form uses separate First/Last Name fields (no longer a single "Candidate Full Name" field).
+    const err = page.locator('.oxd-input-group').filter({ has: recruitmentPage.firstNameInput }).locator('.oxd-input-group__message').first();
     await expect(err).toHaveText('Required');
   });
 
@@ -79,7 +80,7 @@ test.describe.serial('OrangeHRM Recruitment Module', () => {
     await recruitmentPage.addButton.click();
     await recruitmentPage.firstNameInput.fill('Soph');
     await recruitmentPage.saveButton.click();
-    const err = page.locator('.oxd-input-group:has-text("Candidate Full Name") .oxd-input-group__message').last();
+    const err = page.locator('.oxd-input-group').filter({ has: recruitmentPage.lastNameInput }).locator('.oxd-input-group__message').first();
     await expect(err).toHaveText('Required');
   });
 
@@ -108,7 +109,12 @@ test.describe.serial('OrangeHRM Recruitment Module', () => {
 
   test('TC_REC_16: Verify Reset button clears Candidate Name input', async ({ recruitmentPage, page }) => {
     await recruitmentPage.candidatesTab.click();
-    await recruitmentPage.searchCandidateNameInput.fill('TempName');
+    await recruitmentPage.searchCandidateNameInput.fill(candidateFirstName);
+    // Reset only clears a confirmed autocomplete selection, not unconfirmed free-typed text
+    // (same behavior as the Directory module's search field).
+    const option = recruitmentPage.autocompleteOption.filter({ hasText: candidateFirstName }).first();
+    await option.waitFor({ state: 'visible', timeout: 15000 });
+    await option.click();
     const reset = page.locator('button', { hasText: 'Reset' });
     await reset.click();
     await expect(recruitmentPage.searchCandidateNameInput).toHaveValue('');
@@ -125,8 +131,10 @@ test.describe.serial('OrangeHRM Recruitment Module', () => {
   });
 
   test('TC_REC_19: Verify date of application filter inputs are visible', async ({ page }) => {
-    const fromDate = page.locator('.oxd-input-group:has-text("From Date") input');
-    const toDate = page.locator('.oxd-input-group:has-text("To Date") input');
+    // The "Date of Application" label now only wraps the From input; the To
+    // input is a separate, unlabeled sibling field.
+    const fromDate = page.locator('.oxd-input-group:has-text("Date of Application") input[placeholder="From"]');
+    const toDate = page.locator('input[placeholder="To"]');
     await expect(fromDate).toBeVisible();
     await expect(toDate).toBeVisible();
   });

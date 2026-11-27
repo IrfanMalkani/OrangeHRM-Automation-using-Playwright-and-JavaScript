@@ -1,610 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - Leave Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - Leave Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">25</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">0</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">1</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">0.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_LEAVE_01</strong></td>
-                <td>
-                  <div>Apply leave request flow</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'Leave' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/leave/viewLeaveModule&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – Leave Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – Leave Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>Leave</b></div><div><span>Total Test Cases</span><b>27</b></div><div><span>Report Generated</span><b>2026-11-27 12:32:47 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">27</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">0</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">1</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">0</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">26</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">0.0%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">3.7%</div></div>
 </div>
-                </td>
-                <td>leave.spec.js</td>
-                <td>44.10s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_02</strong></td>
-                <td>
-                  <div>Verify leave type of applied leave request</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_03</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Apply is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_04</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab My Leave is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_05</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Entitlements dropdown is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_06</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Reports dropdown is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_07</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Configure dropdown is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_08</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Leave List is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_09</strong></td>
-                <td>
-                  <div>Verify Top Navigation Tab Assign Leave is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_10</strong></td>
-                <td>
-                  <div>Verify validation error on empty Leave Type in Apply form</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_11</strong></td>
-                <td>
-                  <div>Verify From Date input field is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_12</strong></td>
-                <td>
-                  <div>Verify To Date input field is visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_13</strong></td>
-                <td>
-                  <div>Verify comments textarea has correct maximum character details</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_14</strong></td>
-                <td>
-                  <div>Verify calendar icon buttons exist next to date input fields</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_15</strong></td>
-                <td>
-                  <div>Verify Show with Status multiselect chips exist in My Leave list filters</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_16</strong></td>
-                <td>
-                  <div>Verify Leave Type dropdown filter is present in My Leave tab</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_17</strong></td>
-                <td>
-                  <div>Verify Reset button clears date inputs in My Leave filters</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_18</strong></td>
-                <td>
-                  <div>Verify table headers in My Leave results page</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_19</strong></td>
-                <td>
-                  <div>Verify date validation error message if To Date is before From Date</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_20</strong></td>
-                <td>
-                  <div>Verify calendar widget opens when From Date input is clicked</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_21</strong></td>
-                <td>
-                  <div>Verify calendar widget opens when To Date input is clicked</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_22</strong></td>
-                <td>
-                  <div>Verify Leave page header title displays Leave</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_23</strong></td>
-                <td>
-                  <div>Verify Leave Balance card is shown for specific leave types</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_24</strong></td>
-                <td>
-                  <div>Verify My Leave list table rows can be scrolled and are visible</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_LEAVE_25</strong></td>
-                <td>
-                  <div>Verify search button on My Leave filters page has correct CSS layout</div>
-                  
-                </td>
-                <td>leave.spec.js</td>
-                <td>0.00s</td>
-                <td><span class="status-badge skipped">SKIPPED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
+<h2>Key Observations</h2><div class="panel text"><ul><li>1 test case failed because the application did not behave as expected and need investigation: TC_LEAVE_01 (Apply leave request flow).</li><li>26 Leave test cases were not executed on WebKit (Blocked) because TC_LEAVE_01 failed first on that browser; these tests run in sequence.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>Leave</td><td>27</td><td>0</td><td>1</td><td>0</td><td>26</td><td>0.0%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (27)</button><button data-f="PASS">Passed (0)</button><button data-f="FAIL">Failed (1)</button><button data-f="SKIPPED">Skipped (0)</button><button data-f="BLOCKED">Blocked (26)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
+</div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="FAIL" data-module="Leave">
+<td class="id">TC_LEAVE_01</td><td>Leave</td><td>Apply leave request flow</td>
+<td><span class="st FAIL">FAIL</span></td>
+<td>- The latest leave status should be shown (not empty)<br>- The leave status should be one of: Pending Approval, Scheduled, Taken, Cancelled</td><td>Chromium – PASS: As expected – all 2 checks passed.<br>Firefox – PASS: As expected – all 2 checks passed.<br>WebKit – FAIL: Attempt 1 failed: the click on .oxd-input-group:has-text(&quot;Leave Type&quot;) .oxd-select-text did not complete within 15 s although the element was visible, enabled and stable (application did not respond in time). Attempt 2 failed: check failed – expected not null, but got null.</td><td>WebKit: Application behaviour did not match: check failed – expected not null, but got null.</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Apply leave (&lt;start date&gt;, &lt;end date&gt;, 'Vacation and personal time off request.')<br>6. Read the latest leave status<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Comments: Vacation and personal time off request.<br>Start date: calculated at run time<br>End date: calculated at run time</dd><dt>Post Condition</dt><dd>The leave request is submitted and listed in My Leave. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:10:39 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Screenshot (attempt 1): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit/test-failed-1.png<br>Video (attempt 1): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit/video.webm<br>Trace (attempt 1): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit/trace.zip<br>Screenshot (attempt 2): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit-retry1/test-failed-1.png<br>Video (attempt 2): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit-retry1/video.webm<br>Trace (attempt 2): Results/Evidence/leave-OrangeHRM-Leave-Modu-a8753-01-Apply-leave-request-flow-webkit-retry1/trace.zip</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_02</td><td>Leave</td><td>Verify leave type of applied leave request</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The latest leave type should be shown (not empty)</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Read the latest leave type<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Start date: calculated at run time<br>End date: calculated at run time</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:05 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_03</td><td>Leave</td><td>Verify Top Navigation Tab Apply is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The Apply tab should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:15 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_04</td><td>Leave</td><td>Verify Top Navigation Tab My Leave is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The My Leave tab should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:23 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_05</td><td>Leave</td><td>Verify Top Navigation Tab Entitlements dropdown is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Entitlements' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:32 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_06</td><td>Leave</td><td>Verify Top Navigation Tab Reports dropdown is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Reports' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:39 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_07</td><td>Leave</td><td>Verify Top Navigation Tab Configure dropdown is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Configure' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:47 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_08</td><td>Leave</td><td>Verify Top Navigation Tab Leave List is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Leave List' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:11:54 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_09</td><td>Leave</td><td>Verify Top Navigation Tab Assign Leave is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Assign Leave' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:03 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_10</td><td>Leave</td><td>Verify validation error on empty Leave Type in Apply form</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The field validation message should show the text 'Required'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Click the Apply button<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:12 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_11</td><td>Leave</td><td>Verify From Date input field is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The From Date field should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:25 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_12</td><td>Leave</td><td>Verify To Date input field is visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The To Date field should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:34 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_13</td><td>Leave</td><td>Verify comments textarea has correct maximum character details</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The Comments field should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:44 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_14</td><td>Leave</td><td>Verify calendar icon buttons exist next to date input fields</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The bi calendar element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Date: new Date() (generated at run time)</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:56 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_15</td><td>Leave</td><td>Verify Show with Status multiselect chips exist in My Leave list filters</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The multiselect chips area element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:05 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_16</td><td>Leave</td><td>Verify Leave Type dropdown filter is present in My Leave tab</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The 'Leave Type' element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:20 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_17</td><td>Leave</td><td>Verify Reset button clears date inputs in My Leave filters</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The value of the From Date field should not equal '2026-05-01'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Enter '2026-05-01' into the From Date field<br>7. Click the 'Reset' element<br>8. Read the text of the From Date field<br>9. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: 2026-05-01</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:34 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_18</td><td>Leave</td><td>Verify table headers in My Leave results page</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The table header element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:46 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_19</td><td>Leave</td><td>Verify date validation error message if To Date is before From Date</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The field validation message should show the text 'To date should be after from date'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Negative / Validation</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Click the From Date field<br>7. Press the 'Control+A' key<br>8. Press the 'Backspace' key<br>9. Enter '2026-10-10' into the From Date field<br>10. Press the 'Tab' key<br>11. Click the To Date field<br>12. Press the 'Control+A' key<br>13. Press the 'Backspace' key<br>14. Enter '2026-05-10' into the To Date field<br>15. Press the 'Tab' key<br>16. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Input: 2026-10-10<br>Input: 2026-05-10<br>Date: new Date() (generated at run time)</dd><dt>Post Condition</dt><dd>No data is saved; the form shows the validation message. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:03 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_20</td><td>Leave</td><td>Verify calendar widget opens when From Date input is clicked</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The date input calendar element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Click the From Date field<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Date: new Date() (generated at run time)</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:13 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_21</td><td>Leave</td><td>Verify calendar widget opens when To Date input is clicked</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The date input calendar element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Click the To Date field<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Date: new Date() (generated at run time)</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:24 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_22</td><td>Leave</td><td>Verify Leave page header title displays Leave</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The topbar header title element should contain the text 'Leave'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:37 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_23</td><td>Leave</td><td>Verify Leave Balance card is shown for specific leave types</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- Leave Balance card is shown for specific leave types.</td><td>Chromium – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.<br>Firefox – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Click the Leave Type dropdown<br>7. Click the dropdown option<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:14:45 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_24</td><td>Leave</td><td>Verify My Leave list table rows can be scrolled and are visible</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The table element should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:01 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_25</td><td>Leave</td><td>Verify search button on My Leave filters page has correct CSS layout</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The submit (Save/Login) button should be visible</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the My Leave tab<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:12 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_26</td><td>Leave</td><td>Verify Leave Type dropdown displays default placeholder text before selection</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The text of the Leave Type dropdown should contain '-- Select --'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Read the text of the Leave Type dropdown<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:20 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="BLOCKED" data-module="Leave">
+<td class="id">TC_LEAVE_27</td><td>Leave</td><td>Verify Comments textarea accepts multi-line text input</td>
+<td><span class="st BLOCKED">BLOCKED</span></td>
+<td>- The value of the Comments field should equal 'Line one\nLine two\nLine three'</td><td>Chromium – PASS: As expected – the check passed.<br>Firefox – PASS: As expected – the check passed.<br>WebKit – BLOCKED: Not executed – blocked because TC_LEAVE_01 failed earlier in the same test sequence.</td><td>WebKit: Blocked by TC_LEAVE_01 (tests in this module run in sequence).</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the Leave module is open. A 15-day leave entitlement (year 2026) is assigned to the employee before the tests. Runs in sequence: the earlier Leave tests must pass first.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'Leave' module from the side menu<br>5. Click the Apply tab<br>6. Enter 'Line one\nLine two\nLine three' into the Comments field<br>7. Read the text of the Comments field<br>8. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Multiline: Line one\nLine two\nLine three</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:15:29 IST</dd><dt>Evidence</dt><dd class="small">WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr></tbody></table></div>
 
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:32:47 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>

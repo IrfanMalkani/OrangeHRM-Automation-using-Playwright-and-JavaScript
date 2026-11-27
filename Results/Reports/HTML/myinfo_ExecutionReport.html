@@ -1,632 +1,285 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrangeHRM E2E Test Execution Report. Detailed overview of test cases, statuses, durations, and logs for automated quality assurance.">
-  <title>OrangeHRM - My Info Module</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --primary-color: #ff7919;
-      --primary-glow: rgba(255, 121, 25, 0.15);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --failure: #ef4444;
-      --skipped: #64748b;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(8px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-badge {
-      background-color: var(--primary-color);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 24px;
-      font-size: 13px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-    }
-
-    .meta-item strong {
-      color: var(--text-main);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--skipped);
-    }
-
-    .stat-card.total::after { background: var(--primary-color); }
-    .stat-card.passed::after { background: var(--success); }
-    .stat-card.failed::after { background: var(--failure); }
-    .stat-card.rate::after { background: #eab308; }
-
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .stat-card.passed .stat-value { color: var(--success); }
-    .stat-card.failed .stat-value { color: var(--failure); }
-    .stat-card.rate .stat-value { color: #eab308; }
-
-    /* Results Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
-    }
-
-    .table-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .table-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      background-color: rgba(15, 23, 42, 0.5);
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    td {
-      padding: 14px 24px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background-color: rgba(255, 255, 255, 0.02);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge.passed {
-      background-color: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-    }
-
-    .status-badge.failed {
-      background-color: rgba(239, 68, 68, 0.12);
-      color: var(--failure);
-    }
-
-    .status-badge.skipped {
-      background-color: rgba(100, 116, 139, 0.12);
-      color: var(--skipped);
-    }
-
-    .error-log {
-      font-family: monospace;
-      color: var(--failure);
-      background-color: rgba(239, 68, 68, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 4px;
-      font-size: 11px;
-      max-width: 500px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <h1>OrangeHRM - My Info Module</h1>
-        <span class="logo-badge">PLAYWRIGHT</span>
-      </div>
-      <p>Automated E2E Test Suite Dashboard & Report Packaging</p>
-      
-      <div class="meta-grid">
-        <div class="meta-item">🕒 Timestamp: <strong>21/7/2026, 5:04:20 pm</strong></div>
-        <div class="meta-item">🔧 Framework: <strong>Page Object Model (POM)</strong></div>
-        <div class="meta-item">✍️ Author: <strong>Irfan Malkani</strong></div>
-      </div>
-    </header>
-
-    <div class="stats-grid">
-      <div id="stat-card-total" class="stat-card total">
-        <div class="stat-label">Total Executed</div>
-        <div class="stat-value">25</div>
-      </div>
-      <div id="stat-card-passed" class="stat-card passed">
-        <div class="stat-label">Passed</div>
-        <div class="stat-value">22</div>
-      </div>
-      <div id="stat-card-failed" class="stat-card failed">
-        <div class="stat-label">Failed</div>
-        <div class="stat-value">3</div>
-      </div>
-      <div id="stat-card-rate" class="stat-card rate">
-        <div class="stat-label">Pass Rate</div>
-        <div class="stat-value">88.0%</div>
-      </div>
-    </div>
-
-    <div class="table-container">
-      <div class="table-header">
-        <h2 id="table-title">Test Case Details</h2>
-      </div>
-      <table id="execution-results-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Test Scenario Name</th>
-            <th>Spec File</th>
-            <th>Duration</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-              <tr>
-                <td><strong>TC_MYINFO_01</strong></td>
-                <td>
-                  <div>Update personal details</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>68.00s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_02</strong></td>
-                <td>
-                  <div>Upload profile image</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'My Info' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/pim/viewMyDetails&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrangeHRM – My Info Module – Test Execution Report</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#ea6a10;--head:#1f2937;
+--pass:#0b6b32;--passbg:#d7f0df;--fail:#9b1c1c;--failbg:#f9d9d9;--skip:#4b5563;--skipbg:#e5e7eb;--blk:#8a4b00;--blkbg:#fce8c8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--panel:#171a21;--ink:#e5e7eb;--muted:#9ca3af;--line:#2a2f3a;--head:#0b0d12;
+--pass:#6ee7a0;--passbg:#12351f;--fail:#fca5a5;--failbg:#3b1414;--skip:#cbd5e1;--skipbg:#262b35;--blk:#fcd38d;--blkbg:#3a2a10}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--brand);color:#fff;padding:20px 16px}header .in,.wrap{max-width:1400px;margin:0 auto}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.9}
+.wrap{padding:20px 16px}h2{font-size:17px;margin:26px 0 10px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.info span{display:block;font-size:12px;color:var(--muted)}.info b{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--muted);border-radius:8px;padding:12px}
+.card .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.card .val{font-size:26px;font-weight:700}
+.card.PASS{border-top-color:var(--pass)}.card.FAIL{border-top-color:var(--fail)}.card.BLOCKED{border-top-color:var(--blk)}.card.TOTAL{border-top-color:var(--brand)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 0;overflow-x:auto}
+.panel.text{padding:12px 16px}.panel ul{margin:0;padding-left:18px}.panel li{margin:4px 0}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#fff;background:var(--head)}
+.st{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px}
+.st.PASS{color:var(--pass);background:var(--passbg)}.st.FAIL{color:var(--fail);background:var(--failbg)}.st.SKIPPED{color:var(--skip);background:var(--skipbg)}.st.BLOCKED{color:var(--blk);background:var(--blkbg)}
+.sev{font-weight:700}.sev.Critical,.sev.High{color:var(--fail)}.sev.Medium{color:var(--blk)}
+.id{font-family:Consolas,Menlo,monospace;white-space:nowrap}.small{font-size:12px;word-break:break-all}
+details summary{cursor:pointer;color:var(--brand);font-weight:600}dl{margin:8px 0 0}dt{font-size:12px;color:var(--muted);margin-top:6px}dd{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.filters button,.filters select,.filters input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.filters button.on{border-color:var(--brand);color:var(--brand);font-weight:600}
+#tc td:nth-child(5),#tc td:nth-child(6){min-width:240px}#tc td:nth-child(3){min-width:180px}
+.legend{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;align-items:start}
+footer{color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style></head><body>
+<header><div class="in"><h1>OrangeHRM – My Info Module – Test Execution Report</h1><p>Automated test execution report (Playwright)</p></div></header>
+<div class="wrap">
+<div class="info"><div><span>Project</span><b>OrangeHRM – Playwright Test Automation</b></div><div><span>Application URL</span><b>https://opensource-demo.orangehrmlive.com</b></div><div><span>Browser</span><b>Chromium, Firefox, WebKit</b></div><div><span>Execution Start</span><b>2026-11-26 17:05:53 IST</b></div><div><span>Execution End</span><b>2026-11-26 17:40:48 IST</b></div><div><span>Duration</span><b>34.9 minutes</b></div><div><span>Module</span><b>My Info</b></div><div><span>Total Test Cases</span><b>28</b></div><div><span>Report Generated</span><b>2026-11-27 12:32:47 IST</b></div></div>
+<div class="cards">
+<div class="card TOTAL"><div class="lbl">Total</div><div class="val">28</div></div><div class="card PASS"><div class="lbl">Passed</div><div class="val">26</div></div><div class="card FAIL"><div class="lbl">Failed</div><div class="val">0</div></div>
+<div class="card SKIPPED"><div class="lbl">Skipped</div><div class="val">2</div></div><div class="card BLOCKED"><div class="lbl">Blocked</div><div class="val">0</div></div>
+<div class="card PASS"><div class="lbl">Pass %</div><div class="val">92.9%</div></div><div class="card FAIL"><div class="lbl">Fail %</div><div class="val">0.0%</div></div>
 </div>
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>45.83s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_03</strong></td>
-                <td>
-                  <div>Verify first name field is pre-populated</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>45.63s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_04</strong></td>
-                <td>
-                  <div>Verify My Info page heading displays Personal Details</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>42.54s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_05</strong></td>
-                <td>
-                  <div>Verify Contact Details sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>52.32s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_06</strong></td>
-                <td>
-                  <div>Verify Emergency Contacts sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>44.56s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_07</strong></td>
-                <td>
-                  <div>Verify Dependents sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>48.06s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_08</strong></td>
-                <td>
-                  <div>Verify Immigration sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>51.61s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_09</strong></td>
-                <td>
-                  <div>Verify Job sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>40.57s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_10</strong></td>
-                <td>
-                  <div>Verify Salary sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>54.38s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_11</strong></td>
-                <td>
-                  <div>Verify Tax Exemptions sub-tab is visible</div>
-                  <div class="error-log">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-
-Locator: locator('a.orangehrm-tabs-item').filter({ hasText: 'Tax Exemptions' })
-Expected: visible
-Timeout: 15000ms
-Error: element(s) not found
-
-Call log:
-[2m  - Expect &quot;toBeVisible&quot; with timeout 15000ms[22m
-[2m  - waiting for locator('a.orangehrm-tabs-item').filter({ hasText: 'Tax Exemptions' })[22m
+<h2>Key Observations</h2><div class="panel text"><ul><li>All executed test cases passed.</li><li>2 test cases were skipped automatically because the feature is not available for this user profile: TC_MYINFO_11, TC_MYINFO_27.</li><li>5 passed test cases are marked &quot;Not Verified&quot;: their check cannot fail, so the behaviour was not actually confirmed. These tests need stronger checks.</li></ul></div>
+<h2>Module Result</h2>
+<div class="panel"><table><thead><tr><th>Module</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Blocked</th><th>Pass %</th></tr></thead><tbody><tr><td>My Info</td><td>28</td><td>26</td><td>0</td><td>2</td><td>0</td><td>92.9%</td></tr></tbody></table></div>
+<h2>Test Case Details</h2>
+<div class="filters" id="filters">
+<button data-f="ALL" class="on">All (28)</button><button data-f="PASS">Passed (26)</button><button data-f="FAIL">Failed (0)</button><button data-f="SKIPPED">Skipped (2)</button><button data-f="BLOCKED">Blocked (0)</button>
+<select id="mod" hidden><option value=""></option></select>
+<input id="q" type="search" placeholder="Search test cases">
 </div>
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>65.81s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_12</strong></td>
-                <td>
-                  <div>Verify Report-to sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>51.27s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_13</strong></td>
-                <td>
-                  <div>Verify Qualifications sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>42.34s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_14</strong></td>
-                <td>
-                  <div>Verify Memberships sub-tab is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>50.82s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_15</strong></td>
-                <td>
-                  <div>Verify middle name field is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>45.74s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_16</strong></td>
-                <td>
-                  <div>Verify last name field is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>37.79s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_17</strong></td>
-                <td>
-                  <div>Verify Employee ID field is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>54.39s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_18</strong></td>
-                <td>
-                  <div>Verify Driver's License Number field is visible</div>
-                  <div class="error-log">TimeoutError: locator.click: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('a.oxd-main-menu-item').filter({ hasText: 'My Info' })[22m
-[2m    - locator resolved to &lt;a data-v-6475d26d=&quot;&quot; class=&quot;oxd-main-menu-item&quot; href=&quot;/web/index.php/pim/viewMyDetails&quot;&gt;…&lt;/a&gt;[22m
-[2m  - attempting click action[22m
-[2m    - waiting for element to be visible, enabled and stable[22m
-[2m    - element is visible, enabled and stable[22m
-[2m    - scrolling into view if needed[22m
-[2m    - done scrolling[22m
-[2m    - performing click action[22m
-[2m    - click action done[22m
-[2m    - waiting for scheduled navigations to finish[22m
-</div>
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>46.72s</td>
-                <td><span class="status-badge failed">FAILED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_19</strong></td>
-                <td>
-                  <div>Verify SSN Number field is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>58.97s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_20</strong></td>
-                <td>
-                  <div>Verify SIN Number field is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>42.29s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_21</strong></td>
-                <td>
-                  <div>Verify Nationality dropdown is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>57.42s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_22</strong></td>
-                <td>
-                  <div>Verify Marital Status dropdown is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>53.22s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_23</strong></td>
-                <td>
-                  <div>Verify Gender radio buttons exist</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>45.27s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_24</strong></td>
-                <td>
-                  <div>Verify Custom Fields heading is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>52.68s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-              <tr>
-                <td><strong>TC_MYINFO_25</strong></td>
-                <td>
-                  <div>Verify Attachments Add button is visible</div>
-                  
-                </td>
-                <td>myinfo.spec.js</td>
-                <td>52.99s</td>
-                <td><span class="status-badge passed">PASSED</span></td>
-              </tr>
-            
-        </tbody>
-      </table>
-    </div>
+<div class="panel"><table id="tc"><thead><tr><th>Test Case ID</th><th>Module</th><th>Test Case Description</th><th>Status</th><th>Expected Result</th><th>Actual Result</th><th>Failure Reason</th><th>Details</th></tr></thead><tbody>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_01</td><td>My Info</td><td>Update personal details</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The first name input should not have the value ''<br>- The nickname value should equal (updated nickname)<br>- The value of the other id input should equal (random other id)</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Check whether the nick name input is visible<br>6. Update personal details (&lt;updated nickname&gt;, '') (only if the condition in the test is met)<br>7. Reload the page (only if the condition in the test is met)<br>8. Read the nickname value (only if the condition in the test is met)<br>9. Update personal details ('', &lt;random other id&gt;) (only if the condition in the test is met)<br>10. Reload the page (only if the condition in the test is met)<br>11. Read the text of the other id input (only if the condition in the test is met)<br>12. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Nickname: HunterX<br>Update personal details input: (empty)</dd><dt>Post Condition</dt><dd>The updated personal details are saved in My Info. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:00 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_02</td><td>My Info</td><td>Upload profile image</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The profile image container should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Upload profile image (&lt;profile pic path&gt;)<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Profile pic path: path.resolve(__dirname, '../test-data/profile_pic.png') (generated at run time)</dd><dt>Post Condition</dt><dd>The uploaded image is saved as the employee's profile picture. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:18 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_03</td><td>My Info</td><td>Verify first name field is pre-populated</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The number of value of the first name input should be greater than 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Read the text of the first name input<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:32 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_04</td><td>My Info</td><td>Verify My Info page heading displays Personal Details</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The main title element should show the text 'Personal Details'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:44 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_05</td><td>My Info</td><td>Verify Contact Details sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Contact Details' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:55 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_06</td><td>My Info</td><td>Verify Emergency Contacts sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Emergency Contacts' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:00 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_07</td><td>My Info</td><td>Verify Dependents sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Dependents' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:11 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_08</td><td>My Info</td><td>Verify Immigration sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Immigration' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:22 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_09</td><td>My Info</td><td>Verify Job sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Job' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:32 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_10</td><td>My Info</td><td>Verify Salary sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Salary' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:43 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="SKIPPED" data-module="My Info">
+<td class="id">TC_MYINFO_11</td><td>My Info</td><td>Verify Tax Exemptions sub-tab is visible</td>
+<td><span class="st SKIPPED">SKIPPED</span></td>
+<td>- The 'Tax Exemptions' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – SKIPPED: Not executed – skipped automatically: Tax Exemptions tab is not part of this employee profile's configuration.</td><td>Chromium: Skipped: Tax Exemptions tab is not part of this employee profile's configuration.<br>Firefox: Skipped: Tax Exemptions tab is not part of this employee profile's configuration.<br>WebKit: Skipped: Tax Exemptions tab is not part of this employee profile's configuration.</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open. Skipped automatically if: Tax Exemptions tab is not part of this employee profile's configuration.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Count the 'Tax Exemptions' elements<br>6. Skip the test if the feature is not available for this user<br>7. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>Not executed</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.<br>WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_12</td><td>My Info</td><td>Verify Report-to sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Report-to' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:12 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_13</td><td>My Info</td><td>Verify Qualifications sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Qualifications' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:25 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_14</td><td>My Info</td><td>Verify Memberships sub-tab is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Memberships' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:35 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_15</td><td>My Info</td><td>Verify middle name field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The middle name field should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:46 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_16</td><td>My Info</td><td>Verify last name field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The last name field should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:06 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_17</td><td>My Info</td><td>Verify Employee ID field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Employee Id' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:15 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_18</td><td>My Info</td><td>Verify Driver's License Number field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The input group element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:26 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_19</td><td>My Info</td><td>Verify SSN Number field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- SSN Number field is visible.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:38 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_20</td><td>My Info</td><td>Verify SIN Number field is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- SIN Number field is visible.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:48 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_21</td><td>My Info</td><td>Verify Nationality dropdown is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Nationality' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:07 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_22</td><td>My Info</td><td>Verify Marital Status dropdown is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Marital Status' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:17 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_23</td><td>My Info</td><td>Verify Gender radio buttons exist</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Gender radio buttons exist.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:28 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_24</td><td>My Info</td><td>Verify Custom Fields heading is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- Custom Fields heading is visible.</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:40 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_25</td><td>My Info</td><td>Verify Attachments Add button is visible</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Add' element should be visible</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>UI Verification</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:50 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_26</td><td>My Info</td><td>Verify My Info page URL points to Personal Details view by default</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The page URL should contain 'viewPersonalDetails'</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:12:55 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr>
+<tr data-status="SKIPPED" data-module="My Info">
+<td class="id">TC_MYINFO_27</td><td>My Info</td><td>Verify an overly long nickname value is accepted without crashing the Personal Details form</td>
+<td><span class="st SKIPPED">SKIPPED</span></td>
+<td>- The first name input should not have the value ''</td><td>All browsers (Chromium, Firefox, WebKit) – SKIPPED: Not executed – skipped automatically: Nickname field not visible for this employee profile.</td><td>Chromium: Skipped: Nickname field not visible for this employee profile.<br>Firefox: Skipped: Nickname field not visible for this employee profile.<br>WebKit: Skipped: Nickname field not visible for this employee profile.</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Edge Case / Boundary</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open. Skipped automatically if: Nickname field not visible for this employee profile.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Check whether the nick name input is visible<br>6. Skip the test if the feature is not available for this user<br>7. Enter 'N' repeated 100 times into the nick name input<br>8. Click the save personal details button<br>9. Reload the page<br>10. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123<br>Long nickname: 'N' repeated 100 times</dd><dt>Post Condition</dt><dd>The entered value is saved in Personal Details. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>Not executed</dd><dt>Evidence</dt><dd class="small">Chromium:<br>Not executed – no run evidence.<br>Firefox:<br>Not executed – no run evidence.<br>WebKit:<br>Not executed – no run evidence.</dd></dl></details></td></tr>
+<tr data-status="PASS" data-module="My Info">
+<td class="id">TC_MYINFO_28</td><td>My Info</td><td>Verify Employee Id field displays a non-empty value</td>
+<td><span class="st PASS">PASS</span></td>
+<td>- The 'Employee Id' element should be visible<br>- The number of value of the 'Employee Id' element should be greater than 0</td><td>All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.</td><td>–</td>
+<td><details><summary>View</summary><dl>
+<dt>Test Scenario</dt><dd>Positive Functional</dd><dt>Preconditions</dt><dd>User is logged in as Admin and the My Info module is open.</dd>
+<dt>Test Steps</dt><dd>1. Open the OrangeHRM login page<br>2. Enter the username and password and click Login<br>3. Wait for the Dashboard to load<br>4. Open the 'My Info' module from the side menu<br>5. Read the text of the 'Employee Id' element<br>6. Verify the expected result</dd><dt>Test Data</dt><dd>Login: Admin / admin123</dd><dt>Post Condition</dt><dd>No application data is changed. User remains logged in as Admin.</dd>
+<dt>Execution Date</dt><dd>2026-11-26 17:13:19 IST</dd><dt>Evidence</dt><dd class="small">Playwright HTML report: Results/Reports/HTML/playwright-report/index.html</dd></dl></details></td></tr></tbody></table></div>
 
-    <footer>
-      OrangeHRM E2E Quality Assurance Suite &bull; Generated by Playwright JS
-    </footer>
-  </div>
-</body>
-</html>
+<h2>Status Legend</h2><div class="panel text legend"><span class="st PASS">PASS</span><span>Actual behaviour matched the expected result.</span><span class="st FAIL">FAIL</span><span>Actual behaviour did not match the expected result, or the test could not complete.</span><span class="st SKIPPED">SKIPPED</span><span>Not executed: the test skipped itself because its condition was not met (reason given).</span><span class="st BLOCKED">BLOCKED</span><span>Not executed: an earlier test in the same sequence failed.</span><span class="st NotVerified">Not Verified</span><span>Shown in Actual Result when the test ran but could not confirm the behaviour (for example, a check that cannot fail).</span></div>
+<footer>Generated 2026-11-27 12:32:47 IST from Playwright results.</footer>
+</div>
+<script>
+(function(){var f='ALL',rows=[].slice.call(document.querySelectorAll('#tc tbody tr')),mod=document.getElementById('mod'),q=document.getElementById('q');
+function apply(){var m=mod.value,t=q.value.toLowerCase();rows.forEach(function(r){var ok=(f==='ALL'||r.dataset.status===f)&&(!m||r.dataset.module===m)&&(!t||r.textContent.toLowerCase().indexOf(t)>=0);r.style.display=ok?'':'none';});}
+document.getElementById('filters').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON')return;f=e.target.dataset.f;[].forEach.call(this.querySelectorAll('button'),function(b){b.classList.toggle('on',b===e.target);});apply();});
+mod.addEventListener('change',apply);q.addEventListener('input',apply);})();
+</script></body></html>

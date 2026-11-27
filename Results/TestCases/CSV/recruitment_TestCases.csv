@@ -1,76 +1,161 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_REC_01,Recruitment,Recruitment,Add candidate details,Positive,Add candidate details,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,FAILED
-TC_REC_02,Recruitment,Recruitment,Search candidate records,Positive,Search candidate records,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
-TC_REC_03,Recruitment,Recruitment,Verify Recruitment page has Add button visible,Positive,Verify Recruitment page has Add button visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,SKIPPED
-TC_REC_04,Recruitment,Recruitment,Verify Candidates tab is functional,Positive,Verify Candidates tab is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_05,Recruitment,Recruitment,Verify top navigation contains Vacancies tab,Positive,Verify top navigation contains Vacancies tab,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_06,Recruitment,Recruitment,Verify job title dropdown filter is visible,Positive,Verify job title dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_07,Recruitment,Recruitment,Verify vacancy dropdown filter is visible,Positive,Verify vacancy dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_08,Recruitment,Recruitment,Verify hiring manager dropdown filter is visible,Positive,Verify hiring manager dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_09,Recruitment,Recruitment,Verify status dropdown filter is visible,Positive,Verify status dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_10,Recruitment,Recruitment,Verify method of application dropdown filter is visible,Positive,Verify method of application dropdown filter is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_11,Recruitment,Recruitment,Verify validation error on empty First Name input,Negative,Verify validation error on empty First Name input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_12,Recruitment,Recruitment,Verify validation error on empty Last Name input,Negative,Verify validation error on empty Last Name input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_13,Recruitment,Recruitment,Verify validation error on empty Email input,Negative,Verify validation error on empty Email input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_14,Recruitment,Recruitment,Verify validation error on invalid Email format,Negative,Verify validation error on invalid Email format,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_15,Recruitment,Recruitment,Verify Cancel button on Add Candidate form returns to candidates page,Positive,Verify Cancel button on Add Candidate form returns to candidates page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_16,Recruitment,Recruitment,Verify Reset button clears Candidate Name input,Positive,Verify Reset button clears Candidate Name input,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_17,Recruitment,Recruitment,Verify Recruitment header breadcrumb displays Recruitment / Candidates,Positive,Verify Recruitment header breadcrumb displays Recruitment / Candidates,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_18,Recruitment,Recruitment,Verify table checkboxes exist for recruitment rows,Positive,Verify table checkboxes exist for recruitment rows,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_19,Recruitment,Recruitment,Verify date of application filter inputs are visible,Positive,Verify date of application filter inputs are visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_20,Recruitment,Recruitment,Verify Keywords input is functional,Positive,Verify Keywords input is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_21,Recruitment,Recruitment,Verify select all checkbox is in the header,Positive,Verify select all checkbox is in the header,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_22,Recruitment,Recruitment,Verify records text is visible above the table,Positive,Verify records text is visible above the table,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_23,Recruitment,Recruitment,Verify file upload field accepts doc/docx/pdf file types,Positive,Verify file upload field accepts doc/docx/pdf file types,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_24,Recruitment,Recruitment,Verify consent checkbox is visible in Add Candidate form,Positive,Verify consent checkbox is visible in Add Candidate form,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
-TC_REC_25,Recruitment,Recruitment,Verify Vacancy dropdown has option elements loaded,Positive,Verify Vacancy dropdown has option elements loaded,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,SKIPPED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_REC_01,Positive Functional,Add candidate details,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Add candidate (<candidate first name>, <candidate last name>, <candidate email>, '1234567890', (none))
+6. Verify the expected result","Login: Admin / admin123
+Contact number: 1234567890
+Candidate first name: Sophia<random number> (generated at run time)
+Candidate last name: SophiaL<random number> (generated at run time)
+Candidate email: sophia.<random number>@example.com (generated at run time)",- The 'Application Stage' element should be visible,The new candidate is saved and listed in Recruitment > Candidates. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_02,Positive Functional,Search candidate records,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Search candidate (<candidate first name>)
+6. Check whether the recruitment page is candidate in results
+7. Verify the expected result","Login: Admin / admin123
+Candidate first name: Sophia<random number> (generated at run time)
+Candidate last name: SophiaL<random number> (generated at run time)
+Candidate full name: <candidate first name> <candidate last name> (generated at run time)",- The is candidate in results flag should equal true,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_03,UI Verification,Verify Recruitment page has Add button visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The Add button should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_04,UI Verification,Verify Candidates tab is functional,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the candidates tab
+6. Verify the expected result",Login: Admin / admin123,- The Search button should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_05,UI Verification,Verify top navigation contains Vacancies tab,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Vacancies' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_06,UI Verification,Verify job title dropdown filter is visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Job Title' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_07,UI Verification,Verify vacancy dropdown filter is visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Vacancy' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_08,UI Verification,Verify hiring manager dropdown filter is visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Hiring Manager' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_09,UI Verification,Verify status dropdown filter is visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Status' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_10,UI Verification,Verify method of application dropdown filter is visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Method of Application' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_11,Negative / Validation,Verify validation error on empty First Name input,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Click the Save button
+7. Verify the expected result",Login: Admin / admin123,- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_12,Negative / Validation,Verify validation error on empty Last Name input,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Enter 'Soph' into the first name input
+7. Click the Save button
+8. Verify the expected result","Login: Admin / admin123
+Input: Soph",- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_13,Negative / Validation,Verify validation error on empty Email input,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Click the Save button
+7. Verify the expected result",Login: Admin / admin123,- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_14,Negative / Validation,Verify validation error on invalid Email format,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Enter 'invalidemailformat' into the email input
+7. Click the Save button
+8. Verify the expected result","Login: Admin / admin123
+Input: invalidemailformat",- The field validation message should show the text 'Expected format: admin@example.com',No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_15,Positive Functional,Verify Cancel button on Add Candidate form returns to candidates page,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Click the secondary (ghost-style) button
+7. Wait for navigation to **/recruitment/viewCandidates
+8. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/recruitment/viewCandidates',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_16,Positive Functional,Verify Reset button clears Candidate Name input,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the candidates tab
+6. Enter <candidate first name> into the search candidate name input
+7. Click the option
+8. Click the 'Reset' element
+9. Verify the expected result","Login: Admin / admin123
+Candidate first name: Sophia<random number> (generated at run time)",- The search candidate name input should have the value '',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_17,UI Verification,Verify Recruitment header breadcrumb displays Recruitment / Candidates,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'Recruitment',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_18,UI Verification,Verify table checkboxes exist for recruitment rows,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- Table checkboxes exist for recruitment rows.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_REC_19,UI Verification,Verify date of application filter inputs are visible,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,"- The 'Date of Application' element should be visible
+- The 'To' field should be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_REC_20,UI Verification,Verify Keywords input is functional,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Keywords' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_21,UI Verification,Verify select all checkbox is in the header,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The checkbox wrapper element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_22,UI Verification,Verify records text is visible above the table,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The horizontal padding element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_23,Positive Functional,Verify file upload field accepts doc/docx/pdf file types,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Verify the expected result",Login: Admin / admin123,- The resume input should be present in the page,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_REC_24,UI Verification,Verify consent checkbox is visible in Add Candidate form,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Verify the expected result",Login: Admin / admin123,- Consent checkbox is visible in Add Candidate form.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_REC_25,UI Verification,Verify Vacancy dropdown has option elements loaded,User is logged in as Admin and the Recruitment module is open. Runs in sequence: the earlier Recruitment tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Recruitment' module from the side menu
+5. Click the Add button
+6. Verify the expected result",Login: Admin / admin123,- The 'Vacancy' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS

@@ -1,76 +1,211 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_BUZZ_01,Buzz,Buzz,Verify Buzz page loads feed correctly,Positive,Verify Buzz page loads feed correctly,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_02,Buzz,Buzz,Verify successful creation of new post,Positive,Verify successful creation of new post,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_03,Buzz,Buzz,Verify feed filtering tabs are functional,Positive,Verify feed filtering tabs are functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_BUZZ_04,Buzz,Buzz,Verify post button is disabled/ignored when post text is empty,Positive,Verify post button is disabled/ignored when post text is empty,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_05,Buzz,Buzz,Verify Share Photos button is visible,Positive,Verify Share Photos button is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_06,Buzz,Buzz,Verify Share Video button is visible,Positive,Verify Share Video button is visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_07,Buzz,Buzz,Verify post textarea placeholder is What's on your mind?,Positive,Verify post textarea placeholder is What's on your mind?,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_08,Buzz,Buzz,Verify Most Recent Posts tab is visible by default,Positive,Verify Most Recent Posts tab is visible by default,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_09,Buzz,Buzz,Verify Most Commented Posts tab filters newsfeed,Positive,Verify Most Commented Posts tab filters newsfeed,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_10,Buzz,Buzz,Verify newsfeed contains cards with profile avatars,Positive,Verify newsfeed contains cards with profile avatars,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_11,Buzz,Buzz,Verify user profile name link is visible on each post card,Positive,Verify user profile name link is visible on each post card,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_12,Buzz,Buzz,Verify timestamp elapsed duration text exists on post,Positive,Verify timestamp elapsed duration text exists on post,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_13,Buzz,Buzz,Verify clicking Like button toggles like state,Positive,Verify clicking Like button toggles like state,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_14,Buzz,Buzz,Verify Comment icon button exists on feed posts,Positive,Verify Comment icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_15,Buzz,Buzz,Verify Share icon button exists on feed posts,Positive,Verify Share icon button exists on feed posts,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_16,Buzz,Buzz,Verify Buzz page URL path is correct,Positive,Verify Buzz page URL path is correct,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_17,Buzz,Buzz,Verify Share Photos button opens dialog pop-up,Positive,Verify Share Photos button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_18,Buzz,Buzz,Verify Share Video button opens dialog pop-up,Positive,Verify Share Video button opens dialog pop-up,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_19,Buzz,Buzz,Verify post options dropdown (dot menu) is functional,Positive,Verify post options dropdown (dot menu) is functional,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_20,Buzz,Buzz,Verify feed scroll behavior is responsive,Positive,Verify feed scroll behavior is responsive,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_21,Buzz,Buzz,Verify post content area does not overflow card width,Positive,Verify post content area does not overflow card width,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_22,Buzz,Buzz,Verify video link validation error message when empty video link is posted,Negative,Verify video link validation error message when empty video link is posted,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_23,Buzz,Buzz,Verify profile card elements are visible in left column of Buzz page,Positive,Verify profile card elements are visible in left column of Buzz page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_24,Buzz,Buzz,Verify post textarea accepts special characters and emojis,Positive,Verify post textarea accepts special characters and emojis,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_BUZZ_25,Buzz,Buzz,Verify Buzz title in topbar matches breadcrumb text,Positive,Verify Buzz title in topbar matches breadcrumb text,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_BUZZ_01,UI Verification,Verify Buzz page loads feed correctly,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Read the header text
+7. Verify the expected result",Login: Admin / admin123,"- The header text should equal 'Buzz'
+- The buzz feed should be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_BUZZ_02,Positive Functional,Verify successful creation of new post,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Create post (<post text>)
+7. Check that the 'post' message is shown on the buzz page
+8. Verify the expected result",Login: Admin / admin123,- Successful creation of new post.,The new post is published in the Buzz feed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – FAIL: Failed on all 2 attempts: check failed – expected true, but got false.
+WebKit – PASS: As expected – the check passed.",FAIL
+TC_BUZZ_03,Positive Functional,Verify feed filtering tabs are functional,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Click the most liked posts tab
+7. Verify the expected result",Login: Admin / admin123,"- The most recent posts tab should be visible
+- The most liked posts tab should be visible
+- The most commented posts tab should be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 4 checks passed.",PASS
+TC_BUZZ_04,Negative / Validation,Verify post button is disabled/ignored when post text is empty,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Read the buzz post count
+7. Click the post button
+8. Read the buzz post count
+9. Verify the expected result",Login: Admin / admin123,- The buzz post count should be at most (initial post count + 1),No data is saved; the form shows the validation message. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_05,UI Verification,Verify Share Photos button is visible,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The 'Share Photos' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_06,UI Verification,Verify Share Video button is visible,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The 'Share Video' element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_07,UI Verification,Verify post textarea placeholder is What's on your mind?,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Read the 'placeholder' attribute of the buzz create post header element
+7. Verify the expected result",Login: Admin / admin123,- The 'placeholder' attribute of the buzz create post header element should equal 'What's on your mind?',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_08,UI Verification,Verify Most Recent Posts tab is visible by default,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The most recent posts tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_09,Positive Functional,Verify Most Commented Posts tab filters newsfeed,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Click the most commented posts tab
+7. Verify the expected result",Login: Admin / admin123,- The most commented posts tab should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_10,UI Verification,Verify newsfeed contains cards with profile avatars,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Newsfeed contains cards with profile avatars.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_11,UI Verification,Verify user profile name link is visible on each post card,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- User profile name link is visible on each post card.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_12,UI Verification,Verify timestamp elapsed duration text exists on post,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Timestamp elapsed duration text exists on post.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_13,Positive Functional,Verify clicking Like button toggles like state,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The buzz post actions element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.",PASS
+TC_BUZZ_14,UI Verification,Verify Comment icon button exists on feed posts,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Comment icon button exists on feed posts.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_15,UI Verification,Verify Share icon button exists on feed posts,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Share icon button exists on feed posts.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_16,UI Verification,Verify Buzz page URL path is correct,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/buzz/viewBuzz',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_17,Positive Functional,Verify Share Photos button opens dialog pop-up,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Click the 'Share Photos' element
+7. Click the dialog close button element
+8. Verify the expected result",Login: Admin / admin123,"- The dialog sheet element should be visible
+- The dialog sheet element should not be visible",No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – all 2 checks passed.",PASS
+TC_BUZZ_18,Positive Functional,Verify Share Video button opens dialog pop-up,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Click the 'Share Video' element
+7. Click the dialog close button element
+8. Verify the expected result",Login: Admin / admin123,"- The dialog sheet element should be visible
+- The dialog sheet element should not be visible",No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – all 2 checks passed.
+Firefox – PASS: As expected – all 2 checks passed.
+WebKit – FAIL: Attempt 1 failed: the click on .oxd-dialog-sheet, .orangehrm-buzz-post-modal did not complete within 15 s. Attempt 2 failed: the dialog sheet element was not visible – it was not found on the page.",FAIL
+TC_BUZZ_19,Positive Functional,Verify post options dropdown (dot menu) is functional,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Post options dropdown (dot menu) is functional.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_20,Responsive Layout,Verify feed scroll behavior is responsive,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The buzz newsfeed element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_21,Positive Functional,Verify post content area does not overflow card width,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- Post content area does not overflow card width.,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.",PASS
+TC_BUZZ_22,Negative / Validation,Verify video link validation error message when empty video link is posted,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Click the 'Share Video' element
+7. Click the submit (Save/Login) button
+8. Click the dialog close button element
+9. Verify the expected result",Login: Admin / admin123,"- The dialog sheet element should be visible
+- The field validation message should be visible",No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – PASS: As expected – all 2 checks passed.
+Firefox – PASS: As expected – all 2 checks passed.
+WebKit – FAIL: Not Verified – the test could not reach its checks. Failed on all 2 attempts: the click on .oxd-dialog-sheet, .orangehrm-buzz-post-modal did not complete within 15 s.",FAIL
+TC_BUZZ_23,UI Verification,Verify profile card elements are visible in left column of Buzz page,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The buzz profile card element should be visible,No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_24,Edge Case / Boundary,Verify post textarea accepts special characters and emojis,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Enter 'Automation Post with Emojis! 🚀🔥🌟' into the buzz create post header element
+7. Read the text of the buzz create post header element
+8. Verify the expected result","Login: Admin / admin123
+Emoji post: Automation Post with Emojis! 🚀🔥🌟",- The value of the buzz create post header element should equal 'Automation Post with Emojis! 🚀🔥🌟',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_25,UI Verification,Verify Buzz title in topbar matches breadcrumb text,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'Buzz',No application data is changed. User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS
+TC_BUZZ_26,Edge Case / Boundary,Verify creating a post with an extremely long text body does not crash the feed,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Create post (<long text>)
+7. Check that the 'post' message is shown on the buzz page
+8. Verify the expected result",Login: Admin / admin123,- Creating a post with an extremely long text body does not crash the feed.,The new post is published in the Buzz feed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed. Passed on attempt 2 after attempt 1 failed: check failed – expected true, but got false.
+Firefox – PASS: As expected – the check passed. Passed on attempt 2 after attempt 1 failed: check failed – expected true, but got false.
+WebKit – PASS: As expected – the check passed.",PASS
+TC_BUZZ_27,Positive Functional,Verify a newly created post appears near the top of the Most Recent Posts feed,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Create post (<post text>)
+7. Check that the 'post' message is shown on the buzz page
+8. Read the text of the each buzz post body
+9. Verify the expected result",Login: Admin / admin123,"- A newly created post appears near the top of the Most Recent Posts feed.
+- The found near top should equal true",The new post is published in the Buzz feed. User remains logged in as Admin.,"Chromium – PASS: As expected – all 2 checks passed.
+Firefox – PASS: As expected – all 2 checks passed.
+WebKit – PASS: As expected – all 2 checks passed. Passed on attempt 2 after attempt 1 failed: check failed – expected true, but got false.",PASS
+TC_BUZZ_28,Negative / Validation,Verify a script tag entered in the post textarea is rendered as plain text and not executed,User is logged in as Admin and the Buzz module is open.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Buzz' module from the side menu
+5. Wait for the buzz page to load
+6. Create post (<payload>)
+7. Verify the expected result",Login: Admin / admin123,- The dialog fired should equal false,The post is published in the Buzz feed and the script text is shown as plain text (not executed). User remains logged in as Admin.,"All browsers (Chromium, Firefox, WebKit) – PASS: As expected – the check passed.",PASS

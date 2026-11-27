@@ -1,76 +1,221 @@
-Test Case ID,Module,Subtask,Feature,Test Type,Description,Pre-condition,Test Steps,Expected Result,Priority,Status
-TC_ADMIN_01,Admin,Admin,Add new user (Pre-requisite: Add Employee first),Positive,Add new user (Pre-requisite: Add Employee first),OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_ADMIN_02,Admin,Admin,Search user by username,Positive,Search user by username,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_ADMIN_03,Admin,Admin,Update user details,Positive,Update user details,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,High,PASSED
-TC_ADMIN_04,Admin,Admin,Verify user role displays correctly in search results,Positive,Verify user role displays correctly in search results,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_05,Admin,Admin,Verify Admin page has Add button visible,Positive,Verify Admin page has Add button visible,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_06,Admin,Admin,Delete existing user and cleanup employee,Positive,Delete existing user and cleanup employee,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_07,Admin,Admin,Verify resetting the search form clears username field,Positive,Verify resetting the search form clears username field,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_08,Admin,Admin,Verify search with non-existent username returns zero records,Positive,Verify search with non-existent username returns zero records,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_09,Admin,Admin,Verify Admin sub-menu bar contains User Management item,Positive,Verify Admin sub-menu bar contains User Management item,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_10,Admin,Admin,Verify Job dropdown menu is visible in top navigation bar,Positive,Verify Job dropdown menu is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_11,Admin,Admin,Verify Organization dropdown menu is visible in top navigation bar,Positive,Verify Organization dropdown menu is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_12,Admin,Admin,Verify Qualifications dropdown menu is visible in top navigation bar,Positive,Verify Qualifications dropdown menu is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_13,Admin,Admin,Verify Nationalities tab item is visible in top navigation bar,Positive,Verify Nationalities tab item is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_14,Admin,Admin,Verify Corporate Branding tab item is visible in top navigation bar,Positive,Verify Corporate Branding tab item is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_15,Admin,Admin,Verify Configuration dropdown menu is visible in top navigation bar,Positive,Verify Configuration dropdown menu is visible in top navigation bar,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_16,Admin,Admin,Verify validation error on adding user with empty password,Negative,Verify validation error on adding user with empty password,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_17,Admin,Admin,Verify validation error on adding user with mismatched confirm password,Negative,Verify validation error on adding user with mismatched confirm password,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_18,Admin,Admin,Verify autocomplete dropdown is hidden by default,Positive,Verify autocomplete dropdown is hidden by default,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_19,Admin,Admin,Verify cancel button returns to user grid page,Positive,Verify cancel button returns to user grid page,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_20,Admin,Admin,Verify select all checkbox is visible on table header,Positive,Verify select all checkbox is visible on table header,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_21,Admin,Admin,Verify row checkbox can be hovered and clicked,Positive,Verify row checkbox can be hovered and clicked,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_22,Admin,Admin,Verify records count display text exists above table,Positive,Verify records count display text exists above table,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_23,Admin,Admin,Verify Admin breadcrumb title contains User Management,Positive,Verify Admin breadcrumb title contains User Management,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_24,Admin,Admin,"Verify table column headers Username, User Role, Employee Name, Status, Actions exist",Positive,"Verify table column headers Username, User Role, Employee Name, Status, Actions exist",OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
-TC_ADMIN_25,Admin,Admin,Verify search button tag name is button,Positive,Verify search button tag name is button,OrangeHRM application is accessible,"1. Navigate to page
-2. Perform test actions
-3. Verify assertions",Test executes successfully and all assertions pass,Medium,PASSED
+﻿TEST CASE ID,TEST SCENARIO,TEST CASE,PRE-CONDITION,TEST STEPS,TEST DATA,EXPECTED RESULT,POST CONDITION,ACTUAL RESULT,STATUS (PASS/FAIL)
+TC_ADMIN_01,Positive Functional,Add new user (Pre-requisite: Add Employee first),User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'PIM' module from the side menu
+5. Add employee (<emp first name>, <emp last name>, <test employee id>)
+6. Open the 'Admin' module from the side menu
+7. Add user ('Admin', <full name>, <test username>, 'Password123!')
+8. Search user (<test username>)
+9. Verify the expected result","Login: Admin / admin123
+Role: Admin
+Password: Password123!
+Test employee id: <random number> (generated at run time)
+Emp first name: Alex<random number> (generated at run time)
+Emp last name: Hunter<random number> (generated at run time)
+Test username: alex.<random number> (generated at run time)",- The first result row username should show the generated username (alex.<random number>),The new system user is saved and listed in Admin > User Management. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – FAIL: Attempt 1 failed: the table card element was not as expected (expected: ""alex.999940"") – actual: ""Aaryahi 893"". Attempt 2 failed: the table card element was not as expected (expected: ""alex.576877"") – actual: ""Aaryahi 893"".
+WebKit – PASS: As expected – the check passed.",FAIL
+TC_ADMIN_02,Positive Functional,Search user by username,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Search user (<test username>)
+6. Verify the expected result","Login: Admin / admin123
+Test username: alex.<random number> (generated at run time)",- The first result row username should show the generated username (alex.<random number>),No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_ADMIN_03,Positive Functional,Update user details,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Update user role (<test username>, 'ESS')
+6. Search user (<test username>)
+7. Click the Edit button
+8. Verify the expected result","Login: Admin / admin123
+Update user role input: ESS
+Test username: alex.<random number> (generated at run time)","- The first result row username should show the generated username (alex.<random number>)
+- The Username field should have the value the generated username (alex.<random number>)
+- The User Role dropdown should contain the text 'ESS'",The test user's updated details are saved. User remains logged in as Admin.,"Chromium – PASS: As expected – all 3 checks passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – PASS: As expected – all 3 checks passed.",BLOCKED
+TC_ADMIN_04,UI Verification,Verify user role displays correctly in search results,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Search user (<test username>)
+6. Read the text of the first result row user role
+7. Verify the expected result","Login: Admin / admin123
+Test username: alex.<random number> (generated at run time)","- The first result row username should show the generated username (alex.<random number>)
+- The text of the first result row user role should equal 'ESS'",No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – all 2 checks passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – PASS: As expected – all 2 checks passed.",BLOCKED
+TC_ADMIN_05,Edge Case / Boundary,Verify Admin page has Add button visible,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The Add button should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – PASS: As expected – the check passed.",BLOCKED
+TC_ADMIN_06,Positive Functional,Delete existing user and cleanup employee,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Delete user (<test username>)
+6. Search user (<test username>)
+7. Open the 'PIM' module from the side menu
+8. Delete employee (<test employee id>)
+9. Verify the expected result","Login: Admin / admin123
+Test employee id: <random number> (generated at run time)
+Test username: alex.<random number> (generated at run time)",- The table rows should not be shown,The test user and its employee record are deleted; no test data is left behind. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – FAIL: Attempt 1 failed: the table card element was not as expected (expected: ""652401"") – actual: ""EMP91474"". Attempt 2 failed: the table card element was not as expected (expected: ""615581"") – actual: ""EMP97811"".",FAIL
+TC_ADMIN_07,Positive Functional,Verify resetting the search form clears username field,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Enter 'tempuser' into the search username input
+6. Click the 'Reset' element
+7. Verify the expected result","Login: Admin / admin123
+Input: tempuser",- The search username input should have the value '',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_08,Negative / Validation,Verify search with non-existent username returns zero records,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Search user ('non_existent_username_9999')
+6. Verify the expected result","Login: Admin / admin123
+Search user input: non_existent_username_9999",- The table rows should not be shown,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_09,Edge Case / Boundary,Verify Admin sub-menu bar contains User Management item,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'User Management' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_10,UI Verification,Verify Job dropdown menu is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Job' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_11,UI Verification,Verify Organization dropdown menu is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Organization' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_12,UI Verification,Verify Qualifications dropdown menu is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Qualifications' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_13,UI Verification,Verify Nationalities tab item is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Nationalities' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_14,UI Verification,Verify Corporate Branding tab item is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Corporate Branding' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_15,UI Verification,Verify Configuration dropdown menu is visible in top navigation bar,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The 'Configuration' element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_16,Negative / Validation,Verify validation error on adding user with empty password,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Click the Add button
+6. Click the Save button
+7. Verify the expected result",Login: Admin / admin123,- The field validation message should show the text 'Required',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_17,Negative / Validation,Verify validation error on adding user with mismatched confirm password,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Click the Add button
+6. Enter 'Password123' into the Password field
+7. Enter 'Different123' into the confirm password input
+8. Verify the expected result","Login: Admin / admin123
+Input: Password123
+Input: Different123",- The field validation message should show the text 'Passwords do not match',No data is saved; the form shows the validation message. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_18,UI Verification,Verify autocomplete dropdown is hidden by default,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Click the Add button
+6. Verify the expected result",Login: Admin / admin123,- The autocomplete dropdown should not be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_19,Positive Functional,Verify cancel button returns to user grid page,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Click the Add button
+6. Click the secondary (ghost-style) button
+7. Wait for navigation to **/admin/viewSystemUsers
+8. Verify the expected result",Login: Admin / admin123,- The page URL should contain '/admin/viewSystemUsers',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_20,UI Verification,Verify select all checkbox is visible on table header,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- Select all checkbox is visible on table header.,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_21,Positive Functional,Verify row checkbox can be hovered and clicked,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The checkbox wrapper element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: Not Verified – the test ran without errors, but its check only runs under a condition that may not have been met. The expected behaviour was not confirmed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_22,UI Verification,Verify records count display text exists above table,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The horizontal padding element should be visible,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_23,Edge Case / Boundary,Verify Admin breadcrumb title contains User Management,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- The topbar header title element should contain the text 'User Management',No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_24,UI Verification,"Verify table column headers Username, User Role, Employee Name, Status, Actions exist",User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,"- Table column headers Username, User Role, Employee Name, Status, Actions exist.",No application data is changed. User remains logged in as Admin.,"Chromium – PASS: Not Verified – the test ran without errors, but its check cannot fail (it only confirms the element is defined in code, not that it is shown on the page). The expected behaviour was not confirmed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED
+TC_ADMIN_25,UI Verification,Verify search button tag name is button,User is logged in as Admin. Runs in sequence: the earlier Admin tests must pass first.,"1. Open the OrangeHRM login page
+2. Enter the username and password and click Login
+3. Wait for the Dashboard to load
+4. Open the 'Admin' module from the side menu
+5. Verify the expected result",Login: Admin / admin123,- Search button tag name is button.,No application data is changed. User remains logged in as Admin.,"Chromium – PASS: As expected – the check passed.
+Firefox – BLOCKED: Not executed – blocked because TC_ADMIN_01 failed earlier in the same test sequence.
+WebKit – BLOCKED: Not executed – blocked because TC_ADMIN_06 failed earlier in the same test sequence.",BLOCKED

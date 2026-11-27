@@ -4,7 +4,6 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   timeout: 180000,
-  globalTeardown: require.resolve('./utils/zipReports.js'),
   expect: {
     timeout: 15000,
   },
@@ -16,7 +15,8 @@ module.exports = defineConfig({
     ['html', { outputFolder: 'Results/Reports/HTML/playwright-report', open: 'never' }],
     ['list'],
     ['json', { outputFile: 'Results/Reports/JSON/results.json' }],
-    ['junit', { outputFile: 'Results/Reports/JUnit/results.xml' }]
+    ['junit', { outputFile: 'Results/Reports/JUnit/results.xml' }],
+    ['./utils/qaReportReporter.js']  // builds the QA Excel / CSV / HTML reports after results.json is written
   ],
   outputDir: 'Results/Evidence',
   use: {
